@@ -35,7 +35,7 @@ ArrayList<ArrayList<Integer>> column;
 			visible=true;
 		}else{
 			for (int dir = 0; dir < 4; dir++) {
-				checkDirection(dir);
+				//checkDirection(dir);
 			}
 			
 		}
@@ -46,7 +46,7 @@ ArrayList<ArrayList<Integer>> column;
 	public boolean giveMeTree(int x, int y){
 		boolean visible = false;
 		
-		if(i>0 && i<column.size() && j>0 && j<column.get(i).size()){
+		if(x>0 && x<column.size() && y>0 && y<column.get(x).size()){
 			visible=true;
 		}else{
 			column.get(0).get(0);
