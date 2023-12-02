@@ -1,22 +1,31 @@
-
 package Day_1;
 
 import Shared.ReadFile;
+import java.util.ArrayList;
 
 public class Solution_1_Day_1 {
-	int solution = 0;
-	
+
+    int solution = 0;
+
     public int getSolution() {
         ReadFile rf = new ReadFile();
-        String file = "";
+        ArrayList<String> data = new ArrayList<String>();
+
         String filepath = "/home/deadpool7337/UriPrograms/Other/PuzzleInput.txt";
-        file = rf.getInput(filepath);       
-        String[] commands = file.split("  ");
-        System.out.println(commands[1]);
-        
-			String str="sdfvsdf68fsdfsf8999fsdf09";
-			String numberOnly= str.replaceAll("[^0-9]", "");
-        
+
+        data = rf.getInput(filepath);
+
+        for (int i = 0; i < data.size(); i++) {
+            String numbers = data.get(i).replaceAll("[^0-9]", "");
+            
+            try {
+                int number = Integer.parseInt(numbers);
+                System.out.println(number); 
+            } catch (NumberFormatException ex) {
+                ex.printStackTrace();
+            }
+        }
+
         return solution;
     }
 }
