@@ -47,7 +47,9 @@ public class Solution_1_Day_2 {
                     while (index != -1) {
                         System.out.println(cubes.get(key));
                         //System.out.println(index);
-                        int gamecubes = Integer.parseInt(String.valueOf(puzzleString.charAt(index - 2)));
+                        int gamecubes = puzzleString.charAt(index - 2) -'0';
+								
+								Integer.parseInt(puzzleString.substring(index - 2,2));
                         System.out.println(gamecubes);
                         switch (key) {
                             case 12:
