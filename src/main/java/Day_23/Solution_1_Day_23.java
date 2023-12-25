@@ -9,8 +9,16 @@ public class Solution_1_Day_23 {
      public int getSolution() {
        ReadFile rf = new ReadFile();
        ArrayList<String> file = new ArrayList<String>();
-       String filepath = "/home/deadpool7337/UriPrograms/Other/PuzzleInput.txt";
-       file = rf.getInput(filepath);       
+       String filepath = "c:/UriStuff/Programming/AoC/Day23_PuzzleInput.txt";
+       file = rf.getInput(filepath);
+       
+       //Start
+       Map mapa = new Map(file);
+       Turista turista = new Turista();
+       
+       System.out.println(mapa.policka[0][0]);
+       
+       
        return solution;
     }
 }
