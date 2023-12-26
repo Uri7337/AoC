@@ -3,6 +3,9 @@ package Day_23;
 import Shared.ReadFile;
 import java.util.ArrayList;
 //
+// first check what kind of field it is
+// then check if i was on that field before
+// then chech directions
 public class Solution_1_Day_23 {
     int solution = 0;
 //
@@ -16,7 +19,6 @@ public class Solution_1_Day_23 {
        Map mapa = new Map(file);
        Turista turista = new Turista();
        
-       System.out.println(mapa.policka[0][0]);
        
        
        return solution;

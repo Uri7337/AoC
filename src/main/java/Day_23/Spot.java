@@ -5,14 +5,15 @@ package Day_23;
 public class Spot { 
     private Znak znak; 
     private int x; 
-    private int y; 
-  
-    public Spot(int x, int y, Znak znak) 
-    { 
-        this.setZnak(znak); 
-        this.setX(x); 
-        this.setY(y); 
-    } 
+    private int y;
+    private int footprint;
+    
+    public Spot(Znak znak, int x, int y, int footprint) {
+        this.znak = znak;
+        this.x = x;
+        this.y = y;
+        this.footprint = footprint;
+    }
   
     public Znak getZnak() 
     { 
@@ -43,4 +44,14 @@ public class Spot {
     { 
         this.y = y; 
     } 
+
+    public int getFootprint() {
+        return footprint;
+    }
+
+    public void setFootprint(int footprint) {
+        this.footprint = footprint;
+    }
+    
+    
 } 

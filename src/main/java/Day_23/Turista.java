@@ -2,10 +2,12 @@
 package Day_23;
 
 public class Turista {
+    int [][] currlocation;
     
     int[][] findStart(){
-       int[][] coordinates = ; 
+       
+//        currlocation =  
         
-        return coordinates;
+        return currlocation;
     }
 }
