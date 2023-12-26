@@ -6,9 +6,9 @@ public class Spot {
     private Znak znak; 
     private int x; 
     private int y;
-    private int footprint;
+    private boolean footprint;
     
-    public Spot(Znak znak, int x, int y, int footprint) {
+    public Spot(Znak znak, int x, int y, boolean footprint) {
         this.znak = znak;
         this.x = x;
         this.y = y;
@@ -45,11 +45,11 @@ public class Spot {
         this.y = y; 
     } 
 
-    public int getFootprint() {
+    public boolean getFootprint() {
         return footprint;
     }
 
-    public void setFootprint(int footprint) {
+    public void setFootprint(boolean footprint) {
         this.footprint = footprint;
     }
     

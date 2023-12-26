@@ -6,7 +6,10 @@ public class Znak {
 //    '^':2                
 //    '>':3                
 //    'v':4               
-//    '<':5              
+//    '<':5
+//    'S':6
+//    'O':7
+//    'F':8
     int z = 0;
     char zn;
     
@@ -35,6 +38,18 @@ public class Znak {
             case '<':
                 z=5;
                 zn = '<';
+                break;
+            case 'S':
+                z=6;
+                zn = 'S';
+                break;
+            case 'O':
+                z=7;
+                zn = 'O';
+                break;
+            case 'F':
+                z=8;
+                zn = 'F';
                 break;
         }
     }
