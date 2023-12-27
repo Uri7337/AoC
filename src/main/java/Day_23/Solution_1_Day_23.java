@@ -34,9 +34,10 @@ public class Solution_1_Day_23 {
        
        //Start
        Map mapa = new Map(file);
+       mapa.printMap(mapa.rows, mapa.cols);
+       Turista turista = new Turista(mapa.startlocation, mapa.finishlocation, 0);
        
-       
-       
+       turista.
        
        return solution;
     }

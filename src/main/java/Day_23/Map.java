@@ -8,11 +8,13 @@ public class Map {
     Spot[][] policka; //políčka
     Point startlocation = null;
     Point finishlocation = null;
+    int rows = 0;
+    int cols = 0;
 
     public Map(ArrayList<String> file) {
 
-        int rows = file.size(); // ↓
-        int cols = file.get(0).length(); //->
+        rows = file.size(); // ↓
+        cols = file.get(0).length(); //->
 
         policka = new Spot[rows][cols];
 
@@ -23,18 +25,16 @@ public class Map {
             }
         }
 
-        printMap(rows, cols);
+        
 
         findStart(cols);
         findFinish(cols);
 
-        Turista turista = new Turista(startlocation, finishlocation, 0);
-
         //set Start and Finish 
-        policka[turista.getStartlocation().x][turista.getStartlocation().y].setZnak(new Znak('S'));
-        policka[turista.getFinishlocation().x][turista.getFinishlocation().y].setZnak(new Znak('F'));
+        policka[startlocation.x][startlocation.y].setZnak(new Znak('S'));
+        policka[finishlocation.x][finishlocation.y].setZnak(new Znak('F'));
 
-        printMap(rows, cols);
+        
     }
 
     void printMap(int rows, int cols) {
