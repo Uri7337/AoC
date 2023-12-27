@@ -8,14 +8,18 @@ public class Turista {
     private Point startlocation;
     private Point finishlocation;
     private int steps;
-
+    
+    
+    
+    //Constructor
     public Turista(Point startlocation, Point finishlocation, int steps) {
         this.currlocation = startlocation;
         this.startlocation = startlocation;
         this.finishlocation = finishlocation;
         this.steps = steps;
     }
-
+    
+    //Getters, Setters
     public int getSteps() {
         return steps;
     }
