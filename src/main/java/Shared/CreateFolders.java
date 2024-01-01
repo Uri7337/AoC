@@ -1,21 +1,36 @@
 
 package Shared;
 
-import java.util.Scanner;  
 import java.io.File;  
 
 public class CreateFolders {
-    public void CreateFolder(){
-        Scanner sc = new Scanner(System.in);  
-    
-        System.out.println("Enter the number of day: ");  
-        int dayNum = sc.nextInt();
+    public void CreateFolder(int dayNum){
        
         File f1 = new File("src/main/java/Day_"+dayNum);
         
-        System.out.println(f1.mkdir() ? "Folder is created successfully" : "Error, Folder Found!");
+        boolean isCreated = f1.mkdir();
+        
+        System.out.println(isCreated ? "Folder Day_" + dayNum + " is created successfully" : "Error, Folder Day_" + dayNum + " Found!");
+        
+        if(isCreated){
+            CreateDay cd = new CreateDay();
+            cd.createWholeDay(dayNum);
+        }
     }
     public void CreateAllFolders(){
-        
+        boolean isCreated = false;
+        for (int i = 1; i < 26; i++) {
+            isCreated = false;
+            File f1 = new File("src/main/java/Day_"+i);
+            
+            isCreated = f1.mkdir();
+            
+            System.out.println(isCreated ? "Folder Day_" + i + " is created successfully" : "Error, Folder Day_" + i + " Found!");
+            
+            if(isCreated){
+                CreateDay cd = new CreateDay();
+                cd.createWholeDay(i);
+            }
+        }
     }
 }
