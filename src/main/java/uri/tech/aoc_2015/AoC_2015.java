@@ -3,24 +3,28 @@
 package uri.tech.aoc_2015;
 
 import Shared.CreateFolders;
+import Shared.AoCWeb;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class AoC_2015 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
        Scanner sc = new Scanner(System.in); 
        
        CreateFolders cf = new CreateFolders();
+       AoCWeb aoc = new AoCWeb();
         
        System.out.println("Enter the number of day: ");
        int dayNum = sc.nextInt();
-         
-       
+       String year = "2015";
+       boolean diffDay = false;
        
        String[] menuOptions = {
+            "Open Day",
+            "Open Test Puzzle Input",
+            "Open Puzzle Input",
             "Create Whole Day in Project",
-            "Get Puzzle Input",
-            "Open Web",
             "Enter Different Day",
             "Exit"
         };
@@ -28,6 +32,11 @@ public class AoC_2015 {
         int choice;
 
         do {
+            if(diffDay){
+                System.out.println("Enter the number of day: ");
+                dayNum = sc.nextInt();
+                diffDay=false;
+            }
             displayMenu(menuOptions, dayNum);
 
             System.out.print("Enter your choice: ");
@@ -38,24 +47,26 @@ public class AoC_2015 {
                 System.out.println("You selected " + menuOptions[choice - 1]);
                 switch (choice) {
                 case 1:
-                    cf.CreateFolder(dayNum);
+                    aoc.openWeb(year, String.valueOf(dayNum), false);
                     break;
                 case 2:
-                    
-                    
+                    aoc.openInputFile(year, String.valueOf(dayNum), true);
                     break;
                 case 3:
-                    
-                    
+                    aoc.openWeb(year, String.valueOf(dayNum), true);
+                    aoc.openInputFile(year, String.valueOf(dayNum), false);
                     break;
                 case 4:
-                    System.out.println("Change day");
+                    cf.CreateFolder(dayNum);
                     break;
                 case 5:
+                    diffDay=true;
+                    break;
+                case 6:
                     System.out.println("Exiting the program...");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please enter a valid option (1-4).");
+                    System.out.println("Invalid choice. Please enter a valid option (1-6).");
                     break;
             }
            

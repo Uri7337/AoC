@@ -16,23 +16,29 @@ public class CreateDay {
   public void createMainFile(int dayNum){
   //Day_##.java
     try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/Day_"+dayNum));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/Day_"+dayNum+"/Day_"+dayNum+".java"));
             
-            writer.newLine();
+            
             writer.write("package Day_" + dayNum + ";");
+            writer.newLine();
             writer.newLine(); 
             writer.write("public class Day_" + dayNum + " {");
-            writer.write("\\tpublic static void main (String[] args) {");
             writer.newLine();
-            writer.write("\\t\\tSolution_1_Day_" + dayNum + " s1 = new Solution_1_Day_" + dayNum + "();");
-            writer.write("\\t\\tSolution_2_Day_" + dayNum + " s2 = new Solution_2_Day_" + dayNum + "();");
+            writer.write("\tpublic static void main (String[] args) {");
             writer.newLine();
-            writer.write("\\t\\t//Change for wanted solution");
-            writer.write("\\t\\tboolean Solution1 = true;");
+            writer.write("\t\tSolution_1_Day_" + dayNum + " s1 = new Solution_1_Day_" + dayNum + "();");
             writer.newLine();
-            writer.write("\\t\\tSystem.out.println(Solution1 ? \"Day_" + dayNum + "_Solution1: \" + s1.getSolution() : \"Day_" + dayNum + "_Solution2: \" + s2.getSolution());");
+            writer.write("\t\tSolution_2_Day_" + dayNum + " s2 = new Solution_2_Day_" + dayNum + "();");
             writer.newLine();
-            writer.write("\\t}");
+            writer.newLine();
+            writer.write("\t\t//Change for wanted solution");
+            writer.newLine();
+            writer.write("\t\tboolean Solution1 = true;");
+            writer.newLine();
+            writer.write("\t\tSystem.out.println(Solution1 ? \"Day_" + dayNum + "_Solution1: \" + s1.getSolution() : \"Day_" + dayNum + "_Solution2: \" + s2.getSolution());");
+            writer.newLine();
+            writer.write("\t}");
+            writer.newLine();
             writer.write("}");
 
             writer.close(); 
@@ -45,28 +51,40 @@ public class CreateDay {
   public void createSolution1(int dayNum){
   //Solution_1_Day_##.java
     try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/Day_"+dayNum));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/Day_"+dayNum+"/Solution_1_Day_"+dayNum+".java"));
             
-            writer.newLine();
+            
             writer.write("package Day_" + dayNum + ";");
+            writer.newLine(); 
             writer.newLine(); 
             writer.write("import Shared.ReadFile;");
             writer.write("import java.util.ArrayList;");
             writer.newLine();
+            writer.newLine();
             writer.write("public class Solution_1_Day_" + dayNum + " {");
-            writer.write("\\tint solution = 0;");
-            writer.newLine();
-            writer.write("\\tpublic int getSolution() {");
-            writer.write("\\t\\tReadFile rf = new ReadFile();");
-            writer.write("\\t\\tArrayList<String> file = new ArrayList<String>();");
-            writer.write("\\t\\tString filepath = \"/home/deadpool7337/UriPrograms/Other/PuzzleInput.txt\";");
-            writer.write("\\t\\tfile = rf.getInput(filepath);");
-            writer.newLine();
-            writer.write("\\t\\t//Insert Solution Here:");
+            writer.write("\tint solution = 0;");
             writer.newLine();
             writer.newLine();
-            writer.write("\\t\\treturn solution;");
-            writer.write("\\t}");
+            writer.write("\tpublic int getSolution() {");
+            writer.newLine();
+            writer.write("\t\tReadFile rf = new ReadFile();");
+            writer.newLine();
+            writer.write("\t\tArrayList<String> file = new ArrayList<String>();");
+            writer.newLine();
+            writer.write("\t\tString filepath = \"/home/deadpool7337/UriPrograms/Other/PuzzleInput.txt\";");
+            writer.newLine();
+            writer.write("\t\tfile = rf.getInput(filepath);");
+            writer.newLine();
+            writer.newLine();
+            writer.write("\t\t//Insert Solution Here:");
+            writer.newLine();
+            writer.newLine();
+            writer.newLine();
+            writer.newLine();
+            writer.write("\t\treturn solution;");
+            writer.newLine();
+            writer.write("\t}");
+            writer.newLine();
             writer.write("}");
 
             writer.close(); 
@@ -79,28 +97,40 @@ public class CreateDay {
   public void createSolution2(int dayNum){
   //Solution_2_Day_##.java
     try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/Day_"+dayNum));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/Day_"+dayNum+"/Solution_2_Day_"+dayNum+".java"));
             
-            writer.newLine();
+            
             writer.write("package Day_" + dayNum + ";");
+            writer.newLine(); 
             writer.newLine(); 
             writer.write("import Shared.ReadFile;");
             writer.write("import java.util.ArrayList;");
             writer.newLine();
+            writer.newLine();
             writer.write("public class Solution_2_Day_" + dayNum + " {");
-            writer.write("\\tint solution = 0;");
-            writer.newLine();
-            writer.write("\\tpublic int getSolution() {");
-            writer.write("\\t\\tReadFile rf = new ReadFile();");
-            writer.write("\\t\\tArrayList<String> file = new ArrayList<String>();");
-            writer.write("\\t\\tString filepath = \"/home/deadpool7337/UriPrograms/Other/PuzzleInput.txt\";");
-            writer.write("\\t\\tfile = rf.getInput(filepath);");
-            writer.newLine();
-            writer.write("\\t\\t//Insert Solution Here:");
+            writer.write("\tint solution = 0;");
             writer.newLine();
             writer.newLine();
-            writer.write("\\t\\treturn solution;");
-            writer.write("\\t}");
+            writer.write("\tpublic int getSolution() {");
+            writer.newLine();
+            writer.write("\t\tReadFile rf = new ReadFile();");
+            writer.newLine();
+            writer.write("\t\tArrayList<String> file = new ArrayList<String>();");
+            writer.newLine();
+            writer.write("\t\tString filepath = \"/home/deadpool7337/UriPrograms/Other/PuzzleInput.txt\";");
+            writer.newLine();
+            writer.write("\t\tfile = rf.getInput(filepath);");
+            writer.newLine();
+            writer.newLine();
+            writer.write("\t\t//Insert Solution Here:");
+            writer.newLine();
+            writer.newLine();
+            writer.newLine();
+            writer.newLine();
+            writer.write("\t\treturn solution;");
+            writer.newLine();
+            writer.write("\t}");
+            writer.newLine();
             writer.write("}");
 
             writer.close(); 

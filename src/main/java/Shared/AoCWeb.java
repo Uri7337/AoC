@@ -1,32 +1,53 @@
-
 package Shared;
 
-
-import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class AoCWeb {
-    public static void main(String[] args) {
-        String url = "http://www.google.com";
 
-        if(Desktop.isDesktopSupported()){
-            Desktop desktop = Desktop.getDesktop();
-            try {
-                desktop.browse(new URI(url));
-            } catch  (IOException | URISyntaxException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }else{
-            Runtime runtime = Runtime.getRuntime();
-            try {
-                runtime.exec("xdg-open " + url);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+    public void openWeb(String year, String day, Boolean puzzleInput) throws IOException {
+        if (puzzleInput) {
+            String[] cmdarray = {"xdg-open " + "https://adventofcode.com/" + year + "/day/" + day + "/input"};
+            execute(cmdarray);
+
+        } else {
+            String[] cmdarray = {"xdg-open " + "https://adventofcode.com/" + year + "/day/" + day};
+            execute(cmdarray);
         }
     }
+
+    public void openInputFile(String year, String day, Boolean test) throws IOException {
+
+        if (test) {
+            String[] cmdarray = {"/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=netbeans-desktop org.apache.netbeans "+
+                "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+
+                year+"_"+day+"_test"+".txt"
+                };
+            
+            File testFile = new File("Day_"+year+"_"+day+"_test"+".txt");
+            testFile.createNewFile();
+            FileOutputStream oFile = new FileOutputStream(testFile, false); 
+            
+            execute(cmdarray);
+        } else {
+            String[] cmdarray = {"/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=netbeans-desktop org.apache.netbeans "+
+                "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+
+                year+"_"+day+".txt"};
+            
+            File file = new File("Day_"+year+"_"+day+".txt");
+            file.createNewFile();
+            FileOutputStream oFile = new FileOutputStream(file, false); 
+            
+            execute(cmdarray);
+        }   
+    }
+
+    public void execute(String[] commandarray) throws IOException {
+        System.out.println(commandarray[0]);
+        Runtime.getRuntime().exec(commandarray[0]);
+    }
 }
+
+
+
