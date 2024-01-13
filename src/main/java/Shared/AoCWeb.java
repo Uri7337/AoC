@@ -20,7 +20,7 @@ public class AoCWeb {
     public void openInputFile(String year, String day, Boolean test) throws IOException {
 
         if (test) {
-            String[] cmdarray = {"/usr/bin/flatpak" + " run --branch=stable --arch=x86_64 --command=netbeans-desktop org.apache.netbeans "+
+            String[] cmdarray = {"/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=netbeans-desktop org.apache.netbeans "+
                 "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+day+"_test_"+year+".txt"
                 };
             
