@@ -20,22 +20,21 @@ public class AoCWeb {
     public void openInputFile(String year, String day, Boolean test) throws IOException {
 
         if (test) {
-            String[] cmdarray = {"/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=netbeans-desktop org.apache.netbeans "+
-                "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+
-                year+"_"+day+"_test"+".txt"
+            String[] cmdarray = {"/usr/bin/flatpak" + " run --branch=stable --arch=x86_64 --command=netbeans-desktop org.apache.netbeans "+
+                "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+day+"_test_"+year+".txt"
                 };
             
-            File testFile = new File("Day_"+year+"_"+day+"_test"+".txt");
+            File testFile = new File("/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+day+"_test_"+year+".txt");
             testFile.createNewFile();
             FileOutputStream oFile = new FileOutputStream(testFile, false); 
             
             execute(cmdarray);
         } else {
             String[] cmdarray = {"/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=netbeans-desktop org.apache.netbeans "+
-                "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+
-                year+"_"+day+".txt"};
+                "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+day+"_"+year+".txt"
+            };
             
-            File file = new File("Day_"+year+"_"+day+".txt");
+            File file = new File("/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_"+day+"_"+year+".txt");
             file.createNewFile();
             FileOutputStream oFile = new FileOutputStream(file, false); 
             
