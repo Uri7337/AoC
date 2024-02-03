@@ -39,7 +39,7 @@ public class Grid {
         
         for (int i = 0; i < allHouseMap.length; i++) {
             for (int j = 0; j < allHouseMap[i].length; j++) {
-                nogifts = allHouseMap[i][j].getNumberOfGifts();
+                nogifts = allHouseMap[i][j]==null ? 0 : allHouseMap[i][j].getNumberOfGifts();
                 if(nogifts>=1){
                     count++;
                 }
