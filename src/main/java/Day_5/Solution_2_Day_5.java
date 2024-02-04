@@ -38,12 +38,13 @@ public class Solution_2_Day_5 {
         char currbroletter = ' ';
 
         for (int i = 0; i < file.get(filerow).length(); i++) {
-
+            
             currletter = file.get(filerow).charAt(i);
             currbroletter = i == (file.get(filerow).length() - 1) ? ' ' : file.get(filerow).charAt(i + 1);
             String pair = currletter +""+ currbroletter;
             System.out.println(pair);
-            if (file.get(filerow).contains(pair)) {
+            int ind = file.get(filerow).indexOf(pair,i);
+            if (ind>=0) {
                 return true;
 
             }
@@ -62,7 +63,7 @@ public class Solution_2_Day_5 {
 
             before = i == 0 ? ' ' : file.get(filerow).charAt(i - 1);
             after = i == (file.get(filerow).length() - 1) ? ' ' : file.get(filerow).charAt(i + 1);
-
+            
             int comparebefore = Character.compare(currletter, before);
             int compareafter = Character.compare(currletter, after);
             if (comparebefore == 0 || compareafter == 0) {
