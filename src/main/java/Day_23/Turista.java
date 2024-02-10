@@ -29,30 +29,30 @@ public class Turista {
     
         return downhill;
     }
-    public Point moveLeft(Spot[][] policko){
-        this.newlocation.x = policko[i][j].getX().x;
-        this.newlocation.y = policko[i][j].getY().y;
-        
-        return newlocation;
-    }
-    public Point moveTop(Spot[][] policko){
-        this.newlocation.x = policko[i][j].getX().x;
-        this.newlocation.y = policko[i][j].getY().y;
-        
-        return newlocation;
-    }
-    public Point moveRight(Spot[][] policko){
-        this.newlocation.x = policko[i][j].getX().x;
-        this.newlocation.y = policko[i][j].getY().y;
-        
-        return newlocation;
-    }
-    public Point moveBottom(Spot[][] policko){
-        this.newlocation.x = policko[i][j].getX().x;
-        this.newlocation.y = policko[i][j].getY().y;
-        
-        return newlocation;
-    }
+//    public Point moveLeft(Spot[][] policko){
+//        this.newlocation.x = policko[this.currlocation.x][this.currlocation.y].getX().x;
+//        this.newlocation.y = policko[this.currlocation.x][this.currlocation.y].getY().y;
+//        
+//        return newlocation;
+//    }
+//    public Point moveTop(Spot[][] policko){
+//        this.newlocation.x = policko[this.currlocation.x][this.currlocation.y].getX().x;
+//        this.newlocation.y = policko[this.currlocation.x][this.currlocation.y].getY().y;
+//        
+//        return newlocation;
+//    }
+//    public Point moveRight(Spot[][] policko){
+//        this.newlocation.x = policko[this.currlocation.x][this.currlocation.y].getX().x;
+//        this.newlocation.y = policko[this.currlocation.x][this.currlocation.y].getY().y;
+//        
+//        return newlocation;
+//    }
+//    public Point moveBottom(Spot[][] policko){
+//        this.newlocation.x = policko[this.currlocation.x][this.currlocation.y].getX().x;
+//        this.newlocation.y = policko[this.currlocation.x][this.currlocation.y].getY().y;
+//        
+//        return newlocation;
+//    }
     
     
     //Constructor
