@@ -1,7 +1,6 @@
 package Day_5;
 
 import Shared.ReadFile;
-import com.sun.tools.javac.util.StringUtils;
 import java.util.ArrayList;
 
 public class Solution_2_Day_5 {
@@ -12,8 +11,9 @@ public class Solution_2_Day_5 {
     public int getSolution() {
         ReadFile rf = new ReadFile();
 
-//        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_5_test_2015.txt";
-        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_5_2015.txt";
+//        String filepath = "./src/main/resources/Day_5_test_2015.txt";
+        String filepath = "./src/main/resources/Day_5_2015.txt";
+        
         file = rf.getInput(filepath);
 
         //Insert Solution Here:
@@ -39,16 +39,6 @@ public class Solution_2_Day_5 {
         char gfch = ' '; //guessFirstChar
         char gsch = ' '; //guessSecondChar
 
-<<<<<<< HEAD
-        for (int i = 0; i < file.get(filerow).length(); i++) {
-            
-            currletter = file.get(filerow).charAt(i);
-            currbroletter = i == (file.get(filerow).length() - 1) ? ' ' : file.get(filerow).charAt(i + 1);
-            String pair = currletter +""+ currbroletter;
-            System.out.println(pair);
-            int ind = file.get(filerow).indexOf(pair,i);
-            if (ind>=0) {
-=======
         for (int i = 0; i < file.get(filerow).length()-2; i++) {
             ArrayList<Integer> indexarr = new ArrayList<Integer>();
             String word = file.get(filerow);
@@ -72,7 +62,6 @@ public class Solution_2_Day_5 {
             
             if(indexarr.size()==3 && firstloc != secondloc){
                 System.out.println(indexarr);
->>>>>>> 246bc3c (Day 5 Solution 2 Progress)
                 return true;
             }
         }
@@ -89,17 +78,8 @@ public class Solution_2_Day_5 {
 
             csl = input.charAt(i + 2);
 
-<<<<<<< HEAD
-            before = i == 0 ? ' ' : file.get(filerow).charAt(i - 1);
-            after = i == (file.get(filerow).length() - 1) ? ' ' : file.get(filerow).charAt(i + 1);
-            
-            int comparebefore = Character.compare(currletter, before);
-            int compareafter = Character.compare(currletter, after);
-            if (comparebefore == 0 || compareafter == 0) {
-=======
             if (cl == csl) {
                 System.out.println(cl+""+input.charAt(i + 1)+""+csl);
->>>>>>> 246bc3c (Day 5 Solution 2 Progress)
                 return true;
             }
 
