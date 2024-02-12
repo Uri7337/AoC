@@ -18,12 +18,10 @@ public class Solution_2_Day_5 {
 
         //Insert Solution Here:
         for (int row = 0; row < file.size(); row++) {
-
-            System.out.println("------");
-            System.out.println(file.get(row));
-            System.out.println("pair: "+pair(row));
-            System.out.println("repeats: "+repeats(row));
-            System.out.println("------");
+			if (!pair(row)) System.out.println((row+1)+": nodpl");
+			else if (!repeats(row)) System.out.println((row+1)+": norepeat");
+			else System.out.println((row+1)+": ok");
+            
             
             if (pair(row) && repeats(row)) {
                 solution++;
@@ -36,34 +34,31 @@ public class Solution_2_Day_5 {
     }
 
     public boolean pair(int filerow) {
-        char gfch = ' '; //guessFirstChar
-        char gsch = ' '; //guessSecondChar
+		final String row = file.get(filerow);
 
-        for (int i = 0; i < file.get(filerow).length()-2; i++) {
-            ArrayList<Integer> indexarr = new ArrayList<Integer>();
-            String word = file.get(filerow);
-            gfch = word.charAt(i);
-            gsch = word.charAt(i + 1);
+        for (int i = 0; i < row.length()-3; i++) {
+//            ArrayList<Integer> indexarr = new ArrayList<Integer>();
+            String word = row;
+           char gfch = word.charAt(i);
+           char gsch = word.charAt(i + 1);
 
             String guess = gfch + "" + gsch;
 
-            int index = word.indexOf(guess);
-            indexarr.add(index);
+            int index = word.indexOf(guess,i+2);
+			
+//            indexarr.add(index);
             
-            while (index >= 0) {
-                index = word.indexOf(guess, index + 1);
-                
-                indexarr.add(index);
-                
-            }
-            
-            int firstloc = indexarr.get(0)+1;
-            int secondloc = indexarr.get(1);
-            
-            if(indexarr.size()==3 && firstloc != secondloc){
-                System.out.println(indexarr);
+            if (index >= 0) {
                 return true;
             }
+            
+//            int firstloc = indexarr.get(0)+1;
+//            int secondloc = indexarr.get(1);
+            
+//            if(indexarr.size()>=3){
+//                System.out.println(indexarr);
+//                return true;
+//            }
         }
         return false;
     }
@@ -72,14 +67,14 @@ public class Solution_2_Day_5 {
         char cl = ' '; //currletter
         char csl = ' '; //currsameletter
 
-        for (int i = 0; i < (file.get(filerow).length() - 3); i++) {
+        for (int i = 0; i < (file.get(filerow).length() - 2); i++) {
             String input = file.get(filerow);
             cl = input.charAt(i);
 
             csl = input.charAt(i + 2);
 
             if (cl == csl) {
-                System.out.println(cl+""+input.charAt(i + 1)+""+csl);
+//                System.out.println(cl+""+input.charAt(i + 1)+""+csl);
                 return true;
             }
 
