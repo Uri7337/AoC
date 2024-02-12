@@ -7,7 +7,7 @@ public class Solution_1_Day_6 {
 
     int solution = 0;
     int rows = 1000;
-    int columns 1000;
+    int columns = 1000;
     Light[][] lightGrid = new Light[rows][columns];
  
     
