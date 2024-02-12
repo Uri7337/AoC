@@ -1,50 +1,62 @@
 package Day_6;
-//
 
+import Shared.ReadFile;
 import java.util.ArrayList;
 
-
-//
-
-/*
-
-Speed = distance/time = 3meters/3sec = 1m/s | d=s*t, t=d/v
-
-*/
-
 public class Solution_1_Day_6 {
-    int solution = 1;
-	ArrayList<Integer> s;
-//
-     public int getSolution() {
+
+    int solution = 0;
+    int rows = 1000;
+    int columns 1000;
+    Light[][] lightGrid = new Light[rows][columns];
+ 
+    
+
+    
+
+    public int getSolution() {
+        ReadFile rf = new ReadFile();
+        ArrayList<String> file = new ArrayList<String>();
+        String filepath = "../resources/Day_6_test_2015.txt";
+        //String filepath = "../resources/Day_6_2015.txt";
+        file = rf.getInput(filepath);
+        
+        populateGrid(rows,columns);
+        //Insert Solution Here:
+        for (int i = 0; i < file.size(); i++) {
             
-	   
-	   int[] test_time = {7,15,30};
-	   int[] test_distanceRecord = {9,40,200};
-	   
-	   int[] time = {40,70,98,79};
-	   int[] distanceRecord = {215, 1051, 2147, 1005};
-	   
-	   int distance = 0;
-	   int timeleft = 0;
-	      
-	   for (int i = 0; i < time.length; i++) {
-		   s = new ArrayList<Integer>();
-		   for (int j = 0; j < time[i]; j++) {
-		   timeleft = time[i] - j;
-		   distance = j*timeleft;
-//		   System.out.println("timeleft "+timeleft);
-//		   System.out.println("distance "+distance);
-//		   System.out.println("time "+time[i]);
-		   
-			if(time[i]<distance && distanceRecord[i]<distance){
-				s.add(j);
-			}
-		   }
-		   solution *= s.size();
-		 }
-	   
-	   
-       return solution;
+            
+            
+        }
+
+        return solution;
+    }
+
+    public void populateGrid(int rows, int columns) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                lightGrid[i][j] = new Light(false,i,j);
+            }
+        }
+        
+    }
+    
+    public void accessGrid(boolean status, int rows, int columns){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                
+            }
+     
+        }
+    }
+    
+    public void printGrid(int rows, int columns){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                String symbol = lightGrid[i][j].isShining() ?"-":".";
+                System.out.print(symbol + " ");
+            }
+            System.out.println();
+        }
     }
 }
