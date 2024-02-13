@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Solution_1_Day_6 {
 
     int solution = 0;
-    int rows = 1000;
-    int columns = 1000;
+    int rows = 10;
+    int columns = 10;
     Light[][] lightGrid = new Light[rows][columns];
  
     
@@ -17,8 +17,8 @@ public class Solution_1_Day_6 {
     public int getSolution() {
         ReadFile rf = new ReadFile();
         ArrayList<String> file = new ArrayList<String>();
-        String filepath = "../resources/Day_6_test_2015.txt";
-        //String filepath = "../resources/Day_6_2015.txt";
+        String filepath = "./src/main/resources/Day_6_test_2015.txt";
+        //String filepath = "./src/main/resources/Day_6_2015.txt";
         file = rf.getInput(filepath);
         
         populateGrid(rows,columns);
@@ -44,7 +44,16 @@ public class Solution_1_Day_6 {
     public void accessGrid(boolean status, int rows, int columns){
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                
+                lightGrid[i][j].toggle();
+            }
+     
+        }
+    }
+	
+	 public void accessGrid(int rows, int columns){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                lightGrid[i][j].toggle();
             }
      
         }

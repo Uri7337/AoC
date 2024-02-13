@@ -19,8 +19,8 @@ public class Light {
         setShining(false);
     }
     
-    public void toggle(boolean status){
-        setShining(!status);
+    public void toggle(){
+        setShining(!isShining());
     }
     
     public boolean isShining() {
