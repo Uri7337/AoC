@@ -13,8 +13,8 @@ public class Solution_1_Day_6 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-		String filepath = "./src/main/resources/Day_6_test_2015.txt";
-//		String filepath = "./src/main/resources/Day_6_2015.txt";
+//		String filepath = "./src/main/resources/Day_6_test_2015.txt";
+		String filepath = "./src/main/resources/Day_6_2015.txt";
 		file = rf.getInput(filepath);
 
 		populateGrid(rows, columns);
@@ -59,8 +59,8 @@ public class Solution_1_Day_6 {
 	}
 
 	public void accessGrid(int status, int startrows, int startcolumns, int endrows, int endcolumns) {
-		for (int i = startrows; i < endrows; i++) {
-			for (int j = startcolumns; j < endcolumns; j++) {
+		for (int i = startrows; i <= endrows; i++) {
+			for (int j = startcolumns; j <= endcolumns; j++) {
 
 				switch (status) {
 					case 1:
