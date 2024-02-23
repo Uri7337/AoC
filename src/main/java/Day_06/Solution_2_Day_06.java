@@ -1,9 +1,9 @@
-package Day_6;
+package Day_06;
 
 import Shared.ReadFile;
 import java.util.ArrayList;
 
-public class Solution_2_Day_6 {
+public class Solution_2_Day_06 {
 
 	int solution = 0;
 	int rows = 1000;
@@ -13,8 +13,8 @@ public class Solution_2_Day_6 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "./src/main/resources/Day_6_test_2015.txt";
-		String filepath = "./src/main/resources/Day_6_2015.txt";
+//		String filepath = "./src/main/resources/Day_06_test_2015.txt";
+		String filepath = "./src/main/resources/Day_06_2015.txt";
 		file = rf.getInput(filepath);
 
 		populateGrid(rows, columns);
