@@ -16,7 +16,8 @@ public class Light2 {
     }
     
     public void turnOff(){
-        setShining(getShining()-1);
+		int tmp = getShining() == 0 ? 0 : getShining() - 1;
+        setShining(tmp);
     }
     
     public void toggle(){

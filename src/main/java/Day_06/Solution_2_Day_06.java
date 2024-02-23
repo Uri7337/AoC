@@ -31,7 +31,7 @@ public class Solution_2_Day_06 {
 					accessGrid(1, coords[0], coords[1], coords[2], coords[3]);
 				} else if (lin[1].equals("off")) {
 					String[] li = lin[2].split(",");
-					String[] li2 = lin[4].split(",");
+	  				String[] li2 = lin[4].split(",");
 					int[] coords = new int[]{getNum(li[0]), getNum(li[1]), getNum(li2[0]), getNum(li2[1])};
 					accessGrid(2, coords[0], coords[1], coords[2], coords[3]);
 				} else {
