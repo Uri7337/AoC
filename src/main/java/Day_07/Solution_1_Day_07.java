@@ -26,6 +26,7 @@ public class Solution_1_Day_07 {
 			if(lineparts[0].equals("NOT")){
 				int value = hshmp.get(lineparts[1]);
 				value = ~value;
+   value = 65536 - value;
 				hshmp.put(lineparts[3], value);
 				
 			//numbers
