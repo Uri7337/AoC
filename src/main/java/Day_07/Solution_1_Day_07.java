@@ -12,8 +12,8 @@ public class Solution_1_Day_07 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-		String filepath = "./src/main/resources/Day_07_test_2015.txt";
-//		String filepath = "./src/main/resources/Day_07_2015.txt";
+//		String filepath = "./src/main/resources/Day_07_test_2015.txt";
+		String filepath = "./src/main/resources/Day_07_2015.txt";
 		file = rf.getInput(filepath);
 
 		
@@ -26,7 +26,7 @@ public class Solution_1_Day_07 {
 			if(lineparts[0].equals("NOT")){
 				int value = hshmp.get(lineparts[1]);
 				value = ~value;
-   value = 65536 - value;
+				value = 65536 + value;
 				hshmp.put(lineparts[3], value);
 				
 			//numbers
@@ -37,7 +37,9 @@ public class Solution_1_Day_07 {
 			//letters	
 			}else{
 				String gate = lineparts[1];
-	
+				//add if na letters, pokud to nebudou nejake vazby
+				System.out.println(hshmp.get(lineparts[0]));
+				
 				int value1 = hshmp.get(lineparts[0]);
 				int value2 = lineparts[2].matches(".*\\d.*") ? Integer.parseInt(lineparts[2]) : hshmp.get(lineparts[2]);
 				int value = 0;
