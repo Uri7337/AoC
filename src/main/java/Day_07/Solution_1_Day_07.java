@@ -8,7 +8,9 @@ public class Solution_1_Day_07 {
 
 	int solution = 0;
 	HashMap<String,Integer> hshmp = new HashMap<String, Integer>();
-
+	Board b = new Board();
+	
+	
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
