@@ -10,6 +10,15 @@ public class Wire {
 	private String name;
 	private Wire leftSide;
 	private Wire rightSide;
+	private int shift;
+
+	public int getShift() {
+		return shift;
+	}
+
+	public void setShift(int shift) {
+		this.shift = shift;
+	}
 	
 	public String getName() {
 		return name;
