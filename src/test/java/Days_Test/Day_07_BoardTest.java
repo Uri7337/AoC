@@ -9,9 +9,16 @@ public class Day_07_BoardTest {
 		Wire w = new Wire();
 		Board b = new Board();
 		String name = "bob";
-		System.out.println(b.hasWire(name));
-		b.addWire(name);
-		System.out.println(b.hasWire(name));
-		System.out.println(b.getWire(name).getName());
+//		System.out.println(b.hasWire(name));
+		Wire w0 = b.getCreateWire(name);
+		System.out.println(b.getWireLeftSide(name));
+		b.setWireValue(name,5);
+		//w0 = b.getCreateWire(name);
+		System.out.println("wireleftside");
+		System.out.println(b.getWireLeftSide(name));
+		
+		
+		
+		
 	}
 }

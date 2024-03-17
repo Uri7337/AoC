@@ -15,41 +15,39 @@ public class Board {
 	}
 	
 	public void addWire(String wName){
-		Wire w = new Wire();
-		w.setName(wName);
-		wiresList.put(wName, w);
+		addWire(wName, -1);
 	}
 	
 	public void addWire(String wName, int value){
-		Wire w = new Wire();
-		w.setName(wName);
-		w.setValue(value);
-		wiresList.put(wName, w);
+		addWire(wName, null, null, null, value, 0, -1, -1);
 	}
 	
 	public void addWire(String wName, Wire left, String gate){
-		Wire w = new Wire();
-		w.setName(wName);
-		w.setLeftSide(left);
-		w.setGate(gate);
-		wiresList.put(wName, w);
+		addWire(wName, left, null, gate, -1, 0, -1, -1);
+	}
+	
+	public void addWire(String wName, int val, Wire left, String gate){
+		addWire(wName, left, null, gate, -1, 0, -1, -1);
 	}
 	
 	public void addWire(String wName, Wire left, Wire right, String gate){
-		Wire w = new Wire();
-		w.setName(wName);
-		w.setLeftSide(left);
-		w.setRightSide(right);
-		w.setGate(gate);
-		wiresList.put(wName, w);
+		addWire(wName, left, right, gate, -1, 0, -1, -1);
 	}
 	
 	public void addWire(String wName, Wire left, String gate, int shift){
+		addWire(wName, left, null, gate, -1, shift, -1, -1);
+	}
+	
+	public void addWire(String wName, Wire left, Wire right, String gate, int value, int shift, int leftVal, int rightVal){
 		Wire w = new Wire();
 		w.setName(wName);
 		w.setLeftSide(left);
 		w.setGate(gate);
 		w.setShift(shift);
+		w.setRightSide(right);
+		w.setValue(value);
+		w.setLeftVal(leftVal);
+		w.setRightVal(rightVal);
 		wiresList.put(wName, w);
 	}
 	

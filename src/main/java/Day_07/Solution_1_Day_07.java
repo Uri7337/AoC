@@ -16,7 +16,7 @@ public class Solution_1_Day_07 {
 //		String filepath = "./src/main/resources/Day_07_test_2015.txt";
 		String filepath = "./src/main/resources/Day_07_2015.txt";
 		file = rf.getInput(filepath);
-		String wirea = "a";
+		String wireres = "a";
 		
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
@@ -24,74 +24,9 @@ public class Solution_1_Day_07 {
 			String[] lineparts = line.split(" ");
 
 			placeWires(lineparts);
-			
-			int value = 0;
-
-			//NOT
-			if (lineparts[0].equals("NOT")) {
-				if (!(b.hasWire(lineparts[1]))) {
-					b.addWire(lineparts[1]);
-
-				}
-				value = b.getWireValue(lineparts[1]);
-				value = ~value;
-				value = 65536 + value;
-				b.setWireValue(lineparts[3], value);
-
-				//numbers
-			} else if (lineparts[0].matches(".*\\d.*")) {
-				value = Integer.parseInt(lineparts[0]);
-				hshmp.put(lineparts[2], value);
-
-				//letters	
-			} else {
-				String gate = lineparts[1];
-				if ((hshmp.get(lineparts[0]) == null)) {
-					hshmp.put(lineparts[0], 0);
-				}
-
-				if ((hshmp.get(lineparts[2]) == null)) {
-					hshmp.put(lineparts[2], 0);
-				}
-
-				int value1 = 0;
-				int value2 = 0;
-
-				value1 = hshmp.get(lineparts[0]);
-				value2 = lineparts[2].matches(".*\\d.*") ? Integer.parseInt(lineparts[2]) : hshmp.get(lineparts[2]);
-
-				switch (gate) {
-					case "AND":
-						value = value1 & value2;
-						break;
-					case "OR":
-						value = value1 | value2;
-						break;
-					case "LSHIFT":
-
-						value = value1 << value2;
-						break;
-					case "RSHIFT":
-
-						value = value1 >> value2;
-						break;
-					case "->":
-						hshmp.put(lineparts[2], value1);
-						break;
-					default:
-						throw new AssertionError();
-				}
-				if (4 < lineparts.length) {
-					hshmp.put(lineparts[4], value);
-				} else {
-					hshmp.put(lineparts[2], value);
-				}
-
-			}
-
 		}
-		System.out.println(hshmp);
-		solution = getValueOfWire(wirea);
+		Wire a = b.getWire(wireres);
+		solution = calcValue(a);
 		return solution;
 	}
 
@@ -103,8 +38,48 @@ public class Solution_1_Day_07 {
 			b.addWire(lineparts[3], b.getWire(lineparts[1]), lineparts[0]);
 		//numbers
 		} else if (lineparts[0].matches(".*\\d.*")) {
-			int value = Integer.parseInt(lineparts[0]);
-			b.addWire(lineparts[2], value);
+			
+			
+			
+			String gate = lineparts[1];
+			int val;
+			Wire w2;
+			int shift = 0;
+			
+			switch (gate) {
+				case "AND":
+					val = Integer.parseInt(lineparts[0]);
+					w2 = b.getCreateWire(lineparts[2]);
+					b.addWire(lineparts[4], val, w2, gate);
+					break;
+				case "OR":
+					val = Integer.parseInt(lineparts[0]);
+					w2 = b.getCreateWire(lineparts[2]);
+					b.addWire(lineparts[4], val, w2, gate);
+					break;
+				case "LSHIFT":
+					val = Integer.parseInt(lineparts[0]);
+					shift = Integer.parseInt(lineparts[2]);
+					b.addWire(lineparts[4], val, gate, shift);
+					
+					break;
+				case "RSHIFT":
+					val = Integer.parseInt(lineparts[0]);
+					shift = Integer.parseInt(lineparts[2]);
+					b.addWire(lineparts[4], val, gate, shift);
+					
+					break;
+				case "->":
+					int value = Integer.parseInt(lineparts[0]);
+					b.addWire(lineparts[2], value);
+					break;
+				default:
+					throw new AssertionError();
+			}
+			
+			
+			
+			
 
 		//letters
 		} else {
@@ -145,21 +120,40 @@ public class Solution_1_Day_07 {
 			}
 		}
 	}
-	public int getValueOfWire(String wireName){
-		int result = 0;
-		Wire wLeft;
-		Wire wRight;
-		if(b.emptyValue(wireName)){
-			if(b.getWireRightSide(wireName) == null){
-				wLeft = b.getWireLeftSide(wireName);
-			}else{
-				wLeft = b.getWireLeftSide(wireName);
-				wRight = b.getWireRightSide(wireName);
-			}
+	
+	public int calcValue(Wire w) {
+		Wire bw = b.getWire(w.getName());
+		if (bw.getValue() > -1) {
+			return bw.getValue();
+		} else {
+			int res = 0;
+			System.out.println(bw.getName());
 			
-		}else{
-			b.getWireValue(wireName);
+			switch (bw.getGate()) {
+				case "NOT":
+					res = calcValue(bw.getLeftSide());
+					res = ~res;
+					res = 65536 + res;
+					return res;
+				case "AND":
+					res = calcValue(bw.getLeftSide()) & calcValue(bw.getRightSide());
+					return res;
+				case "OR":
+					res = calcValue(bw.getLeftSide()) | calcValue(bw.getRightSide());
+					return res;
+				case "LSHIFT":
+					res = calcValue(bw.getLeftSide()) << bw.getShift();
+					return res;
+				case "RSHIFT":
+					res = calcValue(bw.getLeftSide()) >> bw.getShift();
+					return res;
+				case "->":
+					System.out.println("here");
+					res = calcValue(bw.getLeftSide());
+					return res;
+				default:
+					throw new AssertionError();
+			}
 		}
-		return result;
 	}
 }
