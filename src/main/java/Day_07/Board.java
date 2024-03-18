@@ -15,19 +15,15 @@ public class Board {
 	}
 	
 	public void addWire(String wName){
-		addWire(wName, -1);
+		addWire(wName, -1, null);
 	}
 	
-	public void addWire(String wName, int value){
-		addWire(wName, null, null, null, value, 0, -1, -1);
+	public void addWire(String wName, int value, String gate){
+		addWire(wName, null, null, gate, value, 0, -1, -1);
 	}
 	
 	public void addWire(String wName, Wire left, String gate){
 		addWire(wName, left, null, gate, -1, 0, -1, -1);
-	}
-	
-	public void addWire(String wName, int val, Wire left, String gate){
-		addWire(wName, left, null, gate, -1, 0, val, -1);
 	}
 	
 	public void addWire(String wName, int val, Wire left, String gate){

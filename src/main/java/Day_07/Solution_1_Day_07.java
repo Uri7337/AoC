@@ -26,7 +26,11 @@ public class Solution_1_Day_07 {
 			placeWires(lineparts);
 		}
 		Wire a = b.getWire(wireres);
+		System.out.println(a.getGate());
+		System.out.println(a.getLeftSide().getName());
+		System.out.println(a.getShift());
 		solution = calcValue(a);
+		
 		return solution;
 	}
 
@@ -44,7 +48,7 @@ public class Solution_1_Day_07 {
 			String gate = lineparts[1];
 			int val;
 			Wire w2;
-			int shift = 0;
+			
 			
 			switch (gate) {
 				case "AND":
@@ -57,21 +61,9 @@ public class Solution_1_Day_07 {
 					w2 = b.getCreateWire(lineparts[2]);
 					b.addWire(lineparts[4], val, w2, gate);
 					break;
-				case "LSHIFT":
-					val = Integer.parseInt(lineparts[0]);
-					shift = Integer.parseInt(lineparts[2]);
-					b.addWire(lineparts[4], val, gate, shift);
-					
-					break;
-				case "RSHIFT":
-					val = Integer.parseInt(lineparts[0]);
-					shift = Integer.parseInt(lineparts[2]);
-					b.addWire(lineparts[4], val, gate, shift);
-					
-					break;
 				case "->":
 					int value = Integer.parseInt(lineparts[0]);
-					b.addWire(lineparts[2], value);
+					b.addWire(lineparts[2], value, gate);
 					break;
 				default:
 					throw new AssertionError();
@@ -109,7 +101,6 @@ public class Solution_1_Day_07 {
 					w0 = b.getCreateWire(lineparts[0]);
 					shift = Integer.parseInt(lineparts[2]);
 					b.addWire(lineparts[4], w0, gate, shift);
-					
 					break;
 				case "->":
 					w0 = b.getCreateWire(lineparts[0]);
@@ -123,12 +114,13 @@ public class Solution_1_Day_07 {
 	
 	public int calcValue(Wire w) {
 		Wire bw = b.getWire(w.getName());
+		System.out.println(bw.getName());
 		if (bw.getValue() > -1) {
 			return bw.getValue();
+		} else if(bw.getLeftVal() > -1){
+		 return bw.getLeftVal();
 		} else {
 			int res = 0;
-			System.out.println(bw.getName());
-			
 			switch (bw.getGate()) {
 				case "NOT":
 					res = calcValue(bw.getLeftSide());
@@ -148,7 +140,6 @@ public class Solution_1_Day_07 {
 					res = calcValue(bw.getLeftSide()) >> bw.getShift();
 					return res;
 				case "->":
-					System.out.println("here");
 					res = calcValue(bw.getLeftSide());
 					return res;
 				default:
