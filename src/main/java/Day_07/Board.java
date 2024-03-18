@@ -27,7 +27,11 @@ public class Board {
 	}
 	
 	public void addWire(String wName, int val, Wire left, String gate){
-		addWire(wName, left, null, gate, -1, 0, -1, -1);
+		addWire(wName, left, null, gate, -1, 0, val, -1);
+	}
+	
+	public void addWire(String wName, int val, Wire left, String gate){
+		addWire(wName, left, null, gate, -1, 0, val, -1);
 	}
 	
 	public void addWire(String wName, Wire left, Wire right, String gate){
