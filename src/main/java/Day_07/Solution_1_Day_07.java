@@ -24,11 +24,12 @@ public class Solution_1_Day_07 {
 			String[] lineparts = line.split(" ");
 
 			placeWires(lineparts);
+			
+		}
+		for (String wi : b.wiresList.keySet()) {
+			System.out.println(wi+": "+calcValue(b.getWire(wi)));
 		}
 		Wire a = b.getWire(wireres);
-		System.out.println(a.getGate());
-		System.out.println(a.getLeftSide().getName());
-		System.out.println(a.getShift());
 		solution = calcValue(a);
 		
 		return solution;
@@ -114,7 +115,7 @@ public class Solution_1_Day_07 {
 	
 	public int calcValue(Wire w) {
 		Wire bw = b.getWire(w.getName());
-		System.out.println(bw.getName());
+//		System.out.println(bw.getName());
 		if (bw.getValue() > -1) {
 			return bw.getValue();
 		} else if(bw.getLeftVal() > -1){
@@ -124,8 +125,7 @@ public class Solution_1_Day_07 {
 			switch (bw.getGate()) {
 				case "NOT":
 					res = calcValue(bw.getLeftSide());
-					res = ~res;
-					res = 65536 + res;
+					res = ~res & 0xFFFF;
 					return res;
 				case "AND":
 					res = calcValue(bw.getLeftSide()) & calcValue(bw.getRightSide());
@@ -134,13 +134,13 @@ public class Solution_1_Day_07 {
 					res = calcValue(bw.getLeftSide()) | calcValue(bw.getRightSide());
 					return res;
 				case "LSHIFT":
-					res = calcValue(bw.getLeftSide()) << bw.getShift();
+					res = bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal() << bw.getShift();
 					return res;
 				case "RSHIFT":
-					res = calcValue(bw.getLeftSide()) >> bw.getShift();
+					res = bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal() >> bw.getShift();
 					return res;
 				case "->":
-					res = calcValue(bw.getLeftSide());
+					res = bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal();
 					return res;
 				default:
 					throw new AssertionError();
