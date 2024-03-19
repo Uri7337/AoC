@@ -128,16 +128,16 @@ public class Solution_1_Day_07 {
 					res = ~res & 0xFFFF;
 					return res;
 				case "AND":
-					res = calcValue(bw.getLeftSide()) & calcValue(bw.getRightSide());
+					res = (bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal()) & calcValue(bw.getRightSide());
 					return res;
 				case "OR":
-					res = calcValue(bw.getLeftSide()) | calcValue(bw.getRightSide());
+					res =  calcValue(bw.getLeftSide()) | calcValue(bw.getRightSide());
 					return res;
 				case "LSHIFT":
-					res = bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal() << bw.getShift();
+					res = calcValue(bw.getLeftSide()) << bw.getShift();
 					return res;
 				case "RSHIFT":
-					res = bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal() >> bw.getShift();
+					res = calcValue(bw.getLeftSide()) >> bw.getShift();
 					return res;
 				case "->":
 					res = bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal();
