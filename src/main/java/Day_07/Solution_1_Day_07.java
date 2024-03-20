@@ -65,6 +65,7 @@ public class Solution_1_Day_07 {
 				case "->":
 					int value = Integer.parseInt(lineparts[0]);
 					b.addWire(lineparts[2], value, gate);
+					System.out.println(lineparts[2] + ": " + value);
 					break;
 				default:
 					throw new AssertionError();
