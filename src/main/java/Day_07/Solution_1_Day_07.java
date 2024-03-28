@@ -16,7 +16,7 @@ public class Solution_1_Day_07 {
 //		String filepath = "./src/main/resources/Day_07_test_2015.txt";
 		String filepath = "./src/main/resources/Day_07_2015.txt";
 		file = rf.getInput(filepath);
-		String wireres = "a";
+		
 		
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
@@ -26,12 +26,10 @@ public class Solution_1_Day_07 {
 			placeWires(lineparts);
 			
 		}
-		for (String wi : b.wiresList.keySet()) {
-			System.out.println(wi+": "+calcValue(b.getWire(wi)));
-		}
-		Wire a = b.getWire(wireres);
-		solution = calcValue(a);
 		
+//		printAll(b);
+		solution = calcValue(b.getWire("a"));
+	
 		return solution;
 	}
 
@@ -47,25 +45,25 @@ public class Solution_1_Day_07 {
 			
 			
 			String gate = lineparts[1];
-			int val;
+			Integer val;
 			Wire w2;
 			
 			
 			switch (gate) {
 				case "AND":
-					val = Integer.parseInt(lineparts[0]);
+					val = Integer.valueOf(lineparts[0]);
 					w2 = b.getCreateWire(lineparts[2]);
 					b.addWire(lineparts[4], val, w2, gate);
 					break;
 				case "OR":
-					val = Integer.parseInt(lineparts[0]);
+					val = Integer.valueOf(lineparts[0]);
 					w2 = b.getCreateWire(lineparts[2]);
 					b.addWire(lineparts[4], val, w2, gate);
 					break;
 				case "->":
-					int value = Integer.parseInt(lineparts[0]);
+					Integer value = Integer.valueOf(lineparts[0]);
 					b.addWire(lineparts[2], value, gate);
-					System.out.println(lineparts[2] + ": " + value);
+//					System.out.println(lineparts[2] + ": " + value);
 					break;
 				default:
 					throw new AssertionError();
@@ -80,7 +78,7 @@ public class Solution_1_Day_07 {
 			String gate = lineparts[1];
 			Wire w0;
 			Wire w2;
-			int shift = 0;
+			Integer shift = 0;
 			
 			switch (gate) {
 				case "AND":
@@ -95,13 +93,13 @@ public class Solution_1_Day_07 {
 					break;
 				case "LSHIFT":
 					w0 = b.getCreateWire(lineparts[0]);
-					shift = Integer.parseInt(lineparts[2]);
+					shift = Integer.valueOf(lineparts[2]);
 					b.addWire(lineparts[4], w0, gate, shift);
 					
 					break;
 				case "RSHIFT":
 					w0 = b.getCreateWire(lineparts[0]);
-					shift = Integer.parseInt(lineparts[2]);
+					shift = Integer.valueOf(lineparts[2]);
 					b.addWire(lineparts[4], w0, gate, shift);
 					break;
 				case "->":
@@ -117,35 +115,48 @@ public class Solution_1_Day_07 {
 	public int calcValue(Wire w) {
 		Wire bw = b.getWire(w.getName());
 //		System.out.println(bw.getName());
-		if (bw.getValue() > -1) {
+		if (bw.getValue() != null) {
 			return bw.getValue();
-		} else if(bw.getLeftVal() > -1){
-		 return bw.getLeftVal();
+//		} else if(bw.getLeftVal() != null){
+//		 return bw.getLeftVal();
 		} else {
 			int res = 0;
 			switch (bw.getGate()) {
 				case "NOT":
 					res = calcValue(bw.getLeftSide());
 					res = ~res & 0xFFFF;
+					bw.setValue(res);
 					return res;
 				case "AND":
-					res = (bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal()) & calcValue(bw.getRightSide());
+//					System.out.println(bw.getName());
+//					System.out.println(bw.getLeftVal());
+					res = (bw.getLeftVal() == null ? calcValue(bw.getLeftSide()) : bw.getLeftVal()) & calcValue(bw.getRightSide());
+					bw.setValue(res);
 					return res;
 				case "OR":
 					res =  calcValue(bw.getLeftSide()) | calcValue(bw.getRightSide());
+					bw.setValue(res);
 					return res;
 				case "LSHIFT":
 					res = calcValue(bw.getLeftSide()) << bw.getShift();
+					bw.setValue(res);
 					return res;
 				case "RSHIFT":
 					res = calcValue(bw.getLeftSide()) >> bw.getShift();
+					bw.setValue(res);
 					return res;
 				case "->":
-					res = bw.getLeftVal() == -1 ? calcValue(bw.getLeftSide()) : bw.getLeftVal();
+					res = bw.getLeftVal() == null ? calcValue(bw.getLeftSide()) : bw.getLeftVal();
+					bw.setValue(res);
 					return res;
 				default:
 					throw new AssertionError();
 			}
+		}
+	}
+	public void printAll(Board b){
+	for (String wi : b.wiresList.keySet()) {
+			System.out.println(wi+": "+calcValue(b.getWire(wi)));
 		}
 	}
 }

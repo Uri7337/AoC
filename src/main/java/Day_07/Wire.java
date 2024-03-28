@@ -2,36 +2,36 @@ package Day_07;
 
 public class Wire {
 
-	private int value;
-	private int leftVal; // value with gate
-	private int rightVal; // value with gate
+	private Integer value;
+	private Integer leftVal; // value with gate
+	private Integer rightVal; // value with gate
 
-	public int getLeftVal() {
+	public Integer getLeftVal() {
 		return leftVal;
 	}
 
-	public void setLeftVal(int leftVal) {
+	public void setLeftVal(Integer leftVal) {
 		this.leftVal = leftVal;
 	}
 
-	public int getRightVal() {
+	public Integer getRightVal() {
 		return rightVal;
 	}
 
-	public void setRightVal(int rightVal) {
+	public void setRightVal(Integer rightVal) {
 		this.rightVal = rightVal;
 	}
 	private String gate;
 	private String name;
 	private Wire leftSide;
 	private Wire rightSide;
-	private int shift;
+	private Integer shift;
 
-	public int getShift() {
+	public Integer getShift() {
 		return shift;
 	}
 
-	public void setShift(int shift) {
+	public void setShift(Integer shift) {
 		this.shift = shift;
 	}
 
@@ -43,11 +43,11 @@ public class Wire {
 		this.name = name;
 	}
 
-	public int getValue() {
+	public Integer getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(Integer value) {
 		this.value = value;
 	}
 

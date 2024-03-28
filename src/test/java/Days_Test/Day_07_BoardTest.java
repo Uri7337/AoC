@@ -11,11 +11,11 @@ public class Day_07_BoardTest {
 		String name = "bob";
 //		System.out.println(b.hasWire(name));
 		Wire w0 = b.getCreateWire(name);
-		System.out.println(b.getWireLeftSide(name));
-		b.setWireValue(name,5);
+//		System.out.println(b.getWireLeftSide(name));
+//		b.setWireValue(name,5);
 		//w0 = b.getCreateWire(name);
-		System.out.println("wireleftside");
-		System.out.println(b.getWireLeftSide(name));
+		System.out.println("wirevalue");
+		System.out.println(w0.getValue());
 		
 		
 		
