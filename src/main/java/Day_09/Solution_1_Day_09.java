@@ -97,12 +97,13 @@ public class Solution_1_Day_09 {
 		if(pos >= array.length - 1){   
             System.out.print("[");  
             for(int i = 0; i < array.length - 1; i++){  
-                System.out.print(array[i] + ", ");  
+                System.out.print(array[i] + ", ");
+				//instert here
             }  
             if(array.length > 0)   
                 System.out.print(array[array.length - 1]);  
             System.out.println("]");  
-            return res;  
+             
         }  
   
         for(int i = pos; i < array.length; i++){   
@@ -118,9 +119,9 @@ public class Solution_1_Day_09 {
             array[i] = t;  
         }  
 		
-		res = getRoadDistance(array[1],array[2]);
 		
-		return res;
+		
+		
 	}
 	
 	
