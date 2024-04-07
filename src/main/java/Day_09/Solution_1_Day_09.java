@@ -37,12 +37,13 @@ public class Solution_1_Day_09 {
 	int solution = 0;
 	HashSet<String> cities = new HashSet<String>();
 	ArrayList<Road> roads = new ArrayList<Road>();
+	ArrayList<Integer> res = new ArrayList<Integer>();
 	
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-		String filepath = "./src/main/resources/Day_09_test_2015.txt";
-//		String filepath = "./src/main/resources/Day_09_2015.txt";
+//		String filepath = "./src/main/resources/Day_09_test_2015.txt";
+		String filepath = "./src/main/resources/Day_09_2015.txt";
 		file = rf.getInput(filepath);
 		
 		
@@ -56,10 +57,14 @@ public class Solution_1_Day_09 {
 		
 		String uniqCities[] = new String[cities.size()]; 
 		cities.toArray(uniqCities);
-//		System.out.println(Arrays.toString(uniqCities));
 		
-		solution = calcRoadDistances(uniqCities, 0);
-
+		
+		calcRoadDistances(uniqCities, 0);
+		
+//		System.out.println(res);
+		
+		solution = MinMax.findMinArrList(res);
+		
 		return solution;
 	}
 	
@@ -73,36 +78,31 @@ public class Solution_1_Day_09 {
 	}
 	
 	
-	public int getRoadDistance(String fromCity, String toCity){
+	public int getRoadDistance(String[] groupedCities){
 		int dist = 0;
 		
-		for (Road r : roads) {
-			
-			if(r.getCityFrom().equals(fromCity) && r.getCityTo().equals(toCity)){
-				dist = r.getDistance();
-				break;
-			}else if(r.getCityFrom().equals(toCity) && r.getCityTo().equals(fromCity)){
-				dist = r.getDistance();
-				break;
-			}
-			
+		for (int i = 0; i < groupedCities.length -1; i++) {
+//			System.out.println(groupedCities[i]); 
+//			System.out.println(groupedCities[i+1]+1); 
+			dist = dist + getCitiesDistances(groupedCities[i],groupedCities[i+1]);
 		}
+//			System.out.println("");
 			return dist;
 		
 	}
 	
-	public int calcRoadDistances(String[] array, int pos){
-		int res = 0;
+	public void calcRoadDistances(String[] array, int pos){
+		
 		
 		if(pos >= array.length - 1){   
-            System.out.print("[");  
+//            System.out.print("[");  
             for(int i = 0; i < array.length - 1; i++){  
-                System.out.print(array[i] + ", ");
-				//instert here
+//                System.out.print(array[i] + ", ");
             }  
             if(array.length > 0)   
-                System.out.print(array[array.length - 1]);  
-            System.out.println("]");  
+//                System.out.print(array[array.length - 1]);  
+//            System.out.println("]");
+			res.add(getRoadDistance(array)); 
              
         }  
   
@@ -120,10 +120,25 @@ public class Solution_1_Day_09 {
         }  
 		
 		
-		
-		
 	}
 	
 	
-
+	public int getCitiesDistances(String fromCity, String toCity){
+		int dist = 0;
+		for (Road r : roads) {
+			
+			if(r.getCityFrom().equals(fromCity) && r.getCityTo().equals(toCity)){
+				dist = r.getDistance();
+				break;
+			}else if(r.getCityFrom().equals(toCity) && r.getCityTo().equals(fromCity)){
+				dist = r.getDistance();
+				break;
+			}
+			
+		}
+		return dist;
+	}
+	
+	
+	
 }
