@@ -1,4 +1,4 @@
-/*
+  /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
@@ -12,6 +12,9 @@ import java.util.ArrayList;
 /**
  *
  * @author ourie
+ * 
+ * 1321131112
+ * 1
  */
 
 
@@ -23,8 +26,8 @@ public class Solution_1_Day_10 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "./src/main/resources/Day_10_test_2015.txt";
-		String filepath = "./src/main/resources/Day_10_2015.txt";
+		String filepath = "./src/main/resources/Day_10_test_2015.txt";
+//		String filepath = "./src/main/resources/Day_10_2015.txt";
 		file = rf.getInput(filepath);
 		
 		
