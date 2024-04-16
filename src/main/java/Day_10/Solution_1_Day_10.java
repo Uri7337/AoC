@@ -14,6 +14,22 @@ import java.util.ArrayList;
  * @author ourie
  */
 
+/*
+String result = "" + a + b + c + d + e
+String.valueOf(result)
+
+For (i=0;i<line.length ;i++){
+
+ If (line[i]=1){
+  If ( line[i+1] < line.length && line[i+1]=1){ 
+   If (line[i+2] < line.length && line[i+2]=1 ){
+  
+   }
+  }
+} 
+*/
+
+
 
 public class Solution_1_Day_10 {
 
@@ -23,16 +39,16 @@ public class Solution_1_Day_10 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "./src/main/resources/Day_10_test_2015.txt";
-		String filepath = "./src/main/resources/Day_10_2015.txt";
+		String filepath = "./src/main/resources/Day_10_test_2015.txt";
+//		String filepath = "./src/main/resources/Day_10_2015.txt";
 		file = rf.getInput(filepath);
 		
 		
 		
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
-			String[] line_parts = file.get(i).split(" ");
-
+			System.out.println(file.get(i));
+			
 			
 		}
 		
