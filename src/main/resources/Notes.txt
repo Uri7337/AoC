@@ -1,4 +1,0 @@
-London to Dublin = 464
-	0  1	2	 3  4	
-London to Belfast = 518
-Dublin to Belfast = 141

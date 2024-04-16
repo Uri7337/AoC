@@ -1,4 +1,4 @@
-  /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
@@ -8,13 +8,11 @@ import Shared.ReadFile;
 
 import java.util.ArrayList;
 
-
 /**
  *
  * @author ourie
- * 
- * 1321131112
- * 1
+ *
+ * 1321131112 40x 1 5x
  */
 
 /*
@@ -30,41 +28,46 @@ For (i=0;i<line.length ;i++){
    }
   }
 } 
-*/
-
-
-
+ */
 public class Solution_1_Day_10 {
 
 	int solution = 0;
 
-	
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
 		String filepath = "./src/main/resources/Day_10_test_2015.txt";
 //		String filepath = "./src/main/resources/Day_10_2015.txt";
 		file = rf.getInput(filepath);
-		
-		
-		
+
+		int repeat = 5;
+
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
-			System.out.println(file.get(i));
-			
-			
+			String line = file.get(i);
+
+			int sol = lookAndSay(line, repeat);
+
+			testSolution(sol);
 		}
-		
-		
-		
+
 		solution = 0;
-		
+
 		return solution;
 	}
-	
-	
 
-	
-	
-	
+	public static int lookAndSay(String line, int rep) {
+		if (rep > 0) {
+			return rep + lookAndSay(line, rep - 1);
+		} else {
+			return 0;
+		}
+	}
+
+	public static void testSolution(int sol) {
+		if (sol == 312211) {
+			System.out.println("yes");
+		}
+	}
+
 }
