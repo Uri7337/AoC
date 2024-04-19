@@ -12,7 +12,8 @@ import java.util.ArrayList;
  *
  * @author ourie
  *
- * 1321131112 40x 1 5x
+ * 1321131112 40x 
+ * 1 5x
  */
 
 /*
@@ -47,7 +48,7 @@ public class Solution_1_Day_10 {
 			String line = file.get(i);
 
 			int sol = lookAndSay(line, repeat);
-
+                        System.out.println("done; sol:" +sol);
 			testSolution(sol);
 		}
 
@@ -58,8 +59,10 @@ public class Solution_1_Day_10 {
 
 	public static int lookAndSay(String line, int rep) {
 		if (rep > 0) {
+                        System.out.println(line);
 			return rep + lookAndSay(line, rep - 1);
 		} else {
+                    
 			return 0;
 		}
 	}
