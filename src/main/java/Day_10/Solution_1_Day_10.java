@@ -7,7 +7,7 @@ package Day_10;
 import Shared.ReadFile;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 /**
  *  1
@@ -79,31 +79,40 @@ public class Solution_1_Day_10 {
 			String line = file.get(i);
 			
 
-			lookAndSay(line);
-
+			String answer = lookAndSay(line);
+                        solution = Integer.parseInt(answer);
 			testSolution(solution);
 		}
 
-		solution = 0;
+		
 
 		return solution;
 	}
 
-	public void lookAndSay(String line) {
+	public String lookAndSay(String line) {
 		
 		for (int i = 0; i < repeat; i++) {
-			String oldline = line;
-			String[] lineArray = line.split("");
-			String iAmHere = lineArray[0];
-			int counter = 0;
-			for (int j = 1; j < oldline.length(); j++) {
-				if (iAmHere.equals(lineArray[j])){
-					counter++;
-				} 
-				
-				
-			}
+                    String oldline = line;
+                    String[] lineArray = oldline.split("");
+                    String iAmHere = lineArray[0];
+                    int len = oldline.length();
+                    int counter = 0;
+                    if(len>1){
+                        for (int j = 1; j < len; j++) {
+                            if (iAmHere.equals(lineArray[j])){
+                                    counter++;
+                                    System.out.println(counter);
+                            }
+//                            iAmHere = 
+                        }
+                        line = counter+1 + iAmHere;
+                        System.out.println(line);
+                    }else{
+                        line = "1" + iAmHere;  
+                    }
+			
 		}
+                return line;
 	}
 
 //	public String lineMaker(int pos, String[] lineArray) {
