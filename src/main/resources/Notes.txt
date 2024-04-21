@@ -1,0 +1,5 @@
+START
+Repeat steps 2 to 4 till the array end is reached.
+Compare the element at current index i with its follower. If it is same.
+Increment counter variable.
+END
