@@ -95,9 +95,7 @@ public class Solution_1_Day_10 {
 			String oldline = line;
 			String[] lineArray = line.split("");
 			String iAmHere = lineArray[0];
-			
 			int counter = 0;
-			
 			for (int j = 1; j < oldline.length(); j++) {
 				if (iAmHere.equals(lineArray[j])){
 					counter++;
