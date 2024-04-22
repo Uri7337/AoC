@@ -99,11 +99,17 @@ public class Solution_1_Day_10 {
                     int counter = 0;
                     if(len>1){
                         for (int j = 1; j < len; j++) {
-                            if (iAmHere.equals(lineArray[j])){
+                            if(counter ==3){
+                                iAmHere = lineArray[j];
+                                counter = 0;
+                            }else{
+                                if (iAmHere.equals(lineArray[j])){
                                     counter++;
                                     System.out.println(counter);
+                                }
                             }
-//                            iAmHere = 
+                           
+
                         }
                         line = counter+1 + iAmHere;
                         System.out.println(line);
