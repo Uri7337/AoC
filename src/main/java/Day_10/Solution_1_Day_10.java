@@ -66,6 +66,7 @@ public class Solution_1_Day_10 {
 
 	int solution = 0;
 	int repeat = 3;
+	int maxNumRepeat = 3;
 
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
@@ -80,7 +81,7 @@ public class Solution_1_Day_10 {
 			
 
 			String answer = lookAndSay(line);
-                        solution = Integer.parseInt(answer);
+            solution = Integer.parseInt(answer);
 			testSolution(solution);
 		}
 
@@ -95,23 +96,35 @@ public class Solution_1_Day_10 {
                     String oldline = line;
                     String[] lineArray = oldline.split("");
                     String iAmHere = lineArray[0];
+					String newline = "";
+					String tail = "";
+					
                     int len = oldline.length();
-                    int counter = 0;
+                    int counter = 1;
+//					System.out.println(len);
                     if(len>1){
                         for (int j = 1; j < len; j++) {
-                            if(counter ==3){
+                            if(counter == maxNumRepeat){
+								tail = counter + iAmHere;
                                 iAmHere = lineArray[j];
-                                counter = 0;
+                                counter = 1;
                             }else{
                                 if (iAmHere.equals(lineArray[j])){
                                     counter++;
-                                    System.out.println(counter);
-                                }
+//                                    System.out.println("c: "+counter);
+									iAmHere = lineArray[j];
+									tail = "";
+                                }else{
+//									tail = counter + iAmHere;
+//									newline = newline + tail;
+									iAmHere = lineArray[j];
+								}
+								tail = counter + iAmHere;
+								newline = newline + tail;
                             }
-                           
-
                         }
-                        line = counter+1 + iAmHere;
+						
+                        line = newline;
                         System.out.println(line);
                     }else{
                         line = "1" + iAmHere;  
