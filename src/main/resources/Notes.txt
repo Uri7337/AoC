@@ -1,5 +1,35 @@
-START
-Repeat steps 2 to 4 till the array end is reached.
-Compare the element at current index i with its follower. If it is same.
-Increment counter variable.
-END
+11132 13211
+311312-11131221
+311312-11131221
+res
+	from: 11132-13211
+	get:  311312-11131221
+
+	from: 11132
+	get:  311312
+
+	from: 13211
+	get:  11131221
+
+
+13211 31112
+11131221-133112
+11131221-133112
+res
+	from: 13211-31112
+	get:  11131221-133112
+
+	from: 13211
+	get:  11131221
+
+	from: 31112
+	get:  133112
+
+
+1321131112
+
+	from: 13211
+	get:  11131221
+
+	from: 31112
+	get:  133112

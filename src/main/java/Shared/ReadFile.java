@@ -4,6 +4,8 @@ import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.ArrayList;
 import java.util.Scanner; // Import the Scanner class to read text files
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 
 public class ReadFile {
@@ -28,5 +30,17 @@ public class ReadFile {
         
         return data;
     }
+	
+	public void writeinFile(String filepath, String content){
+		try {
+		 FileWriter myWriter = new FileWriter(filepath,true);
+		 myWriter.write(content);
+		 myWriter.close();
+//		 System.out.println("Successfully wrote to the file.");
+	   } catch (IOException e) {
+		 System.out.println("Writing in file... An error occurred. :(");
+		 e.printStackTrace();
+	   }
+	}
 
 }
