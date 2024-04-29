@@ -75,17 +75,17 @@ public class Solution_2_Day_10 {
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
 			
-			String[] linehalfs = {line.substring(0, (line.length()/2)),line.substring((line.length()/2))};
+//			String[] linehalfs = {line.substring(0, (line.length()/2)),line.substring((line.length()/2))};
 			
-			Threads th1 = new Threads(linehalfs[0], repeat,"t1");
-			Threads th2 = new Threads(linehalfs[1], repeat,"t2");
+			Threads th1 = new Threads(line, repeat,"t1");
+//			Threads th2 = new Threads(linehalfs[1], repeat,"t2");
 			
 			th1.start();
-			th2.start();
+//			th2.start();
 			
 			try {
 				th1.join();
-				th2.join();
+//				th2.join();
 			} catch (InterruptedException ex) {
 				Logger.getLogger(Solution_2_Day_10.class.getName()).log(Level.SEVERE, null, ex);
 			}
@@ -99,7 +99,7 @@ public class Solution_2_Day_10 {
 //			System.out.println("answer: "+line);
 			// We were asked for length so... 
 //			solution = line.length();
-			solution = th1.line.length()+th2.line.length();
+			solution = th1.line.length();
 //			testSolution(solution);
 		}
 

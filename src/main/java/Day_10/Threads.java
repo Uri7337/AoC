@@ -29,7 +29,7 @@ public class Threads extends Thread {
 
 //			debugging
 //			System.out.println(repeat + ": " + line + "| " + line.length());
-			System.out.println(tName+": "+repeat);
+//			System.out.println(tName+": "+repeat);
 //			debugging
 
 			repeat--;
@@ -43,15 +43,18 @@ public class Threads extends Thread {
 		int counter = 1;
 		int lineSize = lineArr.length;
 
-		String finalLine = "I'm not fulfilled :( ";
-		String line = "";
+//		String finalLine = "I'm not fulfilled :( ";
+//		String line = "";
+		StringBuilder finalLine = new StringBuilder();
+		StringBuilder line = new StringBuilder();
 
 		while (index < (lineSize - 1)) {
 			if (lineArr[index].equals(lineArr[index + 1])) {
 				counter++;
 				index++;
 			} else {
-				line = line + counter + lineArr[index];
+//				line = line + counter + lineArr[index];
+				line.append(String.valueOf(counter)).append(String.valueOf(lineArr[index]));
 				counter = 1;
 				index++;
 			}
@@ -59,12 +62,13 @@ public class Threads extends Thread {
 		}
 
 		if (index == (lineSize - 1)) {
-			finalLine = line + counter + lineArr[index];
+//			finalLine = line + counter + lineArr[index];
+			finalLine.append(line).append(String.valueOf(counter)).append(String.valueOf(lineArr[index]));
 		} else {
 			System.out.println("what now...");
 			System.out.println("index: " + index + ", " + "lineSize: " + lineSize);
 		}
 
-		return finalLine;
+		return finalLine.toString();
 	}
 }
