@@ -3,6 +3,7 @@ package Day_12;
 import Shared.ReadFile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Solution_1_Day_12 {
 
@@ -18,9 +19,14 @@ public class Solution_1_Day_12 {
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
-
+			String regex = "[^-\\d]+"; 
+			line = line.replaceAll(regex, ",");
+			p(line);
+			String[] lineArray = line.split(",");
+			p(Arrays.toString(lineArray));
 			
 		}
+		//test sol = 3
 		solution = 0;
 		return solution;
 	}
