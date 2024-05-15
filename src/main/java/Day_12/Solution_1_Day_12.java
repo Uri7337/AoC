@@ -12,22 +12,37 @@ public class Solution_1_Day_12 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-		String filepath = "./src/main/resources/Day_12_test_2015.txt";
-//		String filepath = "./src/main/resources/Day_12_2015.txt";
+//		String filepath = "./src/main/resources/Day_12_test_2015.txt";
+		String filepath = "./src/main/resources/Day_12_2015.txt";
 		file = rf.getInput(filepath);
 
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
 			String regex = "[^-\\d]+"; 
+			ArrayList<Integer> numbers = new ArrayList<Integer>();
+			
+			//find all Not number symobols and replace them with single ,
 			line = line.replaceAll(regex, ",");
-			p(line);
+			
+			//there was space infront of the first number.
+			line = line.substring(1);
+			
+			
 			String[] lineArray = line.split(",");
-			p(Arrays.toString(lineArray));
+			
+			for (String linePiece : lineArray){
+				numbers.add(Integer.parseInt(linePiece));
+			}
+			
+			for (int n :numbers){
+				solution = solution + n;
+				
+			}
 			
 		}
-		//test sol = 3
-		solution = 0;
+		
+		
 		return solution;
 	}
 	

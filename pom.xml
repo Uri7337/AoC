@@ -11,4 +11,12 @@
         
     </properties>
     <name>AoC_2015</name>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
