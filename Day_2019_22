@@ -5,20 +5,20 @@ now when i play this day i have 2 problems
 maybe function dealWithIncrement could be wrong bcs i take first index and that is not the whole number
 */
 
-
-
-
 package Day_22;
 
 import Shared.ReadFile;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Solution_1_Day_22 {
 
 	int solution = 0;
 
-//	String deck = createDeck(10); //from 0 to 9
-	String deck = createDeck(10007); //from 0 to 10006 
+//	List deck = createDeck(10); //from 0 to 9
+	List deck = createDeck(10007); //from 0 to 10006 
 
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
@@ -33,9 +33,9 @@ public class Solution_1_Day_22 {
 			commandParser(command);
 
 		}
-		p(deck);
+//		p(deck);
 //		compareResults();
-		solution = deck.indexOf("2019");
+		solution = deck.indexOf(2019);
 		return solution;
 	}
 
@@ -56,43 +56,43 @@ public class Solution_1_Day_22 {
 	}
 
 	public void dealIntoNewStack() {
-		StringBuilder reverseDeck = new StringBuilder();
-		reverseDeck.append(deck);
-		reverseDeck.reverse();
-		deck = reverseDeck.toString();
+		List<Integer> reverseDeck = new ArrayList<Integer>();
+		reverseDeck.addAll(deck);
+		Collections.reverse(reverseDeck);
+		deck = reverseDeck;
 	}
 
 	public void cut(int n) {
 		if (n < 0) {
-			n = deck.length() + n;
+			n = deck.size()+ n;
 		}
-		String[] deckParts = {deck.substring(0, n), deck.substring(n)};
-		StringBuilder cutDeck = new StringBuilder();
-		cutDeck.append(deckParts[1]);
-		cutDeck.append(deckParts[0]);
-		deck = cutDeck.toString();
+		List<Integer> deckParts0 = deck.subList(0, n);
+		List<Integer> deckParts1 = deck.subList(n,deck.size());
+		List<Integer> cutDeck = new ArrayList<Integer>();
+		cutDeck.addAll(deckParts1);
+		cutDeck.addAll(deckParts0);
+		deck = cutDeck;
 	}
 
 	public void dealWithIncrement(int inc) {
-		Character firstCard = deck.charAt(0);
-		StringBuilder incrementedDeck = new StringBuilder(deck);
-		incrementedDeck.setCharAt(0, firstCard);
+		List<Integer> incrementedDeck = new ArrayList<Integer>();
+		incrementedDeck.addAll(deck);
 		int index = 0;
-		int deckLength = deck.length();
+		int deckSize = deck.size();
 
-		for (int i = 1; i < deckLength; i++) {
-			index = (inc * i) % deckLength;
-			incrementedDeck.setCharAt(index, deck.charAt(i));
+		for (int i = 1; i < deckSize; i++) {
+			index = (inc * i) % deckSize;
+			incrementedDeck.set(index, (Integer) deck.get(i));
 		}
-		deck = incrementedDeck.toString();
+		deck = incrementedDeck;
 	}
 
-	public String createDeck(int deckLength) {
-		StringBuilder createdDeck = new StringBuilder();
-		for (int i = 0; i < deckLength; i++) {
-			createdDeck.append(i);
+	public ArrayList<Integer> createDeck(int deckSize) {
+		ArrayList<Integer> createdDeck = new ArrayList<Integer>();
+		for (int i = 0; i < deckSize; i++) {
+			createdDeck.add(i);
 		}
-		return createdDeck.toString();
+		return createdDeck;
 	}
 
 	//prints content, System.out.println is way too long
@@ -101,23 +101,22 @@ public class Solution_1_Day_22 {
 	}
 
 	// ----debug zone----
-	public void compareResults() {
+	 public  void compareResults() {
+        ArrayList<Integer> val1 = new ArrayList<>(Arrays.asList(0, 3, 6, 9, 2, 5, 8, 1, 4, 7));
+        ArrayList<Integer> val2 = new ArrayList<>(Arrays.asList(3, 0, 7, 4, 1, 8, 5, 2, 9, 6));
+        ArrayList<Integer> val3 = new ArrayList<>(Arrays.asList(6, 3, 0, 7, 4, 1, 8, 5, 2, 9));
+        ArrayList<Integer> val4 = new ArrayList<>(Arrays.asList(9, 2, 5, 8, 1, 4, 7, 0, 3, 6));
 
-		String val1 = "0369258147";
-		String val2 = "3074185296";
-		String val3 = "6307418529";
-		String val4 = "9258147036";
-
-		if (deck.equals(val1)) {
-			System.out.println(val1);
-		} else if (deck.equals(val2)) {
-			System.out.println(val2);
-		} else if (deck.equals(val3)) {
-			System.out.println(val3);
-		} else if (deck.equals(val4)) {
-			System.out.println(val4);
-		} else {
-			System.out.println("Deck does not match any predefined values.");
-		}
-	}
+        if (deck.equals(val1)) {
+            System.out.println(val1);
+        } else if (deck.equals(val2)) {
+            System.out.println(val2);
+        } else if (deck.equals(val3)) {
+            System.out.println(val3);
+        } else if (deck.equals(val4)) {
+            System.out.println(val4);
+        } else {
+            System.out.println("Deck does not match any predefined values.");
+        }
+    }
 }
