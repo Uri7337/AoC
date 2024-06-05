@@ -75,9 +75,9 @@ public class CreateDay {
             writer.newLine();
             writer.write("\t\tArrayList<String> file = new ArrayList<String>();");
             writer.newLine();
-            writer.write("\t\tString filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_test_2015.txt\";");
+            writer.write("\t\tString filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_test_2019.txt\";");
             writer.newLine();
-            writer.write("\t\t//String filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_2015.txt\";");
+            writer.write("\t\t//String filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_2019.txt\";");
             writer.newLine();
             writer.write("\t\tfile = rf.getInput(filepath);");
             writer.newLine();
@@ -128,9 +128,9 @@ public class CreateDay {
             writer.newLine();
             writer.write("\t\tArrayList<String> file = new ArrayList<String>();");
             writer.newLine();
-            writer.write("\t\tString filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_test_2015.txt\";");
+            writer.write("\t\tString filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_test_2019.txt\";");
             writer.newLine();
-            writer.write("\t\t//String filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_2015.txt\";");
+            writer.write("\t\t//String filepath = \"/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_" + dayNum + "_2019.txt\";");
             writer.newLine();
             writer.write("\t\tfile = rf.getInput(filepath);");
             writer.newLine();

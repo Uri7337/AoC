@@ -13,8 +13,8 @@ public class Solution_1_Day_07 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "./src/main/resources/Day_07_test_2015.txt";
-		String filepath = "./src/main/resources/Day_07_2015.txt";
+//		String filepath = "./src/main/resources/Day_07_test_2019.txt";
+		String filepath = "./src/main/resources/Day_07_2019.txt";
 		file = rf.getInput(filepath);
 		
 		
