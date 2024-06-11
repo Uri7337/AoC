@@ -1,8 +1,6 @@
 /*
-I do not have branch 2019 yet so this is temporary...
-now when i play this day i have 2 problems
-1. i do have not have space between cards, hard to say if that is a whole card.  
-maybe function dealWithIncrement could be wrong bcs i take first index and that is not the whole number
+	Learn how to handle big numbers
+	
 */
 
 package Day_22;
@@ -13,14 +11,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.math.BigInteger;
+import Shared.SQLiteDB;
 
 public class Solution_2_Day_22 {
 
 	int solution = 0;
 
 //	List deck = createDeck(10); //from 0 to 9
-	BigInteger deckCards = new BigInteger("119315717514047");
-	List<BigInteger> deck = createDeck(deckCards); //from 0 to 119315717514047 
+	long deckCards = 119315717514047L;
+	boolean iscreated = createDeck(deckCards); //from 0 to 119315717514047 
 
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
@@ -30,16 +29,16 @@ public class Solution_2_Day_22 {
 		file = rf.getInput(filepath);
 
 		//Insert Solution Here:
-		for (BigInteger i = BigInteger.ZERO; i.compareTo(deckCards) < 0; i = i.add(BigInteger.ONE)) {
+		 for (long l = 0L; l < 101741582076661L; l++){
             for (int j = 0; j < file.size(); j++) {
 				String command = file.get(j);
-	//			commandParser(command);
+//				commandParser(command);
 			}
         }
 		
-		p(deck);
+//		p(deck);
 //		compareResults();
-		solution = deck.indexOf(2019);
+		solution = 0;
 		return solution;
 	}
 
@@ -91,12 +90,12 @@ public class Solution_2_Day_22 {
 //		deck = incrementedDeck;
 //	}
 
-	public List<BigInteger> createDeck(BigInteger deckSize) {
-		  List<BigInteger> createdDeck = new ArrayList<>();
-		for (BigInteger i = BigInteger.ZERO; i.compareTo(deckSize) < 0; i = i.add(BigInteger.ONE)) {
-			createdDeck.add(i);
+	public boolean createDeck(long deckSize) {
+		SQLiteDB db = new SQLiteDB();
+		for (long i = 0L; i < deckSize; i++) {
+			db.insertNumber(i);
 		}
-		return createdDeck;
+		return true;
 	}
 
 	//prints content, System.out.println is way too long
@@ -105,22 +104,22 @@ public class Solution_2_Day_22 {
 	}
 
 	// ----debug zone----
-	 public void compareResults() {
-        ArrayList<Integer> val1 = new ArrayList<>(Arrays.asList(0, 3, 6, 9, 2, 5, 8, 1, 4, 7));
-        ArrayList<Integer> val2 = new ArrayList<>(Arrays.asList(3, 0, 7, 4, 1, 8, 5, 2, 9, 6));
-        ArrayList<Integer> val3 = new ArrayList<>(Arrays.asList(6, 3, 0, 7, 4, 1, 8, 5, 2, 9));
-        ArrayList<Integer> val4 = new ArrayList<>(Arrays.asList(9, 2, 5, 8, 1, 4, 7, 0, 3, 6));
-
-        if (deck.equals(val1)) {
-            System.out.println(val1);
-        } else if (deck.equals(val2)) {
-            System.out.println(val2);
-        } else if (deck.equals(val3)) {
-            System.out.println(val3);
-        } else if (deck.equals(val4)) {
-            System.out.println(val4);
-        } else {
-            System.out.println("Deck does not match any predefined values.");
-        }
-    }
+//	 public void compareResults() {
+//        ArrayList<Integer> val1 = new ArrayList<>(Arrays.asList(0, 3, 6, 9, 2, 5, 8, 1, 4, 7));
+//        ArrayList<Integer> val2 = new ArrayList<>(Arrays.asList(3, 0, 7, 4, 1, 8, 5, 2, 9, 6));
+//        ArrayList<Integer> val3 = new ArrayList<>(Arrays.asList(6, 3, 0, 7, 4, 1, 8, 5, 2, 9));
+//        ArrayList<Integer> val4 = new ArrayList<>(Arrays.asList(9, 2, 5, 8, 1, 4, 7, 0, 3, 6));
+//
+//        if (deck.equals(val1)) {
+//            System.out.println(val1);
+//        } else if (deck.equals(val2)) {
+//            System.out.println(val2);
+//        } else if (deck.equals(val3)) {
+//            System.out.println(val3);
+//        } else if (deck.equals(val4)) {
+//            System.out.println(val4);
+//        } else {
+//            System.out.println("Deck does not match any predefined values.");
+//        }
+//    }
 }
