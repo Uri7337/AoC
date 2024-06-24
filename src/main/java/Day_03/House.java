@@ -1,5 +1,5 @@
 
-package Day_3;
+package Day_03;
 
 //House object from ChatGPT
 import java.awt.Point;

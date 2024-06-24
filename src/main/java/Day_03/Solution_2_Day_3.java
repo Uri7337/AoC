@@ -1,4 +1,4 @@
-package Day_3;
+package Day_03;
 
 import Shared.ReadFile;
 import java.awt.Point;

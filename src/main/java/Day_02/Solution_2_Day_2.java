@@ -1,4 +1,4 @@
-package Day_2;
+package Day_02;
 
 import Shared.ReadFile;
 import java.util.ArrayList;
