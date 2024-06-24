@@ -10,8 +10,8 @@ public class Solution_2_Day_2 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_2015_2_test.txt";
-		String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_2015_2.txt";
+//		String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_2016_2_test.txt";
+		String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_2016_2.txt";
 		file = rf.getInput(filepath);
                 
                 String regex = "x";

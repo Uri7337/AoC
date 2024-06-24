@@ -12,8 +12,8 @@ public class Solution_1_Day_4 {
      public int getSolution() {
        ReadFile rf = new ReadFile();
        ArrayList<String> file = new ArrayList<String>();
-//       String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_4_2015.txt";
-       String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_4_test_2015.txt";
+//       String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_4_2016.txt";
+       String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_4_test_2016.txt";
        file = rf.getInput(filepath);
        
        String s = file.get(0);

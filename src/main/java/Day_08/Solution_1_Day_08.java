@@ -20,8 +20,8 @@ public class Solution_1_Day_08 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "./src/main/resources/Day_08_test_2015.txt";
-		String filepath = "./src/main/resources/Day_08_2015.txt";
+//		String filepath = "./src/main/resources/Day_08_test_2016.txt";
+		String filepath = "./src/main/resources/Day_08_2016.txt";
 		file = rf.getInput(filepath);
 
 		int total_code = 0;

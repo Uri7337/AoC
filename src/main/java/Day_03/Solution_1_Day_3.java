@@ -13,8 +13,8 @@ public class Solution_1_Day_3 {
     public int getSolution() {
         ReadFile rf = new ReadFile();
         ArrayList<String> file = new ArrayList<String>();
-//        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_3_test_2015.txt";
-        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_3_2015.txt";
+//        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_3_test_2016.txt";
+        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_3_2016.txt";
         file = rf.getInput(filepath);
         
         this.g = new Grid(new House[file.get(0).length()*2][file.get(0).length()*2]);

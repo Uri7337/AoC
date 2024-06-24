@@ -1,13 +1,13 @@
 
 
-package uri.tech.aoc_2015;
+package uri.tech.aoc_2016;
 
 import Shared.CreateFolders;
 import Shared.AoCWeb;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class AoC_2015 {
+public class AoC_2016 {
 
     public static void main(String[] args) throws IOException {
        Scanner sc = new Scanner(System.in); 
@@ -17,7 +17,7 @@ public class AoC_2015 {
         
        System.out.println("Enter the number of day: ");
        int dayNum = sc.nextInt();
-       String year = "2015";
+       String year = "2016";
        boolean diffDay = false;
        
        String[] menuOptions = {

@@ -11,8 +11,8 @@ public class Solution_2_Day_5 {
     public int getSolution() {
         ReadFile rf = new ReadFile();
 
-//        String filepath = "./src/main/resources/Day_5_test_2015.txt";
-        String filepath = "./src/main/resources/Day_5_2015.txt";
+//        String filepath = "./src/main/resources/Day_5_test_2016.txt";
+        String filepath = "./src/main/resources/Day_5_2016.txt";
         
         file = rf.getInput(filepath);
 
