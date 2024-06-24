@@ -48,7 +48,7 @@ public class Solution_1_Day_1 {
 	
 	public int getDistanceFromHQ(){
 		int x;
-		x = Math.abs(me.mapLocation.get(0) + me.mapLocation.get(1));
+		x = Math.abs(me.mapLocation.get(0)) + Math.abs(me.mapLocation.get(1));
 		return x;
 	}
 	
