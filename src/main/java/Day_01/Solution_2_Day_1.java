@@ -4,6 +4,7 @@ import Shared.ReadFile;
 
 import java.util.Arrays;
 import java.util.List;
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class Solution_2_Day_1 {
@@ -15,8 +16,8 @@ public class Solution_2_Day_1 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-		/* String filepath = "./src/main/resources/Day_01_test_2016.txt"; */
-		String filepath = "./src/main/resources/Day_01_2016.txt";
+		String filepath = "./src/main/resources/Day_01_test_2016.txt";
+	/* 	String filepath = "./src/main/resources/Day_01_2016.txt"; */
 		file = rf.getInput(filepath);
 
 		
@@ -33,13 +34,20 @@ public class Solution_2_Day_1 {
 				List<String> coordinateList = (List<String>) coordinates;
 
 				for (String coordinate : coordinateList) {
-					if(me.wasIHereBefore()){
-						break;
-					}else{
+					
 						me.move2(coordinate);
-					}
+					
 					
 				}
+			}
+			
+			System.out.println("");
+			System.out.println("===final compare===");
+			me.wasIHereBefore();
+			System.out.println("===final compare===");
+			System.out.println("");
+			for (Point point : me.visitedPlaces) {
+				System.out.println(point);
 			}
 			
 			solution = getDistanceFromHQ();
@@ -52,9 +60,7 @@ public class Solution_2_Day_1 {
 	}
 	
 	public int getDistanceFromHQ(){
-		int x;
-		x = Math.abs(me.mapLocation.get(0)) + Math.abs(me.mapLocation.get(1));
-		return x;
+		return Math.abs(me.mapLocation.get(0)) + Math.abs(me.mapLocation.get(1));
 	}
 	
 
