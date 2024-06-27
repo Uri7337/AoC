@@ -10,13 +10,13 @@ public class Solution_2_Day_2 {
         ReadFile rf = new ReadFile();
         ArrayList<String> file = new ArrayList<String>();
 
-        /* String filepath = "./src/main/resources/Day_02_test_2016.txt"; */
-        String filepath = "./src/main/resources/Day_02_2016.txt";
+        String filepath = "./src/main/resources/Day_02_test_2016.txt";
+        /* String filepath = "./src/main/resources/Day_02_2016.txt"; */
 
         file = rf.getInput(filepath);
 
         
-        Keypad kp = new Keypad();
+        KeyPad2 kp = new KeyPad2();
         /* kp.nb[0].printNumberButton(); */
 
         // Insert Solution Here:
