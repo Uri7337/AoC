@@ -16,13 +16,16 @@ public class Solution_2_Day_1 {
 	public int getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-		String filepath = "./src/main/resources/Day_01_test_2016.txt";
-	/* 	String filepath = "./src/main/resources/Day_01_2016.txt"; */
+		/* String filepath = "./src/main/resources/Day_01_test_2016.txt"; */
+		String filepath = "./src/main/resources/Day_01_2016.txt";
 		file = rf.getInput(filepath);
 
 		
 
 		//Insert Solution Here:
+
+		me.spawnPerson();
+
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
 			
@@ -41,16 +44,9 @@ public class Solution_2_Day_1 {
 				}
 			}
 			
-			System.out.println("");
-			System.out.println("===final compare===");
-			me.wasIHereBefore();
-			System.out.println("===final compare===");
-			System.out.println("");
-			for (Point point : me.visitedPlaces) {
-				System.out.println(point);
-			}
 			
-			solution = getDistanceFromHQ();
+			
+			solution = getDistanceFromHQ(me.wasIHereBefore());
 			
 
 		}
@@ -59,8 +55,8 @@ public class Solution_2_Day_1 {
 		return solution;
 	}
 	
-	public int getDistanceFromHQ(){
-		return Math.abs(me.mapLocation.get(0)) + Math.abs(me.mapLocation.get(1));
+	public int getDistanceFromHQ(Point p){
+		return Math.abs(p.x) + Math.abs(p.y);
 	}
 	
 

@@ -11,6 +11,7 @@ public class Person {
     ArrayList<Integer> mapLocation = new ArrayList<>(Arrays.asList(0, 0));
     // Solution_2 - map of visited positions/places
     ArrayList<Point> visitedPlaces = new ArrayList<>();
+  
 
     // for Example: facing North is 0
     public int facing() {
@@ -99,14 +100,17 @@ public class Person {
             default:
                 break;
         }
-
+        
         int[] newPositonXY = { mapLocation.get(0), mapLocation.get(1) };
         if (oldPositonXY[0] < newPositonXY[0]) {
             /* from old position to new add one by one */
             for (int x = oldPositonXY[0]; x <= newPositonXY[0]; x++) {
                 /* System.out.println("visitedPlaces"); */
                 for (int y = oldPositonXY[1]; y <= newPositonXY[1]; y++) {
-                    visitedPlaces.add(new Point(x, y));
+                    if(!(visitedPlaces.get(visitedPlaces.size()-1).x == x && visitedPlaces.get(visitedPlaces.size()-1).y == y)){
+                        visitedPlaces.add(new Point(x, y));
+                    }
+                    
                 }
             }
         }else if (oldPositonXY[0] > newPositonXY[0]) {
@@ -114,7 +118,9 @@ public class Person {
             for (int x = oldPositonXY[0]; x >= newPositonXY[0]; x--) {
                 /* System.out.println("visitedPlaces"); */
                 for (int y = oldPositonXY[1]; y <= newPositonXY[1]; y++) {
-                    visitedPlaces.add(new Point(x, y));
+                    if(!(visitedPlaces.get(visitedPlaces.size()-1).x == x && visitedPlaces.get(visitedPlaces.size()-1).y == y)){
+                        visitedPlaces.add(new Point(x, y));
+                    }
                 }
             }
         }else if (oldPositonXY[1] < newPositonXY[1]) {
@@ -122,7 +128,9 @@ public class Person {
             for (int x = oldPositonXY[0]; x <= newPositonXY[0]; x++) {
                 /* System.out.println("visitedPlaces"); */
                 for (int y = oldPositonXY[1]; y <= newPositonXY[1]; y++) {
-                    visitedPlaces.add(new Point(x, y));
+                    if(!(visitedPlaces.get(visitedPlaces.size()-1).x == x && visitedPlaces.get(visitedPlaces.size()-1).y == y)){
+                        visitedPlaces.add(new Point(x, y));
+                    }
                 }
             }
         }else{
@@ -130,29 +138,35 @@ public class Person {
             for (int x = oldPositonXY[0]; x <= newPositonXY[0]; x++) {
                 /* System.out.println("visitedPlaces"); */
                 for (int y = oldPositonXY[1]; y >= newPositonXY[1]; y--) {
-                    visitedPlaces.add(new Point(x, y));
+                    if(!(visitedPlaces.get(visitedPlaces.size()-1).x == x && visitedPlaces.get(visitedPlaces.size()-1).y == y)){
+                        visitedPlaces.add(new Point(x, y));
+                    }
                 }
             }
         }
 
     }
 
-    public boolean wasIHereBefore() {
+    public void spawnPerson(){
+        visitedPlaces.add(new Point(0, 0));
+    }
+
+    public Point wasIHereBefore() {
         for (int i = 0; i < visitedPlaces.size(); i++) {
             for (int j = i + 1; j < visitedPlaces.size(); j++) {
-                System.out.println("Compare Point1[x=" + visitedPlaces.get(i).x + "," + visitedPlaces.get(i).y
-                        + "] to Point2[x=" + visitedPlaces.get(j).x + ",y=" + visitedPlaces.get(j).y + "]");
+                /* System.out.println("Compare Point1[x=" + visitedPlaces.get(i).x + "," + visitedPlaces.get(i).y
+                        + "] to Point2[x=" + visitedPlaces.get(j).x + ",y=" + visitedPlaces.get(j).y + "]"); */
                 if (visitedPlaces.get(i).x == visitedPlaces.get(j).x
                         && visitedPlaces.get(i).y == visitedPlaces.get(j).y) {
                     System.out.println("Found same Point1[x:" + visitedPlaces.get(i).x + "," + visitedPlaces.get(i).y
                             + "] to Point2[x:" + visitedPlaces.get(j).x + "," + visitedPlaces.get(j).y + "]");
-                    return true;
+                    return visitedPlaces.get(i);
                 }
             }
             System.out.println("");
         }
 
-        return false;
+        return visitedPlaces.get(0);
     }
 
 }
