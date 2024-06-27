@@ -1,91 +1,58 @@
 package Day_03;
 
 import Shared.ReadFile;
-import java.awt.Point;
 import java.util.ArrayList;
 
 public class Solution_2_Day_3 {
 
     int solution = 0;
-    Grid g;
-    Point p = new Point(0, 0);
-    Point robop = new Point(0, 0);
 
     public int getSolution() {
         ReadFile rf = new ReadFile();
         ArrayList<String> file = new ArrayList<String>();
-//        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_3_test_2016.txt";
-        String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_3_2016.txt";
+        String filepath = "./src/main/resources/Day_03_test_2016.txt";
+        /* String filepath = "./src/main/resources/Day_03_2016.txt"; */
         file = rf.getInput(filepath);
 
-        this.g = new Grid(new House[file.get(0).length() * 2][file.get(0).length() * 2]);
-        p.x = (file.get(0).length()) / 2;
-        p.y = (file.get(0).length()) / 2;
-        robop.x = (file.get(0).length()) / 2;
-        robop.y = (file.get(0).length()) / 2;
-        g.placeHouse(p);
-        g.placeHouse(robop);
-        //Insert Solution Here:
-        for (int i = 0; i < file.get(0).length(); i++) {
-            char currchar = file.get(0).charAt(i);
-            if (i % 2 == 0) {
-                switch (currchar) {
-                    case '^':
-                        robop.y++;
-                        robomove();
-                        break;
-                    case '>':
-                        robop.x++;
-                        robomove();
-                        break;
-                    case 'v':
-                        robop.y--;
-                        robomove();
-                        break;
-                    case '<':
-                        robop.x--;
-                        robomove();
-                        break;
-                }
-            }else{
-                switch (currchar) {
-                    case '^':
-                        p.y++;
-                        move();
-                        break;
-                    case '>':
-                        p.x++;
-                        move();
-                        break;
-                    case 'v':
-                        p.y--;
-                        move();
-                        break;
-                    case '<':
-                        p.x--;
-                        move();
-                        break;
-                }
-            }
+        int possibleTriangles = 0;
+        ArrayList<Integer> t = new ArrayList<Integer>();
 
+        // Insert Solution Here:
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < file.size(); j++) {
+                
+                    String[] triangleLenghts = file.get(j).split(" ");
+                    
+                    t.add(numb(triangleLenghts[0]));
+                    
+                    if(j%3==0 && j!=0){
+                        p(t.get(0)+" "+ t.get(1)+" "+t.get(2));
+                        possibleTriangles += checkPossibleTriangles(t.get(0),t.get(1),t.get(2));
+                        t.clear();
+                    }
+                
+            }
         }
-        solution = g.houseGiftReport(g.getMap());
+        solution = possibleTriangles;
         return solution;
     }
 
-    public void move() {
-        if (g.houseExist(p)) {
-            g.deliverGift(p);
-        } else {
-            g.placeHouse(p);
-        }
+    public int numb(String n){
+        return Integer.parseInt(n);
     }
-    public void robomove() {
-        if (g.houseExist(robop)) {
-            g.deliverGift(robop);
-        } else {
-            g.placeHouse(robop);
+
+    public int checkPossibleTriangles(int x, int y, int z){
+        if((x+y)>z && (y+z)>x && (z+x)>y){
+            return 1;
         }
+        return 0;
     }
+
+    // prints content, System.out.println is way too long
+    public void p(Object content) {
+        System.out.println(content.toString());
+    }
+
+    // ----debug zone----
 
 }
