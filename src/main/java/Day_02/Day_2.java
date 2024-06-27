@@ -7,7 +7,7 @@ public class Day_2 {
 
 		//Change for wanted solution
 		boolean Solution1 = false;
-//		boolean Solution1 = true;
+		/* boolean Solution1 = true; */
 		System.out.println(Solution1 ? "Day_2_Solution1: " + s1.getSolution() : "Day_2_Solution2: " + s2.getSolution());
 	}
 }

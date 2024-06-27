@@ -2,48 +2,44 @@ package Day_02;
 
 import Shared.ReadFile;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Solution_1_Day_2 {	
+public class Solution_1_Day_2 {
     int solution = 0;
 
-	public int getSolution() {
-		ReadFile rf = new ReadFile();
-		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_2016_2_test.txt";
-		String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_2016_2.txt";
-		file = rf.getInput(filepath);
-                
-                String regex = "x";
-                int[] lwh = new int[3];
+    public int getSolution() {
+        ReadFile rf = new ReadFile();
+        ArrayList<String> file = new ArrayList<String>();
 
-                
-		//Insert Solution Here:
-                for (int i = 0; i < file.size(); i++) {
-                    String[] output = file.get(i).split(regex);
-                    int j = 0;
-                    for (String outp : output) {
-                        
-                        
-                        lwh[j] = Integer.parseInt(outp);
-                        j++;
-                    }
-                   int[] clwh = {calc(lwh[0],lwh[1]),calc(lwh[1],lwh[2]),calc(lwh[2],lwh[0])};
-                   int[] lwhsmall = {calcSmall(lwh[0],lwh[1]),calcSmall(lwh[1],lwh[2]),calcSmall(lwh[2],lwh[0])};
-                   Arrays.sort(lwhsmall);
-                   solution = solution + lwhsmall[0]+clwh[0]+clwh[1]+clwh[2];
-                   
-                }
-                
-		return solution;
-	}
+        /* String filepath = "./src/main/resources/Day_02_test_2016.txt"; */
+        String filepath = "./src/main/resources/Day_02_2016.txt";
+
+        file = rf.getInput(filepath);
+
         
-        int calc(int x, int y){
-        
-            return 2*(x*y);
+        Keypad kp = new Keypad();
+        /* kp.nb[0].printNumberButton(); */
+
+        // Insert Solution Here:
+        for (int i = 0; i < file.size(); i++) {
+            String line = file.get(i);
+            String[] letters = line.split(""); 
+            for (int j = 0; j < letters.length; j++) {
+                /* p(letters[j]+j+" "+letters.length); */
+                kp.fingerMove(letters[j], j, letters.length);
+            }
         }
-        int calcSmall(int x, int y){
-        
-            return (x*y);
-        }
+        p(kp.writeSecretCode());
+        solution = 0;
+        return solution;
+    }
+
+    
+
+    // prints content, System.out.println is way too long
+    public void p(Object content) {
+        System.out.println(content.toString());
+    }
+
+    // ----debug zone----
+
 }
