@@ -1,71 +1,47 @@
 package Day_04;
-//
+
 import Shared.ReadFile;
+import Shared.AlphabetContainer;
 import java.util.ArrayList;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-//
+
 public class Solution_1_Day_4 {
+
     int solution = 0;
-//
-     public int getSolution() {
-       ReadFile rf = new ReadFile();
-       ArrayList<String> file = new ArrayList<String>();
-//       String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_4_2016.txt";
-       String filepath = "/home/deadpool7337/UriPrograms/Other/AoC/PuzzleInputs/Day_4_test_2016.txt";
-       file = rf.getInput(filepath);
-       
-       String s = file.get(0);
-       
-       int i = 0;
-       while(true){
-           String hash = getMd5(s+i);
+
+    public int getSolution() {
+        ReadFile rf = new ReadFile();
+        ArrayList<String> file = new ArrayList<String>();
+        String filepath = "./src/main/resources/Day_04_test_2016.txt";
+        /* String filepath = "./src/main/resources/Day_04_2016.txt"; */
+        file = rf.getInput(filepath);
+
+        AlphabetContainer alcont = new AlphabetContainer("Small");
+
+        // Insert Solution Here:
+        for (int i = 0; i < file.size(); i++) {
+            String[] lineParts = file.get(i).split("-");
+            
            
-//           System.out.println("i:" + i + " h: " + hash);
-           
-           if (hash.startsWith("00000")){
-               solution = i;
-               System.out.println("FINAL = "+"i:" + i + " h: " + hash);
-               break;
-           }
-           
-           
-        i++;   
-       }
-       
+        }
         
-       
-       
-       
-       return solution;
+        solution = 0;
+        return solution;
     }
-     
-    public static String getMd5(String input)
-    {
-        try {
- 
-            // Static getInstance method is called with hashing MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
- 
-            // digest() method is called to calculate message digest
-            // of an input digest() return array of byte
-            byte[] messageDigest = md.digest(input.getBytes());
- 
-            // Convert byte array into signum representation
-            BigInteger no = new BigInteger(1, messageDigest);
- 
-            // Convert message digest into hex value
-            String hashtext = no.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
+
+
+
+    public boolean doChecksum(String test, String correct){
+        if(test.equals(correct)){
+            return true;
         }
- 
-        // For specifying wrong message digest algorithms
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+        return false;
     }
+
+    // prints content, System.out.println is way too long
+    public void p(Object content) {
+        System.out.println(content.toString());
+    }
+
+    // ----debug zone----
+
 }
