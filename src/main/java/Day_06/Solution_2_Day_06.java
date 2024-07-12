@@ -6,7 +6,7 @@ import Shared.EasyPrint;
 import java.util.ArrayList;
 
 
-public class Solution__Day_06 {
+public class Solution_2_Day_06 {
 	EasyPrint ep = new EasyPrint();
 
 	Object solution = "Nothing yet!";
