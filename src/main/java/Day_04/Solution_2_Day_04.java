@@ -1,13 +1,15 @@
 package Day_04;
 
+import Shared.EasyPrint;
 import Shared.ReadFile;
 import java.util.ArrayList;
 
-public class Solution_2_Day_4 {
+public class Solution_2_Day_04 {
+    EasyPrint ep = new EasyPrint();
 
-    int solution = 0;
+	Object solution = "Nothing yet!";
 
-    public int getSolution() {
+	public Object getSolution() {
         ReadFile rf = new ReadFile();
         ArrayList<String> file = new ArrayList<String>();
         /* String filepath = "./src/main/resources/Day_04_test_2016.txt"; */
@@ -21,14 +23,8 @@ public class Solution_2_Day_4 {
                 
         }
         
-        solution = 0;
+
         return solution;
-    }
-
-
-    // prints content, System.out.println is way too long
-    public void p(Object content) {
-        System.out.println(content.toString());
     }
 
     // ----debug zone----
