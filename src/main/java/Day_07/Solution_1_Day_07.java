@@ -1,162 +1,81 @@
 package Day_07;
 
 import Shared.ReadFile;
+import Shared.EasyPrint;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Solution_1_Day_07 {
+	EasyPrint ep = new EasyPrint();
 
-	int solution = 0;
-	HashMap<String, Integer> hshmp = new HashMap<String, Integer>();
-	Board b = new Board();
-	
-	public int getSolution() {
+	Object solution = "Nothing yet!";
+
+	public Object getSolution() {
 		ReadFile rf = new ReadFile();
 		ArrayList<String> file = new ArrayList<String>();
-//		String filepath = "./src/main/resources/Day_07_test_2016.txt";
+		/* String filepath = "./src/main/resources/Day_07_test_2016.txt"; */
 		String filepath = "./src/main/resources/Day_07_2016.txt";
 		file = rf.getInput(filepath);
-		
-		
-		//Insert Solution Here:
+
+		int supportTLS = 0;
+
+		// Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
-			String[] lineparts = line.split(" ");
 
-			placeWires(lineparts);
+			if (hasABBA(line)) {
+				//ep.p("supports TLS: " + line);
+				supportTLS++;
+			} else {
+				//ep.p("does not support TLS: " + line);
+			}
+		}
+
+		return solution = supportTLS;
+	}
+
+	public boolean hasABBA(String testLine) {
+		int insideCounter = 0, outsideCounter = 0; 		// counts if ABBA apears inside or outside
+		boolean inside = false; 					// remembers where we are (if inside [] then true)
+
+		char[] testChars = testLine.toCharArray(); 	// s p l i t s o u r l i n e i n t o c h a r s
+
+		for (int i = 0; i < testChars.length - 3; i++) {
+
+			char a = testChars[i]; 			// A
+			char b = testChars[i + 1]; 		// B
+			char bb = testChars[i + 2]; 	// B
+			char aa = testChars[i + 3]; 	// A
+			//ep.np("" + a + "" + b + " == " + aa + "" + bb + " " + a + b + bb + aa);
+			if(a == '[' || b == '[' || aa == '[' || bb == '[') {inside = true;}
+			if(a == ']' || b == ']' || aa == ']' || bb == ']') {inside = false;}
+			//ep.np( " in: " + inside);
 			
+			if (a != b) {
+				if (a == aa && b == bb) {
+					
+					//ep.np( " match: true");
+					
+					if(inside){
+						insideCounter++;
+					}else{
+						outsideCounter++;
+					}
+					// return true;
+				}
+
+			}
+			//ep.p("");
+		}
+
+		if (insideCounter>0 || outsideCounter ==0){
+			return false;
+		}else{
+			return true;
 		}
 		
-//		printAll(b);
-		solution = calcValue(b.getWire("a"));
-	
-		return solution;
 	}
 
-	public void placeWires(String[] lineparts) {
+	// ----debug zone----
 
-		//NOT
-		if (lineparts[0].equals("NOT")) {
-			b.getCreateWire(lineparts[1]);
-			b.addWire(lineparts[3], b.getWire(lineparts[1]), lineparts[0]);
-		//numbers
-		} else if (lineparts[0].matches(".*\\d.*")) {
-			
-			
-			
-			String gate = lineparts[1];
-			Integer val;
-			Wire w2;
-			
-			
-			switch (gate) {
-				case "AND":
-					val = Integer.valueOf(lineparts[0]);
-					w2 = b.getCreateWire(lineparts[2]);
-					b.addWire(lineparts[4], val, w2, gate);
-					break;
-				case "OR":
-					val = Integer.valueOf(lineparts[0]);
-					w2 = b.getCreateWire(lineparts[2]);
-					b.addWire(lineparts[4], val, w2, gate);
-					break;
-				case "->":
-					Integer value = Integer.valueOf(lineparts[0]);
-					b.addWire(lineparts[2], value, gate);
-//					System.out.println(lineparts[2] + ": " + value);
-					break;
-				default:
-					throw new AssertionError();
-			}
-			
-			
-			
-			
-
-		//letters
-		} else {
-			String gate = lineparts[1];
-			Wire w0;
-			Wire w2;
-			Integer shift = 0;
-			
-			switch (gate) {
-				case "AND":
-					w0 = b.getCreateWire(lineparts[0]);
-					w2 = b.getCreateWire(lineparts[2]);
-					b.addWire(lineparts[4], w0, w2, gate);
-					break;
-				case "OR":
-					w0 = b.getCreateWire(lineparts[0]);
-					w2 = b.getCreateWire(lineparts[2]);
-					b.addWire(lineparts[4], w0, w2, gate);
-					break;
-				case "LSHIFT":
-					w0 = b.getCreateWire(lineparts[0]);
-					shift = Integer.valueOf(lineparts[2]);
-					b.addWire(lineparts[4], w0, gate, shift);
-					
-					break;
-				case "RSHIFT":
-					w0 = b.getCreateWire(lineparts[0]);
-					shift = Integer.valueOf(lineparts[2]);
-					b.addWire(lineparts[4], w0, gate, shift);
-					break;
-				case "->":
-					w0 = b.getCreateWire(lineparts[0]);
-					b.addWire(lineparts[2], w0, gate);
-					break;
-				default:
-					throw new AssertionError();
-			}
-		}
-	}
-	
-	public int calcValue(Wire w) {
-		Wire bw = b.getWire(w.getName());
-//		System.out.println(bw.getName());
-		if (bw.getValue() != null) {
-			return bw.getValue();
-//		} else if(bw.getLeftVal() != null){
-//		 return bw.getLeftVal();
-		} else {
-			int res = 0;
-			switch (bw.getGate()) {
-				case "NOT":
-					res = calcValue(bw.getLeftSide());
-					res = ~res & 0xFFFF;
-					bw.setValue(res);
-					return res;
-				case "AND":
-//					System.out.println(bw.getName());
-//					System.out.println(bw.getLeftVal());
-					res = (bw.getLeftVal() == null ? calcValue(bw.getLeftSide()) : bw.getLeftVal()) & calcValue(bw.getRightSide());
-					bw.setValue(res);
-					return res;
-				case "OR":
-					res =  calcValue(bw.getLeftSide()) | calcValue(bw.getRightSide());
-					bw.setValue(res);
-					return res;
-				case "LSHIFT":
-					res = calcValue(bw.getLeftSide()) << bw.getShift();
-					bw.setValue(res);
-					return res;
-				case "RSHIFT":
-					res = calcValue(bw.getLeftSide()) >> bw.getShift();
-					bw.setValue(res);
-					return res;
-				case "->":
-					res = bw.getLeftVal() == null ? calcValue(bw.getLeftSide()) : bw.getLeftVal();
-					bw.setValue(res);
-					return res;
-				default:
-					throw new AssertionError();
-			}
-		}
-	}
-	public void printAll(Board b){
-	for (String wi : b.wiresList.keySet()) {
-			System.out.println(wi+": "+calcValue(b.getWire(wi)));
-		}
-	}
 }
