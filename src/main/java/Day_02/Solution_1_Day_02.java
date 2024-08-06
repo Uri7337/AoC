@@ -1,7 +1,7 @@
 package Day_02;
 
-import Shared.ReadFile;
-import Shared.EasyPrint;
+import shared.ReadFile;
+import shared.EasyPrint;
 
 import java.util.ArrayList;
 

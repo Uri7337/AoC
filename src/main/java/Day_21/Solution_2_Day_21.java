@@ -1,6 +1,6 @@
 package Day_21;
 //
-import Shared.ReadFile;
+import shared.ReadFile;
 import java.util.ArrayList;
 //
 public class Solution_2_Day_21 {

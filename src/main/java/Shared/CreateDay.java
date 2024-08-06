@@ -1,5 +1,5 @@
 
-package Shared;
+package shared;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -59,7 +59,7 @@ public class CreateDay {
             writer.write("package Day_" + dayNum + ";");
             writer.newLine(); 
             writer.newLine(); 
-            writer.write("import Shared.ReadFile;");
+            writer.write("import shared.ReadFile;");
             writer.newLine();
             writer.write("import java.util.ArrayList;");
             writer.newLine();
@@ -112,7 +112,7 @@ public class CreateDay {
             writer.write("package Day_" + dayNum + ";");
             writer.newLine(); 
             writer.newLine(); 
-            writer.write("import Shared.ReadFile;");
+            writer.write("import shared.ReadFile;");
             writer.newLine();
             writer.write("import java.util.ArrayList;");
             writer.newLine();

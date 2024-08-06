@@ -1,6 +1,6 @@
 package Day_;
 
-import Shared.EasyPrint;
+import shared.EasyPrint;
 public class Day_ {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Shared;
+package shared;
 
 public class AlphabetContainer {
    public char[] alphabet = new char[26];

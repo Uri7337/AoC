@@ -1,4 +1,4 @@
-package Shared;
+package shared;
 
 public class EasyPrint {
     public void p(Object content) {

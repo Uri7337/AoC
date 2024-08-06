@@ -1,5 +1,5 @@
 
-package Shared;
+package shared;
 
 import java.io.File;  
 

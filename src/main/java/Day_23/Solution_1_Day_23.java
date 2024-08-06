@@ -1,6 +1,6 @@
 package Day_23;
 
-import Shared.ReadFile;
+import shared.ReadFile;
 import java.util.ArrayList;
 /*
  first check what kind of field it is

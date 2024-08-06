@@ -1,6 +1,6 @@
 package Day_07;
 
-import Shared.ReadFile;
+import shared.ReadFile;
 import java.util.ArrayList;
 import java.util.HashMap;
 
