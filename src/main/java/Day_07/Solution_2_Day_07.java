@@ -17,25 +17,26 @@ public class Solution_2_Day_07 {
 		String filepath = "./src/main/resources/Day_07_2016.txt";
 		file = rf.getInput(filepath);
 
-		int supportTLS = 0;
+		int supportsSSL = 0;
 
 		// Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
 
 			if (hasABBA(line)) {
-				//ep.p("supports TLS: " + line);
-				supportTLS++;
+				//ep.p("supports SSL: " + line);
+				supportsSSL++;
 			} else {
-				//ep.p("does not support TLS: " + line);
+				//ep.p("does not support SSL: " + line);
 			}
 		}
 
-		return solution = supportTLS;
+		return solution = supportsSSL;
 	}
 
 	public boolean hasABBA(String testLine) {
 		int insideCounter = 0, outsideCounter = 0; 		// counts if ABBA apears inside or outside
+		Array
 		boolean inside = false; 					// remembers where we are (if inside [] then true)
 
 		char[] testChars = testLine.toCharArray(); 	// s p l i t s o u r l i n e i n t o c h a r s
@@ -44,15 +45,15 @@ public class Solution_2_Day_07 {
 
 			char a = testChars[i]; 			// A
 			char b = testChars[i + 1]; 		// B
-			char bb = testChars[i + 2]; 	// B
-			char aa = testChars[i + 3]; 	// A
-			//ep.np("" + a + "" + b + " == " + aa + "" + bb + " " + a + b + bb + aa);
-			if(a == '[' || b == '[' || aa == '[' || bb == '[') {inside = true;}
-			if(a == ']' || b == ']' || aa == ']' || bb == ']') {inside = false;}
+			char aa = testChars[i + 2]; 	// A
+
+			
+			if(a == '[' || b == '[' || aa == '[') {inside = true;}
+			if(a == ']' || b == ']' || aa == ']') {inside = false;}
 			//ep.np( " in: " + inside);
 			
 			if (a != b) {
-				if (a == aa && b == bb) {
+				if (b == aa) {
 					
 					//ep.np( " match: true");
 					
@@ -79,3 +80,12 @@ public class Solution_2_Day_07 {
 	// ----debug zone----
 
 }
+
+class IPAddress {
+
+	char a = testChars[i]; 			// A	
+	char b = testChars[i + 1]; 		// B
+	char aa = testChars[i + 2]; 	// A
+
+	
+  }
