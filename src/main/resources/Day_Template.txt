@@ -1,0 +1,15 @@
+package Day_;
+
+import Shared.EasyPrint;
+public class Day_ {
+
+    public static void main(String[] args) {
+        EasyPrint ep = new EasyPrint();
+        Solution_1_Day_ s1 = new Solution_1_Day_();
+        Solution_2_Day_ s2 = new Solution_2_Day_();
+
+        ep.p("");
+        ep.p("Day__Solution1: " + s1.getSolution().toString());
+        ep.p("Day__Solution2: " + s2.getSolution().toString());
+    }
+}
