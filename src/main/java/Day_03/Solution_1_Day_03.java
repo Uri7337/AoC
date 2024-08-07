@@ -56,7 +56,7 @@ public class Solution_1_Day_03 {
 				if(isLastNumber){
 					enginePart +=lineParts[j];
 					if(checkSurroundings(j,i,enginePart.length())){
-						//if any number adjacent to a symbol do
+						//if any number adjacent to a symbol is found do
 						sum(Integer.parseInt(enginePart));
 					}
 					continue;
@@ -73,22 +73,28 @@ public class Solution_1_Day_03 {
 	}
 
 	boolean checkSurroundings(int x, int y, int enginePartSize){
+		boolean foundSymbol = false;
 		//ep.p(file.get(y).charAt(x-enginePartSize));
 		for (int i = y-1; i < y+2; i++) {
 			ep.p("");
 			for (int j = x-enginePartSize; j < x+2; j++) {
 				if( i>=0 && i<file.size() && j>=0 && j<file.get(y).length() ){
-					ep.p(file.get(i).charAt(j));
+					//currentlyControlledChar
+					char cCC = file.get(i).charAt(j);
+					ep.np(file.get(i).charAt(j));
+					if( cCC !='.' && !(Character.toString(cCC).matches("[0-9]")) ){
+						foundSymbol = true;
+					}
 				}
 				
 			}
 		}
+		ep.p("");
+		ep.p("foundSymbol: "+foundSymbol);
 		ep.p("-----------");
-		/* if(){
-			return true;
-		} */
 		
-		return false;
+		
+		return foundSymbol;
 	}
 	void sum(int num){
 		sumOfPartNumbers += num;
