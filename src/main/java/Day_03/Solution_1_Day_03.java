@@ -18,8 +18,8 @@ public class Solution_1_Day_03 {
 		
 		ReadFile rf = new ReadFile();
 		file = new ArrayList<String>();
-		String filepath = "./src/main/resources/Day_03_test_2023.txt";
-		/* String filepath = "./src/main/resources/Day_03_2023.txt"; */
+		/* String filepath = "./src/main/resources/Day_03_test_2023.txt"; */
+		String filepath = "./src/main/resources/Day_03_2023.txt";
 		file = rf.getInput(filepath);
 			
 		//Insert Solution Here:
@@ -27,8 +27,6 @@ public class Solution_1_Day_03 {
 			String line = file.get(i);
 
 			String enginePart = "";
-
-			boolean isfirstNumber = true;
 
 			String[] lineParts = line.split("");
 			for (int j = 0; j < lineParts.length; j++) {
@@ -48,11 +46,20 @@ public class Solution_1_Day_03 {
 					isLastNumber = ( isNumber && !(lineParts[j+1].matches("[0-9]")) );
 				}
 				
-				 
+				if(isFirstNumber && isLastNumber){
+					enginePart = lineParts[j];
+					if(checkSurroundings(j,i,enginePart.length())){
+						//if any number adjacent to a symbol is found do
+						sum(Integer.parseInt(enginePart));
+					}
+					continue;
+				}
+
 				if(isFirstNumber){
 					enginePart = lineParts[j];
 					continue;
 				}
+				
 				if(isLastNumber){
 					enginePart +=lineParts[j];
 					if(checkSurroundings(j,i,enginePart.length())){
@@ -61,6 +68,7 @@ public class Solution_1_Day_03 {
 					}
 					continue;
 				}
+
 				if(isNumber && !(isLastNumber) && !(isFirstNumber)){
 					enginePart +=lineParts[j];
 				}
