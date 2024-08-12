@@ -84,12 +84,12 @@ public class Solution_1_Day_03 {
 		boolean foundSymbol = false;
 		//ep.p(file.get(y).charAt(x-enginePartSize));
 		for (int i = y-1; i < y+2; i++) {
-			ep.p("");
+			//ep.p("");
 			for (int j = x-enginePartSize; j < x+2; j++) {
 				if( i>=0 && i<file.size() && j>=0 && j<file.get(y).length() ){
 					//currentlyControlledChar
 					char cCC = file.get(i).charAt(j);
-					ep.np(file.get(i).charAt(j));
+					//ep.np(file.get(i).charAt(j));
 					if( cCC !='.' && !(Character.toString(cCC).matches("[0-9]")) ){
 						foundSymbol = true;
 					}
@@ -97,9 +97,9 @@ public class Solution_1_Day_03 {
 				
 			}
 		}
-		ep.p("");
+		/* ep.p("");
 		ep.p("foundSymbol: "+foundSymbol);
-		ep.p("-----------");
+		ep.p("-----------"); */
 		
 		
 		return foundSymbol;
