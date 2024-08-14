@@ -4,7 +4,7 @@ import shared.ReadFile;
 import shared.EasyPrint;
 
 import java.util.ArrayList;
-
+import java.awt.Point;
 
 public class Solution_2_Day_03 {
 	EasyPrint ep = new EasyPrint();
@@ -33,40 +33,77 @@ public class Solution_2_Day_03 {
 				boolean isGear = lineParts[j].matches("\\*");
 				
 				if(isGear){
-					ArrayList<Integer> partNumbers = new ArrayList<Integer>();
-					partNumbers = checkSurroundings(j,i);
-						//if exactly two part numbers adjacent to a gear is found do
-						if(partNumbers.size() == 2){
-							//multiplying those two numbers together
-							int mult = partNumbers.get(0)*partNumbers.get(1);
-							sum(mult);
-							continue;
-						}
-					
-					
+					Gear g = new Gear(j,i);
+					if(g.gearRatio !=-1){
+						sum(g.gearRatio);
+					}
 				}
-			
-				
 			}
 		}
 		test(sumOfPartNumbers);
 		return solution = sumOfPartNumbers;
 	}
 
-	ArrayList<Integer> checkSurroundings(int x, int y){
-		ArrayList<Integer> partNumbers = new ArrayList<Integer>();
-
-		
-		return partNumbers;
-	}
 	void sum(int num){
 		sumOfPartNumbers += num;
 	}
+
+	class Gear{
+		Point p;
+		ArrayList<Integer> partNumbers;
+		int gearRatio;
+		
+		Gear(int x, int y){
+			this.p = new Point(x,y);
+			this.partNumbers = checkSurroundings(x, y);
+			this.gearRatio = -1;	
+		}
+
+		ArrayList<Integer> checkSurroundings(int x, int y){
+			partNumbers = new ArrayList<Integer>();
+			
+			//scan top (x-1, y-1)
+			for (int i = x-1; i < x+2; i++) {
+				if( (y-1)>=0 && i>=0 && i<file.get(i).length() ){
+					if(Character.toString(file.get(y-1).charAt(i)).matches("[0-9]")){
+						scanWholeNumber(i,y-1);
+					}
+				}
+			}
+			//ep.p("");
+			//scan middle (x-1, y)
+			
+			//scan bottom (x-1, y+1)
+			
+			if(partNumbers.size() == 2){
+				getGearRatio();
+			}
+
+			return partNumbers;
+		}
+
+		int scanWholeNumber(int x, int y){
+			String n = "";
+	
+			for (int i = x; i < file.get(y).length(); i++) {
+				
+			}
+
+			return Integer.parseInt(n);
+		}
+
+		private void getGearRatio() {
+			gearRatio = partNumbers.get(0) * partNumbers.get(1);
+		}	
+	}
+
 
 	// ----debug zone----
 	void test(int x){
 		if(x==467835){
 			ep.p("test OK");
+		}else{
+			ep.p("test NOT OK");
 		}
 	}
 }
