@@ -39,9 +39,9 @@ public class Solution_1_Day_04 {
                 for (int j = 1; j < mN.size(); j++) {
                     res*=2;
                 }
-                ep.p(mN + " size: "+mN.size() + " result: "+ res);
+                //ep.p(mN + " size: "+mN.size() + " result: "+ res);
                 result += res;
-                ep.p(result);
+                //ep.p(result);
             }
             
         }
