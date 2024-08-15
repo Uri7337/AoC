@@ -8,8 +8,18 @@ public class Day_ {
         Solution_1_Day_ s1 = new Solution_1_Day_();
         Solution_2_Day_ s2 = new Solution_2_Day_();
 
+        String filepath_test = "./src/main/resources/Day__test_year.txt";
+		String filepath = "./src/main/resources/Day__year.txt";
+        
+        ep.p("\n");
+        ep.p("    Day_");
+        ep.p("===Solutions===");
+        ep.p("Solution 1");
+        ep.p("Tests: " + s1.getSolution(filepath_test).toString());
+        ep.p("Answer: " + s1.getSolution(filepath).toString());
         ep.p("");
-        ep.p("Day__Solution1: " + s1.getSolution().toString());
-        ep.p("Day__Solution2: " + s2.getSolution().toString());
+        ep.p("Solution 2");
+        ep.p("Tests: " + s2.getSolution(filepath_test).toString());
+        ep.p("Answer: " + s2.getSolution(filepath).toString());
     }
 }

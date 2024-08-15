@@ -10,20 +10,19 @@ public class Solution__Day_ {
 	EasyPrint ep = new EasyPrint();
 
 	Object solution = "Nothing yet!";
-
-	public Object getSolution() {
+	
+	ArrayList<String> file;
+	public Object getSolution(String filepath) {
+		
 		ReadFile rf = new ReadFile();
-		ArrayList<String> file = new ArrayList<String>();
-		/* String filepath = "./src/main/resources/Day__test_.txt"; */
-		String filepath = "./src/main/resources/Day__.txt";
+		file = new ArrayList<String>();
 		file = rf.getInput(filepath);
-
+			
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
-			
-		}
 
+        }
 		return solution;
 	}
 
