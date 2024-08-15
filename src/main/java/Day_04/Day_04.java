@@ -14,11 +14,11 @@ public class Day_04 {
         ep.p("\n");
         ep.p("    Day_04");
         ep.p("===Solutions===");
-        ep.p("Solution 1");
+        ep.p("Solution *");
         ep.p("Tests: " + s1.getSolution(filepath_test).toString());
         ep.p("Answer: " + s1.getSolution(filepath).toString());
         ep.p("");
-        ep.p("Solution 2");
+        ep.p("Solution **");
         ep.p("Tests: " + s2.getSolution(filepath_test).toString());
         ep.p("Answer: " + s2.getSolution(filepath).toString());
     }
