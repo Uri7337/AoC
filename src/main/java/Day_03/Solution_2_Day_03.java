@@ -18,8 +18,8 @@ public class Solution_2_Day_03 {
 		
 		ReadFile rf = new ReadFile();
 		file = new ArrayList<String>();
-		String filepath = "./src/main/resources/Day_03_test_2023.txt";
-		/* String filepath = "./src/main/resources/Day_03_2023.txt"; */
+		/* String filepath = "./src/main/resources/Day_03_test_2023.txt"; */
+		String filepath = "./src/main/resources/Day_03_2023.txt";
 		file = rf.getInput(filepath);
 			
 		//Insert Solution Here:
@@ -34,6 +34,7 @@ public class Solution_2_Day_03 {
 				
 				if(isGear){
 					Gear g = new Gear(j,i);
+					
 					if(g.gearRatio !=-1){
 						sum(g.gearRatio);
 					}
@@ -55,8 +56,8 @@ public class Solution_2_Day_03 {
 		
 		Gear(int x, int y){
 			this.p = new Point(x,y);
+			this.gearRatio = -1;
 			this.partNumbers = checkSurroundings(x, y);
-			this.gearRatio = -1;	
 		}
 
 		ArrayList<Integer> checkSurroundings(int x, int y){
@@ -66,14 +67,32 @@ public class Solution_2_Day_03 {
 			for (int i = x-1; i < x+2; i++) {
 				if( (y-1)>=0 && i>=0 && i<file.get(i).length() ){
 					if(Character.toString(file.get(y-1).charAt(i)).matches("[0-9]")){
-						scanWholeNumber(i,y-1);
+						partNumbers.add(scanWholeNumber(i,y-1));
+						if(Character.toString(file.get(y-1).charAt(x)).matches("[0-9]")){
+							break;
+						}
 					}
 				}
 			}
-			//ep.p("");
 			//scan middle (x-1, y)
-			
+			for (int i = x-1; i < x+2; i++) {
+				if( (y)>=0 && i>=0 && i<file.get(i).length() ){
+					if(Character.toString(file.get(y).charAt(i)).matches("[0-9]")){
+						partNumbers.add(scanWholeNumber(i,y));
+					}
+				}
+			}
 			//scan bottom (x-1, y+1)
+			for (int i = x-1; i < x+2; i++) {
+				if( (y+1)>=0 && i>=0 && i<file.get(i).length() ){
+					if(Character.toString(file.get(y+1).charAt(i)).matches("[0-9]")){
+						partNumbers.add(scanWholeNumber(i,y+1));
+						if(Character.toString(file.get(y+1).charAt(x)).matches("[0-9]")){
+							break;
+						}
+					}
+				}
+			}
 			
 			if(partNumbers.size() == 2){
 				getGearRatio();
@@ -84,16 +103,36 @@ public class Solution_2_Day_03 {
 
 		int scanWholeNumber(int x, int y){
 			String n = "";
-	
-			for (int i = x; i < file.get(y).length(); i++) {
+			
+			//go left
+			for (int i = x; i > -1; i--) {
+				char numberPart = file.get(y).charAt(i);
+				if( numberPart !='.' && (Character.toString(numberPart).matches("[0-9]")) ){
+					n = numberPart + n;
+				}else{
+					break;
+				}
 				
 			}
 
+			//go right
+
+			for (int i = x+1; i < file.get(y).length(); i++) {
+				char numberPart = file.get(y).charAt(i);
+				if( numberPart !='.' && (Character.toString(numberPart).matches("[0-9]")) ){
+					n += numberPart;
+				}else{
+					break;
+				}
+				
+			}
+			
 			return Integer.parseInt(n);
 		}
 
 		private void getGearRatio() {
 			gearRatio = partNumbers.get(0) * partNumbers.get(1);
+			
 		}	
 	}
 
