@@ -12,10 +12,12 @@ public class Day_04 {
 		String filepath = "./src/main/resources/Day_04_2023.txt";
         
         ep.p("==Start==");
+        ep.p("Solution *");
         ep.p("==Test prints==");
         String sol1_test = s1.getSolution(filepath_test).toString();
         ep.p("\n==Answer prints==");
         String sol1 = s1.getSolution(filepath).toString();
+        ep.p("Solution **");
         ep.p("\n==Test prints==");
         String sol2_test = s2.getSolution(filepath_test).toString();
         ep.p("\n==Answer prints==");
