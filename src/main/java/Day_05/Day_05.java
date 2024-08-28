@@ -1,8 +1,5 @@
 package Day_05;
 
-import java.io.File;
-import java.net.URISyntaxException;
-
 import shared.EasyPrint;
 public class Day_05 {
 
