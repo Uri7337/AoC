@@ -33,30 +33,41 @@ public class Solution_1_Day_05 {
 					seedsList.add(seedList);
 				}
 
-				for (int k = 0; k < seedsList.size(); k++) { 
+				/* for (int k = 0; k < seedsList.size(); k++) { 
 					for (int j = 0; j < seedsList.get(k).size(); j++) { 
 						System.out.print(seedsList.get(k).get(j) + " "); 
 					} 
 					System.out.println(); 
-				} 
+				} */ 
 
 			}else{
 				if (line.contains("-to-")) {
 					//seed-to-soil map:
-					
+					String from = line.split("-to-")[0];
+					String to = line.split("-to-")[1].split(" ")[0];
+					ep.p(from +"->" + to);
+
 
 				} else if (line.matches("[\\d]* [\\d*]* [\\d]*")){
 					//numbers
 					long n1 = Long.parseLong(line.split(" ")[0]);
 					long n2 = Long.parseLong(line.split(" ")[1]);
 					long n3 = Long.parseLong(line.split(" ")[2]);
-					ep.p(n1 +"-"+ n2 +"-"+ n3);
+					/* ep.p(n1 +"-"+ n2 +"-"+ n3); */
 				}
 			}
 
         }
 		return solution;
 	}
+
+	class seed {
+		//changing state based on where the seed is currently located e.g. if seed-> soil state:soil 
+		String state;
+		int number;
+		ArrayList<Long> seedHistory = new ArrayList<Long>();
+
+	} 
 
 	// ----debug zone----
 	
