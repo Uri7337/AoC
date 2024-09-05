@@ -69,12 +69,35 @@ public class Solution_1_Day_05 {
 		ep.p("");
 		categoryList.forEach(cl -> {cl.printCategory(); ep.p("");});
 		 */
-		
-		
 
-		// for every seed go true every category and if in range change number else dont
+		// for every seed go through every category and if in range change number else dont
+		seedList.forEach(s -> {
+			categoryList.forEach(cl -> {
+				for (Range r : cl.ranges) {
+					
+					if(s.number>= r.sourceRangeStart && ((r.rangeLength-1)+r.sourceRangeStart) >=s.number){
+						//destination is bigger or smaller than source range start
+						long x;
+						x = r.destinationRange-r.sourceRangeStart;
+						s.number += x; 
+						break;
+					}
+				}
+				s.makeRecord(cl.name,s.number);
+			});
+		});
 
-		return solution;
+		ArrayList<Long> seedsLocations = new ArrayList<>();
+		seedList.forEach(s -> {
+			seedsLocations.add(s.seedHistory.get("location")); 
+		});
+		long minimum = seedsLocations.get(0); 
+        for (int i = 1; i < seedsLocations.size(); i++) { 
+            if (minimum > seedsLocations.get(i)) 
+                minimum = seedsLocations.get(i); 
+        }
+
+		return solution = minimum;
 	}
 
 	class Seed {
@@ -128,9 +151,9 @@ public class Solution_1_Day_05 {
 	}
 
 	class Range {
-		long sourceRangeStart;
-		long destinationRange;
-		long rangeLength;
+		long sourceRangeStart; //98
+		long destinationRange; //50
+		long rangeLength; //2
 
 		public Range(long sourceRangeStart, long destinationRange, long rangeLength) {
 			this.sourceRangeStart = sourceRangeStart;
