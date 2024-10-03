@@ -36,13 +36,11 @@ public class Solution_2_Day_05 {
 						seedList.add(s);
 						first=false;
 					}else{
-						seedList.get(seedList.size()-1).range = Long.parseLong(seeds[j]);
+						seedList.get(seedList.size()-1).rangeSize = Long.parseLong(seeds[j]);
+						seedList.get(seedList.size()-1).makeRange();
 						first=true;
-						seedList.get(seedList.size()-1).readRecord();
 					}
-					
 				}
-
 			}else{
 				if (line.contains("-to-")) {
 					//seed-to-soil map:
@@ -68,13 +66,6 @@ public class Solution_2_Day_05 {
 			}
 
         }
-		ArrayList<Seed> newseedList = new ArrayList<Seed>();
-		seedList.forEach(s -> {
-			for (long i = s.number; i < ((s.range+s.number)); i++) {
-				Seed ss = new Seed("seed", i);
-				newseedList.add(ss);
-			}
-		});
 		
 		/* 
 		now for test print
@@ -88,11 +79,26 @@ public class Solution_2_Day_05 {
 		 */
 
 		// for every seed go through every category and if in range change number else dont
-		newseedList.forEach(s -> {
+		seedList.forEach(s -> {
 			categoryList.forEach(cl -> {
 				for (Range r : cl.ranges) {
+
+					//FITS
+					//if seed range fits all on both sides
+
+
+					//DOESN'T FIT
+					//if seed range doesnt't fit on both sides
+
+					//if seed range doesnt't fit on one side
+
+					//if seed range doesnt't fit at all
 					
-					if(s.number>= r.sourceRangeStart && ((r.rangeLength-1)+r.sourceRangeStart) >=s.number){
+
+
+
+			//oldcode
+					/* if(s.number>= r.sourceRangeStart && ((r.rangeLength-1)+r.sourceRangeStart) >=s.number){
 						//destination is bigger or smaller than source range start
 						long x;
 						x = r.destinationRange-r.sourceRangeStart;
@@ -100,7 +106,8 @@ public class Solution_2_Day_05 {
 						break;
 					}
 				}
-				s.makeRecord(cl.name,s.number);
+				s.makeRecord(cl.name,s.number); */
+			// end of old code
 			});
 		});
 
@@ -138,8 +145,7 @@ public class Solution_2_Day_05 {
 			this.rangeStart = number;
 		}
 
-		void makeRange(long rangeSize){
-			this.rangeSize = rangeSize;
+		void makeRange(){
 			this.rangeEnd = (this.rangeStart + rangeSize) - 1;
 		}
 
