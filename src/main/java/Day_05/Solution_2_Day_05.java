@@ -38,6 +38,7 @@ public class Solution_2_Day_05 {
 					}else{
 						seedList.get(seedList.size()-1).range = Long.parseLong(seeds[j]);
 						first=true;
+						seedList.get(seedList.size()-1).readRecord();
 					}
 					
 				}
@@ -120,26 +121,35 @@ public class Solution_2_Day_05 {
 		//changing state based on where the seed is currently located e.g. if seed -> soil state:soil 
 		String state;
 		long number;
-		long range;
-		HashMap<String, Long> seedHistory;
+
+		long rangeStart;
+		long rangeEnd;
+		long rangeSize;
+
 
 		public Seed(String state, long number) {
-			this.seedHistory = new HashMap<String, Long>();
 			this.state = state;
 			this.number = number;
-			this.seedHistory.put(state,number);
 		}
 
 		void makeRecord(String state, long number){
 			this.state = state;
 			this.number = number;
-			this.seedHistory.put(state,number);
+			this.rangeStart = number;
+		}
+
+		void makeRange(long rangeSize){
+			this.rangeSize = rangeSize;
+			this.rangeEnd = (this.rangeStart + rangeSize) - 1;
+		}
+
+		void changeRange(long destVal){
+			this.rangeStart += destVal;
+			this.rangeEnd += destVal; 
 		}
 
 		void readRecord(){
-			for (String i : seedHistory.keySet()) {
-				ep.p("state: " + i + "; number: " + seedHistory.get(i) + "; range: "+ range);
-			  }
+			ep.p("state: " + state + "; number: " + number + "; range: <"+ rangeStart + "-" +rangeEnd+"> " + rangeSize);
 		}
 
 	} 
