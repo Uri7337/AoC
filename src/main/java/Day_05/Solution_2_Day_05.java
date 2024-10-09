@@ -83,10 +83,10 @@ public class Solution_2_Day_05 {
 			categoryList.forEach(cl -> {
 				for (Range r : cl.ranges) {
 
-						//test one side
+						// test one side
 						// menší
 						if(s.rangeStart< r.sourceRangeStart){
-							//test second side
+							// test second side
 							if(s.rangeEnd < r.sourceRangeEnd){
 
 							}
@@ -102,7 +102,7 @@ public class Solution_2_Day_05 {
 						}
 						// rovno
 						if(s.rangeStart == r.sourceRangeStart){
-							//test second side
+							// test second side
 							if(s.rangeEnd < r.sourceRangeEnd){
 
 							}
@@ -116,9 +116,9 @@ public class Solution_2_Day_05 {
 							}
 
 						}
-						//větší
+						// větší
 						if(s.rangeStart > r.sourceRangeStart){
-							//test second side
+							// test second side
 							if(s.rangeEnd < r.sourceRangeEnd){
 
 							}
