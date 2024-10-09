@@ -83,20 +83,66 @@ public class Solution_2_Day_05 {
 			categoryList.forEach(cl -> {
 				for (Range r : cl.ranges) {
 
-					//FITS
-					//if seed range fits all on both sides
+						//test one side
+						// menší
+						if(s.rangeStart< r.sourceRangeStart){
+							//test second side
+							if(s.rangeEnd < r.sourceRangeEnd){
 
+							}
 
-					//DOESN'T FIT
-					//if seed range doesnt't fit on both sides
+							if(s.rangeEnd > r.sourceRangeEnd){
 
-					//if seed range doesnt't fit on one side
+							}
 
-					//if seed range doesnt't fit at all
+							if(s.rangeEnd == r.sourceRangeEnd){
+
+							}
+
+						}
+						// rovno
+						if(s.rangeStart == r.sourceRangeStart){
+							//test second side
+							if(s.rangeEnd < r.sourceRangeEnd){
+
+							}
+
+							if(s.rangeEnd > r.sourceRangeEnd){
+
+							}
+
+							if(s.rangeEnd == r.sourceRangeEnd){
+
+							}
+
+						}
+						//větší
+						if(s.rangeStart > r.sourceRangeStart){
+							//test second side
+							if(s.rangeEnd < r.sourceRangeEnd){
+
+							}
+
+							if(s.rangeEnd > r.sourceRangeEnd){
+
+							}
+
+							if(s.rangeEnd == r.sourceRangeEnd){
+
+							}
+
+						}
+
+						
 					
+					}
+
+					
+				
 
 
-
+				//GREEN - if seed range fits all on both sides
+				//if seed range doesnt't fit on both sides
 			//oldcode
 					/* if(s.number>= r.sourceRangeStart && ((r.rangeLength-1)+r.sourceRangeStart) >=s.number){
 						//destination is bigger or smaller than source range start
@@ -185,6 +231,7 @@ public class Solution_2_Day_05 {
 
 	class Range {
 		long sourceRangeStart; //98
+		long sourceRangeEnd; // (98+2) - 1
 		long destinationRange; //50
 		long rangeLength; //2
 
@@ -192,6 +239,7 @@ public class Solution_2_Day_05 {
 			this.sourceRangeStart = sourceRangeStart;
 			this.destinationRange = destinationRange;
 			this.rangeLength = rangeLength;
+			this.sourceRangeEnd = (sourceRangeStart + rangeLength) - 1;
 		}
 
 		void printRange(){
