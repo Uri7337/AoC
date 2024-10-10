@@ -83,12 +83,57 @@ public class Solution_2_Day_05 {
 			categoryList.forEach(cl -> {
 				for (Range r : cl.ranges) {
 
-						// test one side
-						// menší
-						if(s.rangeStart< r.sourceRangeStart){
+						// mimo range vlevo
+						//   70-?      
+						//   	  90 - 100
+						// menší vlevo
+						if(s.rangeStart < r.sourceRangeStart){
+							// menší i vpravo
+							if(s.rangeEnd < r.sourceRangeStart){
+								//   79 - 92
+								//            98 - 99
+								//nechat stejné, změnit status
+								
+							}
+							//vpravo uprostřed
+							if(s.rangeEnd >= r.sourceRangeStart && s.rangeEnd <= r.sourceRangeEnd){
+								//   79 -       99
+								//           98 - 100
+								//rozlomit na 2 seedy 
+								// 79-97; 98-99
+								//			^-zvětšit
+
+							}
+							// vpravo větší
+							if(s.rangeEnd > r.sourceRangeEnd){
+								//   79 -                110
+								//           98 - 100
+								//rozlomit na 3 seedy 
+								// 79-97; 98-100; 101 - 110
+								// 			^-zvětšit
+
+							}
+
+						}
+						// mimo range vpravo
+						//          90 - 100
+						//   70-80
+						if(s.rangeStart > r.sourceRangeStart && s.rangeStart > r.sourceRangeEnd){
+
+						}
+
+						// rovno nebo větší
+						// 70-   100
+						//    80-   100
+						// 70-80
+						if(s.rangeStart >= r.sourceRangeStart && s.rangeStart <=r.sourceRangeEnd){
 							// test second side
 							if(s.rangeEnd < r.sourceRangeEnd){
-
+								//   90 -      100
+								//   
+								//rozlomit na 2 seedy 
+								// 79-97; 98-99
+								//			^-zvětšit
 							}
 
 							if(s.rangeEnd > r.sourceRangeEnd){
@@ -100,38 +145,7 @@ public class Solution_2_Day_05 {
 							}
 
 						}
-						// rovno
-						if(s.rangeStart == r.sourceRangeStart){
-							// test second side
-							if(s.rangeEnd < r.sourceRangeEnd){
-
-							}
-
-							if(s.rangeEnd > r.sourceRangeEnd){
-
-							}
-
-							if(s.rangeEnd == r.sourceRangeEnd){
-
-							}
-
-						}
-						// větší
-						if(s.rangeStart > r.sourceRangeStart){
-							// test second side
-							if(s.rangeEnd < r.sourceRangeEnd){
-
-							}
-
-							if(s.rangeEnd > r.sourceRangeEnd){
-
-							}
-
-							if(s.rangeEnd == r.sourceRangeEnd){
-
-							}
-
-						}
+						
 
 						
 					
