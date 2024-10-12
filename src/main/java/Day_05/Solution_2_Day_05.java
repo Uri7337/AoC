@@ -79,6 +79,8 @@ public class Solution_2_Day_05 {
 		 */
 
 		// for every seed go through every category and if in range change number else dont
+		Seed sA;
+		Seed sB;
 		seedList.forEach(s -> {
 			categoryList.forEach(cl -> {
 				for (Range r : cl.ranges) {
@@ -92,8 +94,9 @@ public class Solution_2_Day_05 {
 							if(s.rangeEnd < r.sourceRangeStart){
 								//   79 - 92
 								//            98 - 99
-								//nechat stejné, změnit status
+								// nechat stejné, změnit status
 								
+								 
 							}
 							//vpravo uprostřed
 							if(s.rangeEnd >= r.sourceRangeStart && s.rangeEnd <= r.sourceRangeEnd){
@@ -102,7 +105,10 @@ public class Solution_2_Day_05 {
 								//rozlomit na 2 seedy 
 								// 79-97; 98-99
 								//			^-zvětšit
-
+								sA = new Seed(cl.name, );
+								sB = new Seed(cl.name, );
+								seedList.add(0,sA);
+								seedList.add(0,sB);
 							}
 							// vpravo větší
 							if(s.rangeEnd > r.sourceRangeEnd){
@@ -122,27 +128,30 @@ public class Solution_2_Day_05 {
 
 						}
 
-						// rovno nebo větší
+						// Levá strana v hranicích range
 						// 70-   100
 						//    80-   100
 						// 70-80
 						if(s.rangeStart >= r.sourceRangeStart && s.rangeStart <=r.sourceRangeEnd){
 							// test second side
-							if(s.rangeEnd < r.sourceRangeEnd){
-								//   90 -      100
-								//   
-								//rozlomit na 2 seedy 
-								// 79-97; 98-99
-								//			^-zvětšit
+							if(s.rangeEnd <= r.sourceRangeEnd){
+								//     90 - 100
+								//   80   - 100
+								// 1 seed zvětšit
+								
 							}
 
 							if(s.rangeEnd > r.sourceRangeEnd){
+								//     90 -    110
+								//   80   - 100
+								//rozlomit na 2 seedy
+								// 90-100; 101-110
+								//	 ^-zvětšit
+
 
 							}
 
-							if(s.rangeEnd == r.sourceRangeEnd){
-
-							}
+						
 
 						}
 						
@@ -203,6 +212,10 @@ public class Solution_2_Day_05 {
 			this.state = state;
 			this.number = number;
 			this.rangeStart = number;
+		}
+
+		void changeState(String state){
+			this.state = state;
 		}
 
 		void makeRange(){
