@@ -81,6 +81,7 @@ public class Solution_2_Day_05 {
 		// for every seed go through every category and if in range change number else dont
 		Seed sA;
 		Seed sB;
+		//can 't remove or add in forEach - rewrite to iterator or for loop?
 		seedList.forEach(s -> {
 			categoryList.forEach(cl -> {
 				for (Range r : cl.ranges) {
@@ -105,8 +106,8 @@ public class Solution_2_Day_05 {
 								//rozlomit na 2 seedy 
 								// 79-97; 98-99
 								//			^-zvětšit
-								sA = new Seed(cl.name, );
-								sB = new Seed(cl.name, );
+								sA = new Seed(cl.name, s.rangeStart, r.sourceRangeStart-1);
+								sB = new Seed(cl.name, r.sourceRangeStart , s.rangeEnd);
 								seedList.add(0,sA);
 								seedList.add(0,sB);
 							}
@@ -206,6 +207,12 @@ public class Solution_2_Day_05 {
 		public Seed(String state, long number) {
 			this.state = state;
 			this.number = number;
+		}
+
+		public Seed(String state, long rangeStart, long rangeEnd) {
+			this.state = state;
+			this.rangeStart = rangeStart;
+			this.rangeEnd = rangeEnd;
 		}
 
 		void makeRecord(String state, long number){
