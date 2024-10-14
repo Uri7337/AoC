@@ -4,7 +4,6 @@ import shared.ReadFile;
 import shared.EasyPrint;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class Solution_2_Day_05 {
@@ -79,10 +78,19 @@ public class Solution_2_Day_05 {
 		 */
 
 		// for every seed go through every category and if in range change number else dont
+
+		/*
+		Seed s;
+		long x;
 		Seed sA;
 		Seed sB;
+		Seed sC;
+		*/
+		TempData td = new TempData();
 		//can 't remove or add in forEach - rewrite to iterator or for loop?
-		seedList.forEach(s -> {
+		for (int i = 0; i < seedList.size(); i++) {
+			td.i = i;
+			td.s = seedList.get(td.i);	
 			categoryList.forEach(cl -> {
 				for (Range r : cl.ranges) {
 
@@ -90,65 +98,85 @@ public class Solution_2_Day_05 {
 						//   70-?      
 						//   	  90 - 100
 						// menší vlevo
-						if(s.rangeStart < r.sourceRangeStart){
+						if(td.s.rangeStart < r.sourceRangeStart){
 							// menší i vpravo
-							if(s.rangeEnd < r.sourceRangeStart){
+							if(td.s.rangeEnd < r.sourceRangeStart){
 								//   79 - 92
 								//            98 - 99
 								// nechat stejné, změnit status
-								
-								 
+								td.s.changeState(cl.name);
+								break;
 							}
 							//vpravo uprostřed
-							if(s.rangeEnd >= r.sourceRangeStart && s.rangeEnd <= r.sourceRangeEnd){
+							if(td.s.rangeEnd >= r.sourceRangeStart && td.s.rangeEnd <= r.sourceRangeEnd){
 								//   79 -       99
 								//           98 - 100
 								//rozlomit na 2 seedy 
 								// 79-97; 98-99
 								//			^-zvětšit
-								sA = new Seed(cl.name, s.rangeStart, r.sourceRangeStart-1);
-								sB = new Seed(cl.name, r.sourceRangeStart , s.rangeEnd);
-								seedList.add(0,sA);
-								seedList.add(0,sB);
+								td.x = r.destinationRange-r.sourceRangeStart; 
+								td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart-1);
+								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x) , (td.s.rangeEnd+td.x));
+								seedList.remove(td.i);
+								seedList.add(0,td.sA);
+								seedList.add(0,td.sB);
+								break;
 							}
 							// vpravo větší
-							if(s.rangeEnd > r.sourceRangeEnd){
+							if(td.s.rangeEnd > r.sourceRangeEnd){
 								//   79 -                110
 								//           98 - 100
 								//rozlomit na 3 seedy 
 								// 79-97; 98-100; 101 - 110
 								// 			^-zvětšit
-
+								td.x = r.destinationRange-r.sourceRangeStart;
+								td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart-1);
+								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x), (r.sourceRangeEnd + td.x));
+								td.sC = new Seed(cl.name, r.sourceRangeEnd+1 , td.s.rangeEnd);
+								seedList.remove(td.i);
+								seedList.add(0,td.sA);
+								seedList.add(0,td.sB);
+								seedList.add(0,td.sC);
+								break;
 							}
 
 						}
 						// mimo range vpravo
 						//          90 - 100
 						//   70-80
-						if(s.rangeStart > r.sourceRangeStart && s.rangeStart > r.sourceRangeEnd){
-
+						if(td.s.rangeStart > r.sourceRangeStart && td.s.rangeStart > r.sourceRangeEnd){
+							td.s.changeState(cl.name);
+							break;
 						}
 
 						// Levá strana v hranicích range
 						// 70-   100
 						//    80-   100
 						// 70-80
-						if(s.rangeStart >= r.sourceRangeStart && s.rangeStart <=r.sourceRangeEnd){
+						if(td.s.rangeStart >= r.sourceRangeStart && td.s.rangeStart <=r.sourceRangeEnd){
 							// test second side
-							if(s.rangeEnd <= r.sourceRangeEnd){
+							if(td.s.rangeEnd <= r.sourceRangeEnd){
 								//     90 - 100
 								//   80   - 100
 								// 1 seed zvětšit
-								
+								td.x = r.destinationRange-r.sourceRangeStart;
+								td.s.changeRange(td.x);
+								break;
 							}
 
-							if(s.rangeEnd > r.sourceRangeEnd){
+							if(td.s.rangeEnd > r.sourceRangeEnd){
 								//     90 -    110
 								//   80   - 100
 								//rozlomit na 2 seedy
 								// 90-100; 101-110
 								//	 ^-zvětšit
-
+								td.x = r.destinationRange-r.sourceRangeStart; 
+								td.sA = new Seed(cl.name, (td.s.rangeStart+td.x), (r.sourceRangeEnd+td.x));
+								td.sB = new Seed(cl.name, r.sourceRangeEnd + 1, td.s.rangeEnd);
+								seedList.remove(td.i);
+								seedList.add(0,td.sA);
+								seedList.add(0,td.sB);
+								break;
 
 							}
 
@@ -160,7 +188,7 @@ public class Solution_2_Day_05 {
 						
 					
 					}
-
+					
 					
 				
 
@@ -179,16 +207,16 @@ public class Solution_2_Day_05 {
 				s.makeRecord(cl.name,s.number); */
 			// end of old code
 			});
-		});
+		}
 
-		ArrayList<Long> seedsLocations = new ArrayList<>();
-		newseedList.forEach(s -> {
-			seedsLocations.add(s.seedHistory.get("location")); 
+		ArrayList<Long> seedRangeMin = new ArrayList<>();
+		seedList.forEach(currSeed -> {
+			seedRangeMin.add(currSeed.rangeStart); 
 		});
-		long minimum = seedsLocations.get(0); 
-        for (int i = 1; i < seedsLocations.size(); i++) { 
-            if (minimum > seedsLocations.get(i)) 
-                minimum = seedsLocations.get(i); 
+		long minimum = seedRangeMin.get(0); 
+        for (int i = 1; i < seedRangeMin.size(); i++) { 
+            if (minimum > seedRangeMin.get(i)) 
+                minimum = seedRangeMin.get(i); 
         }
 
 		return solution = minimum;
@@ -281,6 +309,14 @@ public class Solution_2_Day_05 {
 		}
 	}
 
+	class TempData{
+		int i;
+		Seed s;
+		long x;
+		Seed sA;
+		Seed sB;
+		Seed sC;
+	}
 	// ----debug zone----
 	
 }
