@@ -71,11 +71,12 @@ public class Solution_2_Day_05 {
 		seedList
 		categoryList 
 		ranges in category
-
-		seedList.forEach(s -> s.readRecord());
+		*/
+		
+		/* seedList.forEach(s -> s.readRecord());
 		ep.p("");
-		categoryList.forEach(cl -> {cl.printCategory(); ep.p("");});
-		 */
+		categoryList.forEach(cl -> {cl.printCategory(); ep.p("");}); */
+		
 
 		// for every seed go through every category and if in range change number else dont
 
@@ -235,6 +236,7 @@ public class Solution_2_Day_05 {
 		public Seed(String state, long number) {
 			this.state = state;
 			this.number = number;
+			this.rangeStart = number;
 		}
 
 		public Seed(String state, long rangeStart, long rangeEnd) {
