@@ -162,6 +162,7 @@ public class Solution_2_Day_05 {
 								// 1 seed zvětšit
 								td.x = r.destinationRange-r.sourceRangeStart;
 								td.s.changeRange(td.x);
+								td.s.changeState(cl.name);
 								break;
 							}
 
