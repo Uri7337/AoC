@@ -89,12 +89,14 @@ public class Solution_2_Day_05 {
 		*/
 		TempData td = new TempData();
 		//can 't remove or add in forEach - rewrite to iterator or for loop?
-		
-			
+		seedList.forEach(s -> s.readRecord());
+		ep.p("");	
 		categoryList.forEach(cl -> {
 			for (int i = 0; i < seedList.size(); i++) {
 				for (Range r : cl.ranges) {
-				
+					if(cl.name.equals("temperature")){
+						ep.p("tempe");
+					}
 					td.i = i;
 					td.s = seedList.get(td.i);	
 					// mimo range vlevo
@@ -108,7 +110,7 @@ public class Solution_2_Day_05 {
 							//            98 - 99
 							// nechat stejné, změnit status
 							td.s.changeState(cl.name);
-							break;
+							
 						}
 						//vpravo uprostřed
 						if(td.s.rangeEnd >= r.sourceRangeStart && td.s.rangeEnd <= r.sourceRangeEnd){
@@ -149,7 +151,7 @@ public class Solution_2_Day_05 {
 					//   70-80
 					if(td.s.rangeStart > r.sourceRangeStart && td.s.rangeStart > r.sourceRangeEnd){
 						td.s.changeState(cl.name);
-						break;
+						
 					}
 
 					// Levá strana v hranicích range
@@ -197,6 +199,8 @@ public class Solution_2_Day_05 {
 			
 
 			}
+			//seedList.forEach(s -> s.readRecord());
+			//ep.p("");	
 			//GREEN - if seed range fits all on both sides
 			//if seed range doesnt't fit on both sides
 		//oldcode
@@ -212,7 +216,7 @@ public class Solution_2_Day_05 {
 		// end of old code
 		});
 		
-		seedList.forEach(s -> s.readRecord());
+		//seedList.forEach(s -> s.readRecord());
 		ArrayList<Long> seedRangeMin = new ArrayList<>();
 		seedList.forEach(currSeed -> {
 			seedRangeMin.add(currSeed.rangeStart); 
