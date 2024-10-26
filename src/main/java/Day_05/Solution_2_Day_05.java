@@ -93,105 +93,110 @@ public class Solution_2_Day_05 {
 		ep.p("");	
 		categoryList.forEach(cl -> {
 			for (int i = 0; i < seedList.size(); i++) {
+				td.j = 0;
 				for (Range r : cl.ranges) {
-					if(cl.name.equals("temperature")){
-						ep.p("tempe");
-					}
+					
 					td.i = i;
-					td.s = seedList.get(td.i);	
-					// mimo range vlevo
-					//   70-?      
-					//   	  90 - 100
-					// menší vlevo
-					if(td.s.rangeStart < r.sourceRangeStart){
-						// menší i vpravo
-						if(td.s.rangeEnd < r.sourceRangeStart){
-							//   79 - 92
-							//            98 - 99
-							// nechat stejné, změnit status
-							td.s.changeState(cl.name);
+					td.s = seedList.get(td.i);
+					
+					if(td.s.state.equals(cl.from)){
+						// mimo range vlevo
+						//   70-?      
+						//   	  90 - 100
+						// menší vlevo
+						if(td.s.rangeStart < r.sourceRangeStart){
+							// menší i vpravo
+							if(td.s.rangeEnd < r.sourceRangeStart){
+								//   79 - 92
+								//            98 - 99
+								// nechat stejné, změnit status
+								
+							}
+							//vpravo uprostřed
+							if(td.s.rangeEnd >= r.sourceRangeStart && td.s.rangeEnd <= r.sourceRangeEnd){
+								//   79 -       99
+								//           98 - 100
+								//rozlomit na 2 seedy 
+								// 79-97; 98-99
+								//			^-zvětšit
+								td.x = r.destinationRange-r.sourceRangeStart; 
+								td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart-1);
+								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x) , (td.s.rangeEnd+td.x));
+								seedList.remove(td.i);
+								seedList.add(td.sA);
+								seedList.add(td.sB);
+								break;
+							}
+							// vpravo větší
+							if(td.s.rangeEnd > r.sourceRangeEnd){
+								//   79 -                110
+								//           98 - 100
+								//rozlomit na 3 seedy 
+								// 79-97; 98-100; 101 - 110
+								// 			^-zvětšit
+								td.x = r.destinationRange-r.sourceRangeStart;
+								td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart-1);
+								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x), (r.sourceRangeEnd + td.x));
+								td.sC = new Seed(cl.name, r.sourceRangeEnd+1 , td.s.rangeEnd);
+								seedList.remove(td.i);
+								seedList.add(td.sA);
+								seedList.add(td.sB);
+								seedList.add(td.sC);
+								break;
+							}
+
+						}
+						// mimo range vpravo
+						//          90 - 100
+						//   70-80
+						if(td.s.rangeStart > r.sourceRangeStart && td.s.rangeStart > r.sourceRangeEnd){
+							
 							
 						}
-						//vpravo uprostřed
-						if(td.s.rangeEnd >= r.sourceRangeStart && td.s.rangeEnd <= r.sourceRangeEnd){
-							//   79 -       99
-							//           98 - 100
-							//rozlomit na 2 seedy 
-							// 79-97; 98-99
-							//			^-zvětšit
-							td.x = r.destinationRange-r.sourceRangeStart; 
-							td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart-1);
-							td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x) , (td.s.rangeEnd+td.x));
-							seedList.remove(td.i);
-							seedList.add(0,td.sA);
-							seedList.add(0,td.sB);
-							break;
-						}
-						// vpravo větší
-						if(td.s.rangeEnd > r.sourceRangeEnd){
-							//   79 -                110
-							//           98 - 100
-							//rozlomit na 3 seedy 
-							// 79-97; 98-100; 101 - 110
-							// 			^-zvětšit
-							td.x = r.destinationRange-r.sourceRangeStart;
-							td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart-1);
-							td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x), (r.sourceRangeEnd + td.x));
-							td.sC = new Seed(cl.name, r.sourceRangeEnd+1 , td.s.rangeEnd);
-							seedList.remove(td.i);
-							seedList.add(0,td.sA);
-							seedList.add(0,td.sB);
-							seedList.add(0,td.sC);
-							break;
-						}
 
-					}
-					// mimo range vpravo
-					//          90 - 100
-					//   70-80
-					if(td.s.rangeStart > r.sourceRangeStart && td.s.rangeStart > r.sourceRangeEnd){
-						td.s.changeState(cl.name);
+						// Levá strana v hranicích range
+						// 70-   100
+						//    80-   100
+						// 70-80
+						if(td.s.rangeStart >= r.sourceRangeStart && td.s.rangeStart <=r.sourceRangeEnd){
+							// test second side
+							if(td.s.rangeEnd <= r.sourceRangeEnd){
+								//     90 - 100
+								//   80   - 100
+								// 1 seed zvětšit
+								td.x = r.destinationRange-r.sourceRangeStart;
+								td.s.changeRange(td.x);
+								td.s.changeState(cl.name);
+								break;
+							}
+
+							if(td.s.rangeEnd > r.sourceRangeEnd){
+								//     90 -    110
+								//   80   - 100
+								//rozlomit na 2 seedy
+								// 90-100; 101-110
+								//	 ^-zvětšit
+								td.x = r.destinationRange-r.sourceRangeStart; 
+								td.sA = new Seed(cl.name, (td.s.rangeStart+td.x), (r.sourceRangeEnd+td.x));
+								td.sB = new Seed(cl.name, r.sourceRangeEnd + 1, td.s.rangeEnd);
+								seedList.remove(td.i);
+								seedList.add(td.sA);
+								seedList.add(td.sB);
+								break;
+
+							}
+
 						
-					}
 
-					// Levá strana v hranicích range
-					// 70-   100
-					//    80-   100
-					// 70-80
-					if(td.s.rangeStart >= r.sourceRangeStart && td.s.rangeStart <=r.sourceRangeEnd){
-						// test second side
-						if(td.s.rangeEnd <= r.sourceRangeEnd){
-							//     90 - 100
-							//   80   - 100
-							// 1 seed zvětšit
-							td.x = r.destinationRange-r.sourceRangeStart;
-							td.s.changeRange(td.x);
+						}
+						if (td.j == cl.ranges.size() - 1) {
 							td.s.changeState(cl.name);
-							break;
 						}
+						td.j++;
 
-						if(td.s.rangeEnd > r.sourceRangeEnd){
-							//     90 -    110
-							//   80   - 100
-							//rozlomit na 2 seedy
-							// 90-100; 101-110
-							//	 ^-zvětšit
-							td.x = r.destinationRange-r.sourceRangeStart; 
-							td.sA = new Seed(cl.name, (td.s.rangeStart+td.x), (r.sourceRangeEnd+td.x));
-							td.sB = new Seed(cl.name, r.sourceRangeEnd + 1, td.s.rangeEnd);
-							seedList.remove(td.i);
-							seedList.add(0,td.sA);
-							seedList.add(0,td.sB);
-							break;
-
-						}
-
-					
-
+					}else{
+						break;
 					}
-					
-
-					
 				
 				}
 				
@@ -214,6 +219,8 @@ public class Solution_2_Day_05 {
 			}
 			s.makeRecord(cl.name,s.number); */
 		// end of old code
+		seedList.forEach(s -> s.readRecord());
+		ep.p("");
 		});
 		
 		//seedList.forEach(s -> s.readRecord());
@@ -272,7 +279,7 @@ public class Solution_2_Day_05 {
 		}
 
 		void readRecord(){
-			ep.p("state: " + state + "; number: " + number + "; range: <"+ rangeStart + "-" +rangeEnd+"> " + rangeSize);
+			ep.p("state: " + state + "; range: <"+ rangeStart + "-" +rangeEnd+">");
 		}
 
 	} 
@@ -301,6 +308,7 @@ public class Solution_2_Day_05 {
 	}
 
 	class Range {
+		// 50 98 2
 		long sourceRangeStart; //98
 		long sourceRangeEnd; // (98+2) - 1
 		long destinationRange; //50
@@ -319,6 +327,7 @@ public class Solution_2_Day_05 {
 	}
 
 	class TempData{
+		int j;
 		int i;
 		Seed s;
 		long x;
