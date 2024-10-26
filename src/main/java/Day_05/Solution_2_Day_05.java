@@ -10,7 +10,7 @@ public class Solution_2_Day_05 {
 	EasyPrint ep = new EasyPrint();
 
 	Object solution = "Nothing yet!";
-	
+	TempData td = new TempData();
 	ArrayList<String> file;
 	public Object getSolution(String filepath) {
 		
@@ -87,7 +87,8 @@ public class Solution_2_Day_05 {
 		Seed sB;
 		Seed sC;
 		*/
-		TempData td = new TempData();
+		//for debugging moved to the global variable |
+		//TempData td = new TempData();			   <-
 		//can 't remove or add in forEach - rewrite to iterator or for loop?
 		seedList.forEach(s -> s.readRecord());
 		ep.p("");	
@@ -95,7 +96,9 @@ public class Solution_2_Day_05 {
 			for (int i = 0; i < seedList.size(); i++) {
 				td.j = 0;
 				for (Range r : cl.ranges) {
-					
+					if(cl.name.equals("temperature")){
+						ep.p("hi bug!");
+					}
 					td.i = i;
 					td.s = seedList.get(td.i);
 					
