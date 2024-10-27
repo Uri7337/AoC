@@ -92,8 +92,8 @@ public class Solution_2_Day_05 {
 		//for debugging moved to the global variable |
 		//TempData td = new TempData();			   <-
 		//can 't remove or add in forEach - rewrite to iterator or for loop?
-		//seedList.forEach(s -> s.readRecord());
-		//ep.p("");	
+		seedList.forEach(s -> s.readRecord());
+		ep.p("");	
 		categoryList.forEach(cl -> {
 			for (int i = 0; i < seedList.size(); i++) {
 				td.j = 0;

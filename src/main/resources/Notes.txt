@@ -91,3 +91,254 @@ seedList.5 =    <1787644422-1971702237>
 range                    <1838890301-2065683887> -1838890301
 result  <1787644422-1838890300> <1838890301-1971702237>
 result2 <1787644422-1838890300> <0-132811936>
+
+
+One seed: state: seed; range: <1787644422-1995763957> - this one is ok
+state: location; range: <1121296318-1145358037>        
+state: location; range: <31555917-38477092>
+state: location; range: <3889862478-3911194089>        
+state: location; range: <50785717-115268398>
+state: location; range: <154806801-155344865>
+state: location; range: <1940300154-1946017810>        
+state: location; range: <1692198890-1717410099>        
+state: location; range: <1971229021-1972745130>        
+state: location; range: <3166108849-3167816763>        
+state: location; range: <3433348031-3450441017>        
+state: location; range: <195554894-201731622>
+state: location; range: <3644382609-3677744281> 
+
+many seeds:
+state: location; range: <2942405136-2969219489>        
+state: location; range: <1121296318-1145358037>        
+state: location; range: <503320162-524196214>
+state: location; range: <4199747720-4220838203>        
+state: location; range: <1517878939-1529206749>        
+state: location; range: <3959666330-3968860387>        
+state: location; range: <3000367725-3001863310>        
+state: location; range: <1033718144-1040508185>        
+state: location; range: <4099498768-4120011058>        
+state: location; range: <1709449463-1709607230>        
+state: location; range: <2351701641-2396548703>        
+state: location; range: <4211147530-4230355686>        
+state: location; range: <1143041688-1153736202>        
+state: location; range: <1867759354-1882845498>        
+state: location; range: <3018308663-3036472471>        
+state: location; range: <1863205511-1872292277>        
+state: location; range: <1863205511-1872292277>        
+state: location; range: <3736628421-3774124471>        
+state: location; range: <1081206241-1090504036>        
+state: location; range: <3783422268-3791619312>        
+state: location; range: <934734801-935664041>
+state: location; range: <307901487-330642612>
+state: location; range: <3449446946-3488638590>        
+state: location; range: <3709012426-3774124471>        
+state: location; range: <1081206241-1090504036>        
+state: location; range: <31555917-38477092>
+state: location; range: <3889862478-3911194089>        
+state: location; range: <3000367725-3053968616>        
+state: location; range: <3546224726-3597708722>        
+state: location; range: <2980078648-3053968616>        
+state: location; range: <4003957321-4017221319>        
+state: location; range: <4039134622-4042893269>        
+state: location; range: <2415099001-2440081863>        
+state: location; range: <111081227-115268398>
+state: location; range: <2718535960-2724586960>        
+state: location; range: <4179510921-4186868331>        
+state: location; range: <50785717-115268398>
+state: location; range: <154806801-155344865>
+state: location; range: <1970961387-2025058569>        
+state: location; range: <4006071907-4008274975>        
+state: location; range: <2016059329-2025058569>        
+state: location; range: <4006071907-4008274975>        
+state: location; range: <580612886-648248715>
+state: location; range: <1116158391-1119139551>        
+state: location; range: <0-15424883>
+state: location; range: <1879372462-1909915704>        
+state: location; range: <2147117332-2158940247>        
+state: location; range: <1921738621-1935043580>        
+state: location; range: <3190591073-3239621412>        
+state: location; range: <2761688477-2771511010>        
+state: location; range: <605076334-648248715>
+state: location; range: <1116158391-1181128309>        
+state: location; range: <1263164763-1270737208>        
+state: location; range: <1717410100-1810237755>        
+state: location; range: <1363564865-1367676292>        
+state: location; range: <4120011059-4127146971>        
+state: location; range: <2976528574-3010507454>        
+state: location; range: <662918194-687169154>
+state: location; range: <2350098918-2413205603>        
+state: location; range: <3615091646-3638916553>        
+state: location; range: <3670752712-3708870146>        
+state: location; range: <1940300154-1946017810>        
+state: location; range: <1692198890-1717410099>        
+state: location; range: <1971229021-1972745130>        
+state: location; range: <3166108849-3167816763>        
+state: location; range: <3433348031-3450441017>        
+state: location; range: <1255106775-1270737208>        
+state: location; range: <1717410100-1750737527>        
+state: location; range: <863865854-894954784>
+state: location; range: <3055676532-3069569203>        
+state: location; range: <1893313161-1946017810>        
+state: location; range: <1692198890-1717410099>        
+state: location; range: <1971229021-1972968825>        
+state: location; range: <3263944616-3280663589>        
+state: location; range: <2890676240-2920118020>        
+state: location; range: <195554894-201731622>
+state: location; range: <3644382609-3647469158>        
+state: location; range: <195554894-201731622>
+state: location; range: <3644382609-3677744281>        
+state: location; range: <3783581915-3884728323>        
+state: location; range: <442077338-569718369>
+
+
+
+
+
+All seeds: 2041142901 113138307 302673608 467797997 1787644422 208119536 143576771 99841043 4088720102 111819874 946418697 13450451 3459931852 262303791 2913410855 533641609 2178733435 26814354 1058342395 175406592
+ 
+ok seeds: 2041142901 113138307
+
+problem - state: location; range: <0-15424883>
+wrong seed: 302673608 467797997 -- probably?
+
+
+state: seed; range: <302673608-770471604>
+
+state: soil; range: <980643649-1047526253>
+state: soil; range: <369556213-770471604>
+
+state: fertilizer; range: <3193885682-3260768286>      
+state: fertilizer; range: <237736431-583660930>        
+state: fertilizer; range: <715480713-770471604>        
+
+state: water; range: <292654759-347645650>
+state: water; range: <1045568699-1110955717>
+state: water; range: <3259272701-3260768286>
+state: water; range: <237736431-244526472>
+state: water; range: <3117278994-3137791284>
+state: water; range: <265038764-583660930>
+
+state: light; range: <294137082-349127973>
+state: light; range: <1397707183-1399202768>
+state: light; range: <239218754-246008795>
+state: light; range: <1255713476-1276225766>
+state: light; range: <266521087-585143253>
+state: light; range: <1045568699-1101868950>
+state: light; range: <3059617387-3068704153>
+
+state: temperature; range: <3112507957-3114003542>     
+state: temperature; range: <487278123-494068164>       
+state: temperature; range: <2948880370-2969392660>     
+state: temperature; range: <3494531211-3550831462>     
+state: temperature; range: <4232662697-4241749463>     
+state: temperature; range: <294137082-331633132>       
+state: temperature; range: <534766220-544064015>       
+state: temperature; range: <340930929-349127973>       
+state: temperature; range: <266521087-331633132>       
+state: temperature; range: <534766220-544064015>       
+state: temperature; range: <340930929-585143253>       
+
+state: humidity; range: <3112507957-3114003542>        
+state: humidity; range: <487118476-493908517>
+state: humidity; range: <2948880370-2969392660>        
+state: humidity; range: <3841214873-3850301639>        
+state: humidity; range: <293977435-331473485>
+state: humidity; range: <534606573-543904368>
+state: humidity; range: <340771282-348968326>
+state: humidity; range: <266361440-331473485>
+state: humidity; range: <534606573-543904368>
+state: humidity; range: <3948970749-4003067931>        
+state: humidity; range: <3548628394-3550831462>        
+state: humidity; range: <340930929-569718369>
+state: humidity; range: <0-15424883>
+
+state: location; range: <3000367725-3001863310>        
+state: location; range: <1033718144-1040508185>        
+state: location; range: <4099498768-4120011058>        
+state: location; range: <1863205511-1872292277>        
+state: location; range: <3736628421-3774124471>        
+state: location; range: <1081206241-1090504036>        
+state: location; range: <3783422268-3791619312>        
+state: location; range: <3709012426-3774124471>        
+state: location; range: <1081206241-1090504036>        
+state: location; range: <1970961387-2025058569>        
+state: location; range: <4006071907-4008274975>        
+state: location; range: <0-15424883>
+state: location; range: <3783581915-3884728323>        
+state: location; range: <442077338-569718369>
+
+
+
+
+zůžení problému:
+
+====================================================
+state: temperature; range: <3112507957-3114003542>     
+state: temperature; range: <487278123-494068164>       
+state: temperature; range: <2948880370-2969392660>     
+state: temperature; range: <3494531211-3550831462>     
+state: temperature; range: <4232662697-4241749463>     
+state: temperature; range: <294137082-331633132>       
+state: temperature; range: <534766220-544064015>       
+state: temperature; range: <340930929-349127973>       
+state: temperature; range: <266521087-331633132>       
+state: temperature; range: <534766220-544064015>       
+state: temperature; range: <340930929-585143253> 
+      
+in
+temperature-to-humidity map:
+out
+
+state: humidity; range: <3112507957-3114003542>        
+state: humidity; range: <487118476-493908517>
+state: humidity; range: <2948880370-2969392660>        
+state: humidity; range: <3841214873-3850301639>        
+state: humidity; range: <293977435-331473485>
+state: humidity; range: <534606573-543904368>
+state: humidity; range: <340771282-348968326>
+state: humidity; range: <266361440-331473485>
+state: humidity; range: <534606573-543904368>
+state: humidity; range: <3948970749-4003067931>        
+state: humidity; range: <3548628394-3550831462>        
+state: humidity; range: <340930929-569718369>
+state: humidity; range: <0-15424883>
+====================================================
+temperature-to-humidity map:
+3865679795 3411240257 137388137
+0 569718370 128927628
+2284256983 1093255418 349419361
+2189606444 2745948834 16886013
+3861728218 3796217004 3951577
+700036088 2134161201 67667679
+2639129496 1078899666 14355752
+4003067932 4146768977 27598493
+569558723 2311178479 130477365
+4125126694 3887925067 11822916
+1884679865 1442674779 129657290
+2633676344 1572332069 5453152
+862461784 1577785221 531688422
+4030666425 4120171499 26597478
+195554894 115268399 39538402
+235093296 235252943 334465427
+2132287170 698645998 57319274
+4158735055 3550090086 136232241
+2206492457 157488417 77764526
+3562496130 3899747983 220423516
+2653485248 2201828880 109349599
+2014337155 154806801 2681616
+1580787383 2536413861 97415145
+3453031511 3880534101 7390966
+1394150206 2633829006 45492562
+4057263903 3686322327 7821024
+4157273363 3548628394 1461692
+3460422477 3694143351 102073653
+4136949610 3800168581 20323753
+1678202528 872422329 206477337
+1556099825 2109473643 24687558
+128927628 2679321568 66627266
+2017018771 0 115268399
+4065084927 3820492334 60041767
+3411240257 4253176042 41791254
+767703767 2441655844 94758017
+1439642768 755965272 116457057
+3782919646 4174367470 78808572
