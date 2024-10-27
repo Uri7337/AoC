@@ -58,3 +58,36 @@ Konec: <46-55> <60-60> <78-80>              \|/ <86-89> <94-96> <93-98>
 Správný výsledek: <46-55> <60-60> <78-80>   \|/ <86-89> <94-96> <93-98>
 
 ----End Of Day 05 Notes-------
+
+state: fertilizer; range: <1787644422-1838890300> 
+state: fertilizer; range: <0-132811936>
+
+state: fertilizer; range: <4078559728-4191698034>
+state: fertilizer; range: <3831995730-3943815603>       
+state: fertilizer; range: <2333440533-2346890983>       
+state: fertilizer; range: <4216150262-4242964615>       
+state: fertilizer; range: <3193885682-3260768286>       
+state: fertilizer; range: <3786189027-3810250746>       
+state: fertilizer; range: <2884586963-2963551952>       
+state: fertilizer; range: <3113753835-3134629887>       
+state: fertilizer; range: <2089342026-2102750437>       
+state: fertilizer; range: <3271584428-3373583973>       
+state: fertilizer; range: <237736431-583660930>
+state: fertilizer; range: <715480713-770471604>
+state: fertilizer; range: <1787644422-1838890300>       
+state: fertilizer; range: <0-132811936> <- state: soil; range: <1787644422-1971702237>
+state: fertilizer; range: <2115629826-2136720309>       
+state: fertilizer; range: <3238983624-3364357589>       
+state: fertilizer; range: <1799242422-1810570232>       
+state: fertilizer; range: <3617724113-3722235642>       
+state: fertilizer; range: <1811147541-2136720309>       
+state: fertilizer; range: <3238983624-3433644051>       
+state: fertilizer; range: <2367613648-2431826635>       
+state: fertilizer; range: <889463538-898657595>
+
+
+td.sA =         <1787644422-1971702237>
+seedList.5 =    <1787644422-1971702237>
+range                    <1838890301-2065683887> -1838890301
+result  <1787644422-1838890300> <1838890301-1971702237>
+result2 <1787644422-1838890300> <0-132811936>

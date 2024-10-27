@@ -12,13 +12,15 @@ public class Solution_2_Day_05 {
 	Object solution = "Nothing yet!";
 	TempData td = new TempData();
 	ArrayList<String> file;
+	ArrayList<Seed> seedList = new ArrayList<Seed>();
+
 	public Object getSolution(String filepath) {
 		
 		ReadFile rf = new ReadFile();
 		file = new ArrayList<String>();
 		file = rf.getInput(filepath);
 			
-		ArrayList<Seed> seedList = new ArrayList<Seed>();
+		
 		ArrayList<Category> categoryList = new ArrayList<Category>();
 		//Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
@@ -90,18 +92,20 @@ public class Solution_2_Day_05 {
 		//for debugging moved to the global variable |
 		//TempData td = new TempData();			   <-
 		//can 't remove or add in forEach - rewrite to iterator or for loop?
-		seedList.forEach(s -> s.readRecord());
-		ep.p("");	
+		//seedList.forEach(s -> s.readRecord());
+		//ep.p("");	
 		categoryList.forEach(cl -> {
 			for (int i = 0; i < seedList.size(); i++) {
 				td.j = 0;
 				for (Range r : cl.ranges) {
-					if(cl.name.equals("temperature")){
-						ep.p("hi bug!");
+					if(cl.name.equals("fertilizer")){
+						//ep.p("hi bug!");
 					}
 					td.i = i;
 					td.s = seedList.get(td.i);
-					
+					if(cl.name.equals("fertilizer") && td.s.rangeStart==1787644422){
+						ep.p("here!");
+					}
 					if(td.s.state.equals(cl.from)){
 						// mimo range vlevo
 						//   70-?      
@@ -126,6 +130,7 @@ public class Solution_2_Day_05 {
 								td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart-1);
 								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x) , (td.s.rangeEnd+td.x));
 								seedList.remove(td.i);
+								i-=1;
 								seedList.add(td.sA);
 								seedList.add(td.sB);
 								break;
@@ -142,6 +147,7 @@ public class Solution_2_Day_05 {
 								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x), (r.sourceRangeEnd + td.x));
 								td.sC = new Seed(cl.name, r.sourceRangeEnd+1 , td.s.rangeEnd);
 								seedList.remove(td.i);
+								i-=1;
 								seedList.add(td.sA);
 								seedList.add(td.sB);
 								seedList.add(td.sC);
@@ -183,6 +189,7 @@ public class Solution_2_Day_05 {
 								td.sA = new Seed(cl.name, (td.s.rangeStart+td.x), (r.sourceRangeEnd+td.x));
 								td.sB = new Seed(cl.name, r.sourceRangeEnd + 1, td.s.rangeEnd);
 								seedList.remove(td.i);
+								i-=1;
 								seedList.add(td.sA);
 								seedList.add(td.sB);
 								break;
@@ -236,7 +243,7 @@ public class Solution_2_Day_05 {
             if (minimum > seedRangeMin.get(i)) 
                 minimum = seedRangeMin.get(i); 
         }
-
+		seedList.clear();
 		return solution = minimum;
 	}
 
