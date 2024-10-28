@@ -63,7 +63,7 @@ public class Day_05 {
         ep.p("************* Start Solution ** ************");
         ep.p("");
         ep.p("== Test prints ==");
-       // String sol2_test = s2.getSolution(filepath_test).toString();
+        String sol2_test = s2.getSolution(filepath_test).toString();
         ep.p("");
         ep.p("== Answer prints ==");
         String sol2 = s2.getSolution(filepath).toString();
@@ -85,7 +85,7 @@ public class Day_05 {
         ep.p("    Answer: " + sol1);
         ep.p("");
         ep.p("Solution **");
-       // ep.p("    Tests: " + sol2_test);
+        ep.p("    Tests: " + sol2_test);
        ep.p("    Answer: " + sol2);
         ep.p("");
         ep.p("=====================================");
