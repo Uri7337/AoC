@@ -54,18 +54,13 @@ public class Solution_1_Day_07 {
 
 		int[] handVal;
 		int type;
-		// 7 Five of a kind, where all five cards have the same label: AAAAA
-		// 6 Four of a kind, where four cards have the same label and one card has a
-		// different label: AA8AA
-		// 5 Full house, where three cards have the same label, and the remaining two
-		// cards share a different label: 23332
-		// 4 Three of a kind, where three cards have the same label, and the remaining
-		// two cards are each different from any other card in the hand: TTT98
-		// 3 Two pair, where two cards share one label, two other cards share a second
-		// label, and the remaining card has a third label: 23432
-		// 2 One pair, where two cards share one label, and the other three cards have a
-		// different label from the pair and each other: A23A4
-		// 1 High card, where all cards' labels are distinct: 23456
+		// 7 Five of a kind
+		// 6 Four of a kind
+		// 5 Full house
+		// 4 Three of a kind
+		// 3 Two pair
+		// 2 One pair
+		// 1 High card
 
 		public Hand(int bid, String[] hand) {
 			this.bid = bid;
@@ -121,6 +116,10 @@ public class Solution_1_Day_07 {
 				int value = nCards.get(i); 
 
 				//7
+				if(value==5){
+					t = 7;
+					break;
+				}
 				//6
 				//5
 				//4
