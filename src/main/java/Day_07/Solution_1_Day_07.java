@@ -15,6 +15,8 @@ public class Solution_1_Day_07 {
 
 	ArrayList<String> file;
 
+	ArrayList<Hand> hands = new ArrayList<Hand>();
+
 	public Object getSolution(String filepath) {
 
 		ReadFile rf = new ReadFile();
@@ -32,15 +34,148 @@ public class Solution_1_Day_07 {
 			pokerCards.put(i + "", i);
 		}
 
-		ep.p(pokerCards);
 		// Insert Solution Here:
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
+			String[] lineParts = line.split(" ");
 
-			
+			String[] cards = lineParts[0].split("");
+			String bid = lineParts[1];
+			hands.add(new Hand(Integer.parseInt(bid), cards));
 		}
 		return solution;
 		// ----debug zone----
-		
+
 	}
+
+	class Hand {
+		int bid;
+		String[] hand;
+
+		int[] handVal;
+		int type;
+		// 7 Five of a kind, where all five cards have the same label: AAAAA
+		// 6 Four of a kind, where four cards have the same label and one card has a
+		// different label: AA8AA
+		// 5 Full house, where three cards have the same label, and the remaining two
+		// cards share a different label: 23332
+		// 4 Three of a kind, where three cards have the same label, and the remaining
+		// two cards are each different from any other card in the hand: TTT98
+		// 3 Two pair, where two cards share one label, two other cards share a second
+		// label, and the remaining card has a third label: 23432
+		// 2 One pair, where two cards share one label, and the other three cards have a
+		// different label from the pair and each other: A23A4
+		// 1 High card, where all cards' labels are distinct: 23456
+
+		public Hand(int bid, String[] hand) {
+			this.bid = bid;
+			this.hand = hand;
+			this.handVal = getHandVal();
+			this.type = getType();
+		}
+
+		int[] getHandVal() {
+			int[] x = { getVal(0), getVal(1), getVal(2), getVal(3), getVal(4) };
+			return x;
+		}
+
+		int getVal(int x) {
+
+			return pokerCards.get(this.hand[x]);
+		}
+
+		int getType() {
+			// 7 Five of a kind, where all five cards have the same label: AAAAA
+			// 6 Four of a kind, where four cards have the same label and one card has a
+			// different label: AA8AA
+			// 5 Full house, where three cards have the same label, and the remaining two
+			// cards share a different label: 23332
+			// 4 Three of a kind, where three cards have the same label, and the remaining
+			// two cards are each different from any other card in the hand: TTT98
+			// 3 Two pair, where two cards share one label, two other cards share a second
+			// label, and the remaining card has a third label: 23432
+			// 2 One pair, where two cards share one label, and the other three cards have a
+			// different label from the pair and each other: A23A4
+			// 1 High card, where all cards' labels are distinct: 23456
+			
+			int t = 0;
+			//create array with 15 zeroes.
+			int[] frequencyArray = new int[15];
+			HashMap<Integer,Integer> nCards = new HashMap<>();
+
+			//increment the zero on index of the card value
+			for (int num : handVal) {
+				frequencyArray[num]++;
+			}
+
+			//save only filled values
+			for (int i = 0; i < frequencyArray.length; i++) {
+				if(frequencyArray[i]>0){
+					nCards.put(i, frequencyArray[i]);
+				}
+				
+			}	
+			
+			for (int i : nCards.keySet()) {
+				int key = i;
+				int value = nCards.get(i); 
+
+				//7
+				//6
+				//5
+				//4
+				//3
+				//2
+				//1
+
+				
+			}
+			//ep.p("");
+			
+			
+
+			return t;
+		}
+
+	}
+
+	Hand handCompare(Hand toMayto, Hand toMahto) {
+		// handCompare is called if types are same
+		boolean nextCard = false;
+		int sameValues = 0;
+
+		for (int y = 0; y < 5; y++) {
+			for (int h = 0; h < 5; h++) {
+				// 3 conditions
+				// same hand
+				if (toMayto.handVal[y] == toMahto.handVal[h]) {
+					sameValues++;
+					nextCard = true;
+					break;
+				}
+				if (toMayto.handVal[y] > toMahto.handVal[h]) {
+					// bigger left hand
+					return toMayto;
+				} else {
+					// smaller left hand
+					return toMahto;
+				}
+
+			}
+
+			if (nextCard) {
+				nextCard = false;
+				continue;
+			}
+		}
+
+		if (sameValues == 5) {
+			ep.p("sameHand, we have a problem!");
+		}
+
+		// returns stronger hand
+		return toMayto;
+	}
+
+	
 }

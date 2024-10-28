@@ -23,10 +23,10 @@ public class Solution_2_Day_07 {
 		for (int i = 0; i < file.size(); i++) {
 			String line = file.get(i);
 
-			return solution;
 		}
-
-		// ----debug zone----
+		return solution;
 
 	}
+	// ----debug zone----
+
 }
