@@ -342,3 +342,13 @@ temperature-to-humidity map:
 767703767 2441655844 94758017
 1439642768 755965272 116457057
 3782919646 4174367470 78808572
+
+
+
+
+
+
+
+if (r.sourceRangeStart <= td.s.rangeEnd && td.s.rangeEnd <= r.sourceRangeEnd) {
+lepší zápis než:
+if (td.s.rangeEnd >= r.sourceRangeStart && td.s.rangeEnd <= r.sourceRangeEnd) {

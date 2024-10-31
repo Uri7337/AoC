@@ -91,7 +91,7 @@ public class Solution_2_Day_05 {
 								// 79-97; 98-99
 								// ^-zvětšit
 								td.x = r.destinationRange - r.sourceRangeStart;
-								td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart - 1);
+								td.sA = new Seed(cl.from, td.s.rangeStart, r.sourceRangeStart - 1);
 								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x), (td.s.rangeEnd + td.x));
 								seedList.remove(td.i);
 								i -= 1;
@@ -106,9 +106,9 @@ public class Solution_2_Day_05 {
 								// 79-97; 98-100; 101 - 110
 								// ^-zvětšit
 								td.x = r.destinationRange - r.sourceRangeStart;
-								td.sA = new Seed(cl.name, td.s.rangeStart, r.sourceRangeStart - 1);
+								td.sA = new Seed(cl.from, td.s.rangeStart, r.sourceRangeStart - 1);
 								td.sB = new Seed(cl.name, (r.sourceRangeStart + td.x), (r.sourceRangeEnd + td.x));
-								td.sC = new Seed(cl.name, r.sourceRangeEnd + 1, td.s.rangeEnd);
+								td.sC = new Seed(cl.from, r.sourceRangeEnd + 1, td.s.rangeEnd);
 								seedList.remove(td.i);
 								i -= 1;
 								seedList.add(td.sA);
@@ -137,7 +137,7 @@ public class Solution_2_Day_05 {
 								// ^-zvětšit
 								td.x = r.destinationRange - r.sourceRangeStart;
 								td.sA = new Seed(cl.name, (td.s.rangeStart + td.x), (r.sourceRangeEnd + td.x));
-								td.sB = new Seed(cl.name, r.sourceRangeEnd + 1, td.s.rangeEnd);
+								td.sB = new Seed(cl.from, r.sourceRangeEnd + 1, td.s.rangeEnd);
 								seedList.remove(td.i);
 								i -= 1;
 								seedList.add(td.sA);
