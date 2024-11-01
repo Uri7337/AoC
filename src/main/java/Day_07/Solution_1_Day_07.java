@@ -41,17 +41,34 @@ public class Solution_1_Day_07 {
 
 			String[] cards = lineParts[0].split("");
 			String bid = lineParts[1];
-			hands.add(new Hand(Integer.parseInt(bid), cards));
+			hands.add(new Hand(Integer.parseInt(bid), cards, i+1));
 			
 		}
 		
 		//order hands by rank (max rank = hands.size()); lowest rank is 1;
-
+		reRank();
 		//count total winnings (bid * rank) + (bid * rank) ....
+		solution = countTotalWinnings();
 
 		return solution;
 		// ----debug zone----
 
+	}
+
+	// in separate method for cleaner code
+	void reRank(){
+		for (Hand h : hands) {
+			ep.p(h.rank);
+		}	
+	}
+
+	int countTotalWinnings(){
+		int x = 0;
+		for (Hand h : hands) {
+			x += (h.bid*h.rank);
+		}
+
+		return x;
 	}
 
 	class Hand {
@@ -68,11 +85,14 @@ public class Solution_1_Day_07 {
 		// 2 One pair
 		// 1 High card
 
-		public Hand(int bid, String[] hand) {
+		int rank;
+
+		public Hand(int bid, String[] hand, int rank) {
 			this.bid = bid;
 			this.hand = hand;
 			this.handVal = getHandVal();
 			this.type = getType();
+			this.rank = rank;
 		}
 
 		int[] getHandVal() {
