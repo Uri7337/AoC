@@ -51,15 +51,13 @@ public class Solution_1_Day_07 {
 		solution = countTotalWinnings();
 
 		return solution;
-		// ----debug zone----
-
 	}
 
 	// in separate method for cleaner code
 	void reRank(){
-		for (Hand h : hands) {
-			ep.p(h.rank);
-		}	
+		printRanks();
+		//separate by type into groups
+
 	}
 
 	int countTotalWinnings(){
@@ -186,6 +184,7 @@ public class Solution_1_Day_07 {
 					for (int i : nCards.values()) {
 						if(i != 1 ){
 							t = 0;
+							ep.p("type: 0 <-- we have problem!");
 							break;
 						}
 					}
@@ -235,5 +234,19 @@ public class Solution_1_Day_07 {
 		return toMayto;
 	}
 
+	// ----debug zone----
+	void printRanks(){
+		ep.p("hand  | rank | type");
+		for (Hand h : hands) {
+			for (int i = 0; i < h.hand.length; i++) {
+				ep.np(h.hand[i]);
+			}
+			ep.np("    ");
+			ep.np(h.rank+"      ");
+			ep.p(h.type);
+		}
+		ep.p("");
+	}
+	
 	
 }
