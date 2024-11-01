@@ -57,14 +57,14 @@ public class Solution_1_Day_07 {
 	void reRank(){
 		printRanks();
 		//separate by type into groups
-
+		//learn java comparables
 	}
 
 	int countTotalWinnings(){
 		int x = 0;
 		for (Hand h : hands) {
 			x += (h.bid*h.rank);
-		}
+		}a
 
 		return x;
 	}
@@ -117,44 +117,34 @@ public class Solution_1_Day_07 {
 			// different label from the pair and each other: A23A4
 			// 1 High card, where all cards' labels are distinct: 23456
 			
-			int t = 0;
 			//create array with 15 zeroes.
-			int[] frequencyArray = new int[15];
 			HashMap<Integer,Integer> nCards = new HashMap<>();
 
 			//increment the zero on index of the card value
 			for (int num : handVal) {
-				frequencyArray[num]++;
+				nCards.put(num, nCards.getOrDefault(num, 0)+1);
 			}
-
-			//save only filled values
-			for (int i = 0; i < frequencyArray.length; i++) {
-				if(frequencyArray[i]>0){
-					nCards.put(i, frequencyArray[i]);
-				}
-			}	
 			
-			
+			//nCards.values().stream().sorted().toArray();
 				//7
 				if(nCards.containsValue(5)){
-					t = 7;
-					return t;
+					
+					return 7;
 				}
 				//6
 				if(nCards.containsValue(4)){
-					t = 6;
-					return t;
+					
+					return 6;
 				}
 				//5,4
 				if(nCards.containsValue(3)){
 					if(nCards.containsValue(2)){
 						//5
-						t = 5;
+						return 5;
 					}else{
 						//4
-						t = 4;
+						return  4;
 					}
-					return t;
 				}
 				//3,2
 				if(nCards.containsValue(2)){
@@ -169,29 +159,26 @@ public class Solution_1_Day_07 {
 					
 					if(nCards.containsValue(2)){
 						//3
-						t = 3;
+						return  3;
 						
 					}else{
 						//2
-						t = 2;
+						return 2;
 					}
-					return t;
 				}
 				
 				//1
 				if(nCards.containsValue(1)){
-					t = 1;
 					for (int i : nCards.values()) {
 						if(i != 1 ){
-							t = 0;
 							ep.p("type: 0 <-- we have problem!");
 							break;
 						}
 					}
-					return t;
+					return 1;
 				}
 
-			return t;
+			return 0;
 		}
 
 	}
