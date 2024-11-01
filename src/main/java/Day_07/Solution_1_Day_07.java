@@ -42,7 +42,13 @@ public class Solution_1_Day_07 {
 			String[] cards = lineParts[0].split("");
 			String bid = lineParts[1];
 			hands.add(new Hand(Integer.parseInt(bid), cards));
+			
 		}
+		
+		//order hands by rank (max rank = hands.size()); lowest rank is 1;
+
+		//count total winnings (bid * rank) + (bid * rank) ....
+
 		return solution;
 		// ----debug zone----
 
@@ -108,30 +114,63 @@ public class Solution_1_Day_07 {
 				if(frequencyArray[i]>0){
 					nCards.put(i, frequencyArray[i]);
 				}
-				
 			}	
 			
-			for (int i : nCards.keySet()) {
-				int key = i;
-				int value = nCards.get(i); 
-
+			
 				//7
-				if(value==5){
+				if(nCards.containsValue(5)){
 					t = 7;
-					break;
+					return t;
 				}
 				//6
-				//5
-				//4
-				//3
-				//2
-				//1
-
+				if(nCards.containsValue(4)){
+					t = 6;
+					return t;
+				}
+				//5,4
+				if(nCards.containsValue(3)){
+					if(nCards.containsValue(2)){
+						//5
+						t = 5;
+					}else{
+						//4
+						t = 4;
+					}
+					return t;
+				}
+				//3,2
+				if(nCards.containsValue(2)){
+					//i hope there is a cleaner way...
+					//remove the found 2 to leave only one or none 2
+					for (int i : nCards.keySet()) {
+						if(nCards.get(i) == 2 ){
+							nCards.remove(i);
+							break;
+						}
+					}
+					
+					if(nCards.containsValue(2)){
+						//3
+						t = 3;
+						
+					}else{
+						//2
+						t = 2;
+					}
+					return t;
+				}
 				
-			}
-			//ep.p("");
-			
-			
+				//1
+				if(nCards.containsValue(1)){
+					t = 1;
+					for (int i : nCards.values()) {
+						if(i != 1 ){
+							t = 0;
+							break;
+						}
+					}
+					return t;
+				}
 
 			return t;
 		}
