@@ -64,7 +64,7 @@ public class Solution_1_Day_07 {
 		int x = 0;
 		for (Hand h : hands) {
 			x += (h.bid*h.rank);
-		}a
+		}
 
 		return x;
 	}
