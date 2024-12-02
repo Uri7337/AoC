@@ -11,6 +11,7 @@ public class Solution_2_Day_01 {
     EasyPrint ep = new EasyPrint();
 
     public Object getSolution(String filepath) {
+        solution = 0;
         ReadFile rf = new ReadFile();
         ArrayList<String> data = new ArrayList<String>();
 
@@ -27,7 +28,6 @@ public class Solution_2_Day_01 {
             num3.put(Integer.parseInt(numbers[0]), 0);
             num1.add(Integer.parseInt(numbers[0]));
             num2.add(Integer.parseInt(numbers[1]));
-
         }
 
         for (int bob : num2) {
@@ -38,16 +38,19 @@ public class Solution_2_Day_01 {
             }
 
         }
-        num3.forEach((t, u) -> ep.p(t+" "+u));
+
+        //num3.forEach((t, u) -> ep.p(t + " " + u));
+
         for (int bob : num1) {
             if (num3.get(bob) == null) {
 
             } else {
-                solution += bob*num3.get(bob);
+                solution += bob * num3.get(bob);
             }
 
         }
 
         return solution;
     }
+
 }
