@@ -24,7 +24,7 @@ public class Solution_1_Day_02 {
 			}
 			
 			int rsize = report.size();
-			boolean inc;
+			boolean inc = report.get(1) > report.get(0) ? true : false;
 			int first;
 			int second;
 			for (int j = 0; j < rsize; j++) {
@@ -35,7 +35,11 @@ public class Solution_1_Day_02 {
 					break;
 				}
 				
-				inc = second > first ? true : false;
+				if(inc){
+
+				}else{
+					
+				} 
 				
 			}
 
