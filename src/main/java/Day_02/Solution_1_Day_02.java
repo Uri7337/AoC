@@ -22,27 +22,45 @@ public class Solution_1_Day_02 {
 			for (String string : numbers) {
 				report.add(Integer.parseInt(string));
 			}
-			
+
 			int rsize = report.size();
 			boolean inc = report.get(1) > report.get(0) ? true : false;
 			int first;
 			int second;
+
+			boolean safe = false;
 			for (int j = 0; j < rsize; j++) {
 				first = report.get(j);
 				if ((j + 1) < rsize) {
 					second = report.get(j + 1);
-				}else{
+				} else {
 					break;
 				}
-				
-				if(inc){
 
-				}else{
-					
-				} 
-				
+				if (inc) {
+
+					if (first + 1 == second || first + 2 == second || first + 3 == second) {
+						safe = true;
+						
+					} else {
+						safe = false;
+						break;
+					}
+
+				} else {
+					if (first - 1 == second || first - 2 == second || first - 3 == second) {
+						safe = true;
+						
+					} else {
+						safe = false;
+						break;
+					}
+				}
+
 			}
-
+			if (safe) {
+				solution += 1;
+			}
 			report.clear();
 		}
 
