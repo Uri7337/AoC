@@ -55,7 +55,7 @@ public class Day_02 {
         ep.p("");
         ep.p("Solution **");
         ep.p("    Tests: " + sol2_test);
-        ep.p("    Answer: " + sol2);
+       ep.p("    Answer: " + sol2);
         ep.p("");
         ep.p("=====================================");
 
