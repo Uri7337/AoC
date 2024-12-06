@@ -46,7 +46,7 @@ public class Solution_2_Day_02 {
 					} else {
                         if(!problemDampener){
                             problemDampener=true;
-                            report.remove(j);
+                            report.remove(getBadLevel());
                             j=-1;
                             //inc = report.get(1) > report.get(0) ? true : false;
                         }else{
@@ -63,7 +63,7 @@ public class Solution_2_Day_02 {
 					} else {
                         if(!problemDampener){
                             problemDampener=true;
-                            report.remove(j);
+                            report.remove(getBadLevel());
                             j=-1;
                             //inc = report.get(1) > report.get(0) ? true : false;
                         }else{
@@ -82,5 +82,9 @@ public class Solution_2_Day_02 {
 		}
 
 		return solution;
+	}
+	int getBadLevel(){
+		
+		return 0;
 	}
 }
