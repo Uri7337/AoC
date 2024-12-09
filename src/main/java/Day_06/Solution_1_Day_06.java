@@ -23,6 +23,8 @@ public class Solution_1_Day_06 {
 		
 		p.readMap(g.facing);
 		ep.p("");
+		ep.p("===========");
+		ep.p("");
 		solution = g.startGuarding(p);
 		return solution;
 	}
@@ -46,7 +48,7 @@ class Plan{
 				}else if(dataLine[j].equals("#")){
 					this.map[i][j] = 3;
 				}else{
-					g.setGuard(j, i, dataLine[j]);
+					g.setGuard(i, j, dataLine[j]);
 					this.map[i][j] = 2;
 				}
 			}
@@ -142,7 +144,7 @@ class Guard{
 		switch (this.facing) {
 			case 0:
 				//grid one up
-				if(p.map[(int)this.pt.getX()][(int)this.pt.getY()+1] < 3){
+				if(p.map[(int)this.pt.getX()][(int)this.pt.getY()-1] < 3){
 					return false;
 				}
 				break;
@@ -154,7 +156,7 @@ class Guard{
 				break;
 			case 2:
 				//grid one down
-				if(p.map[(int)this.pt.getX()][(int)this.pt.getY()-1] < 3){
+				if(p.map[(int)this.pt.getX()][(int)this.pt.getY()+1] < 3){
 					return false;
 				}
 				break;
@@ -174,15 +176,15 @@ class Guard{
 
 	void turn(){
 		//i%4
-		this.facing++;
-		this.facing = this.facing % 4;
+		
+		this.facing = (this.facing+1) % 4;
 	}
 
 	void step(){
 		switch (this.facing) {
 			case 0:
 				//grid one up
-				this.pt.setLocation(this.pt.getX(), this.pt.getY()+1);
+				this.pt.setLocation(this.pt.getX(), this.pt.getY()-1);
 				break;
 			case 1:
 				//grid one right
@@ -190,7 +192,7 @@ class Guard{
 				break;
 			case 2:
 				//grid one down
-				this.pt.setLocation(this.pt.getX(), this.pt.getY()-1);
+				this.pt.setLocation(this.pt.getX(), this.pt.getY()+1);
 				break;
 			case 3:
 				//grid one left
