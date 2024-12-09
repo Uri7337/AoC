@@ -21,15 +21,18 @@ public class Solution_1_Day_06 {
 		Guard g = new Guard();
 		Plan p = new Plan(data,g);
 		
-		p.readMap();
-
+		p.readMap(g.facing);
+		ep.p("");
+		solution = g.startGuarding(p);
 		return solution;
 	}
 
 
 class Plan{
-	// 0 = . || guard
-	// 1 = obstructions
+	// 0 = . 
+	// 1 = X
+	// 2 = G - Guard
+	// 3 = # - obstructions
 	int[][] map;
 
 	public Plan(ArrayList<String> data, Guard g) {
@@ -41,7 +44,7 @@ class Plan{
 				if(dataLine[j].equals(".")){
 					this.map[i][j] = 0;
 				}else if(dataLine[j].equals("#")){
-					this.map[i][j] = 1;
+					this.map[i][j] = 3;
 				}else{
 					g.setGuard(j, i, dataLine[j]);
 					this.map[i][j] = 2;
@@ -50,15 +53,35 @@ class Plan{
 		}
 	}
 
-	void readMap(){
+	void readMap(int gface){
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				if(map[i][j]==0){
 					ep.np(".");
 				}else if(map[i][j]==1){
+					ep.np("X");
+				}else if(map[i][j]==3){
 					ep.np("#");
 				}else{
-					ep.np("G");
+					
+					switch (gface) {
+						case 0:
+							ep.np("^");
+							break;
+						case 1:
+							ep.np(">");
+							break;
+						case 2:
+							ep.np("v");
+							break;
+						case 3:
+							ep.np("<");
+							break;
+						default:
+							ep.np("G");
+							// G = we have problem
+							break;
+					}
 				}
 			}
 			ep.p("");
@@ -76,10 +99,18 @@ class Guard{
 		
 	}
 
-	int startGuarding(){
-		this.steps = 0;
-		while(true){
-
+	int startGuarding(Plan p){
+		//while on grid - x > 0 || x < grid.size || y > 0 || y < grid.size
+		while(this.pt.getX() > 0 || this.pt.getX() < p.map.length || this.pt.getY() > 0 || this.pt.getY() < p.map[0].length){
+			//if obstructions
+			if(look(p)){
+				turn();
+			}else{
+				markX(p);
+				step();
+			}
+			p.readMap(facing);
+			ep.p("");
 		}
 		return this.steps;
 	}
@@ -106,17 +137,77 @@ class Guard{
 		}
 	}
 
+	boolean look(Plan p){
+		//true means obstructions
+		switch (this.facing) {
+			case 0:
+				//grid one up
+				if(p.map[(int)this.pt.getX()][(int)this.pt.getY()+1] < 3){
+					return false;
+				}
+				break;
+			case 1:
+				//grid one right
+				if(p.map[(int)this.pt.getX()+1][(int)this.pt.getY()] < 3){
+					return false;
+				}
+				break;
+			case 2:
+				//grid one down
+				if(p.map[(int)this.pt.getX()][(int)this.pt.getY()-1] < 3){
+					return false;
+				}
+				break;
+			case 3:
+				//grid one left
+				if(p.map[(int)this.pt.getX()-1][(int)this.pt.getY()] < 3){
+					return false;
+				}
+				break;
+			default:
+				ep.np("G");
+				// G = we have problem
+				break;
+		}
+		return true;
+	}
+
 	void turn(){
 		//i%4
+		this.facing++;
+		this.facing = this.facing % 4;
 	}
 
 	void step(){
-		//
+		switch (this.facing) {
+			case 0:
+				//grid one up
+				this.pt.setLocation(this.pt.getX(), this.pt.getY()+1);
+				break;
+			case 1:
+				//grid one right
+				this.pt.setLocation(this.pt.getX()+1, this.pt.getY());
+				break;
+			case 2:
+				//grid one down
+				this.pt.setLocation(this.pt.getX(), this.pt.getY()-1);
+				break;
+			case 3:
+				//grid one left
+				this.pt.setLocation(this.pt.getX()-1, this.pt.getY());
+				break;
+			default:
+				ep.np("G");
+				// G = we have problem
+				break;
+		}
 	}
 
-	void look(){
-
+	void markX(Plan p){
+		if(p.map[(int)this.pt.getX()][(int)this.pt.getY()] == 0){
+			p.map[(int)this.pt.getX()][(int)this.pt.getY()] = 1;
+			this.steps++;
+		}
 	}
-	
 }
 }
