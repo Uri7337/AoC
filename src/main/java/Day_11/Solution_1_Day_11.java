@@ -56,6 +56,22 @@ public class Solution_1_Day_11 {
 
     int[] splitNum(int n){
         StringBuilder strb = new StringBuilder();
+        int[] snum = new int[2];
+        
+        strb.append(n);
+        
+       
+        
+        snum[0] = Integer.parseInt(strb.substring(0, (strb.length()/2)));
+        snum[1] = Integer.parseInt(strb.substring( (strb.length()/2), (strb.length())));
+        
+        
+
+        return snum;
+    }
+
+    int[] splitNum2(int n){
+        StringBuilder strb = new StringBuilder();
         Stack<Integer> s = new Stack<>();
         int[] snum = new int[2];
         
