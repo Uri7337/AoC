@@ -1,16 +1,22 @@
 package Day_11;
-//
+
+import shared.EasyPrint;
 import shared.ReadFile;
 import java.util.ArrayList;
-//
+
+
 public class Solution_2_Day_11 {
-    int solution = 0;
-//
-     public int getSolution() {
-       ReadFile rf = new ReadFile();
-       ArrayList<String> file = new ArrayList<String>();
-       String filepath = "/home/deadpool7337/UriPrograms/Other/PuzzleInput.txt";
-       file = rf.getInput(filepath);       
-       return solution;
-    }
+
+	int solution = 0;
+	EasyPrint ep = new EasyPrint();
+
+	public Object getSolution(String filepath) {
+		solution = 0;
+		ReadFile rf = new ReadFile();
+		ArrayList<String> data = new ArrayList<String>();
+
+		data = rf.getInput(filepath);
+		
+		return solution;
+	}
 }
