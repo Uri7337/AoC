@@ -21,7 +21,7 @@ public class Day_11 {
         ep.p("************* Start Solution * *************");
         ep.p("");
         ep.p("== Test prints ==");
-        String sol1_test = s1.getSolution(filepath_test).toString();
+        //String sol1_test = s1.getSolution(filepath_test).toString();
         ep.p("");
         ep.p("== Answer prints ==");
         String sol1 = s1.getSolution(filepath).toString();
@@ -50,7 +50,7 @@ public class Day_11 {
         ep.p("=====================================");
         ep.p("************** Solutions **************");
         ep.p("Solution *");
-        ep.p("    Tests: " + sol1_test);
+        //ep.p("    Tests: " + sol1_test);
         ep.p("    Answer: " + sol1);
         ep.p("");
         ep.p("Solution **");
