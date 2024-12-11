@@ -6,8 +6,8 @@ import shared.ReadFile;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
+//bigInt replace with long - still not fast enough
 public class Solution_1_Day_11 {
 
     EasyPrint ep = new EasyPrint();
