@@ -18,18 +18,19 @@ public class Solution_2_Day_02 {
 
 		ArrayList<Integer> report = new ArrayList<>();
 		for (int i = 0; i < data.size(); i++) {
+			report.clear();
+
 			String[] numbers = data.get(i).split(" ");
 			for (String string : numbers) {
 				report.add(Integer.parseInt(string));
 			}
-
-			
-			boolean inc = report.get(1) > report.get(0) ? true : false;
+			//ep.p("report:"+ report);
+			int inc = report.get(1) > report.get(0) ? 1 : -1;
 			int first;
 			int second;
 
 			boolean safe = false;
-            boolean problemDampener = false;
+			
 			for (int j = 0; j < report.size(); j++) {
 				first = report.get(j);
 				if ((j + 1) < report.size()) {
@@ -38,53 +39,56 @@ public class Solution_2_Day_02 {
 					break;
 				}
 
-				if (inc) {
-
-					if (first + 1 == second || first + 2 == second || first + 3 == second) {
-						safe = true;
-						
-					} else {
-                        if(!problemDampener){
-                            problemDampener=true;
-                            report.remove(getBadLevel());
-                            j=-1;
-                            //inc = report.get(1) > report.get(0) ? true : false;
-                        }else{
-                            safe = false;
-						    break;
-                        }
-						
-					}
-
+				if ((first + 1 * inc) == second || (first + 2 * inc) == second || (first + 3 * inc) == second) {
+					safe = true;
 				} else {
-					if (first - 1 == second || first - 2 == second || first - 3 == second) {
-						safe = true;
-						
-					} else {
-                        if(!problemDampener){
-                            problemDampener=true;
-                            report.remove(getBadLevel());
-                            j=-1;
-                            //inc = report.get(1) > report.get(0) ? true : false;
-                        }else{
-                            safe = false;
-						    break;
-                        }
-					}
+					safe = getBadLevel(report);
+					//ep.p(report + "badsafe:" + safe);
+					break;
 				}
 
 			}
-            ep.p(report+" safe:" +safe);
+
+			ep.p(report + " safe:" + safe);
 			if (safe) {
 				solution += 1;
 			}
-			report.clear();
+
 		}
 
 		return solution;
 	}
-	int getBadLevel(){
-		
-		return 0;
+
+	boolean getBadLevel(ArrayList<Integer> report) {
+		ArrayList<Integer> report2;
+		boolean safe = false;
+		for (int index = 0; index < report.size(); index++) {
+			report2 =  new ArrayList<>(report);
+			report2.remove(index);
+			int inc = report2.get(1) > report2.get(0) ? 1 : -1;
+			int first;
+			int second;
+			for (int j = 0; j < report2.size(); j++) {
+				first = report2.get(j);
+				if ((j + 1) < report2.size()) {
+					second = report2.get(j + 1);
+				} else {
+					break;
+				}
+				if ((first + 1 * inc) == second || (first + 2 * inc) == second || (first + 3 * inc) == second) {
+					safe = true;
+
+				}else{
+					safe = false;
+					break;
+				}
+
+			}
+			if(safe){
+				return safe;
+			}
+			
+		}
+		return safe;
 	}
 }
