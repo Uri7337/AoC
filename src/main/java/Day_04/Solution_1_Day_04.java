@@ -1,62 +1,110 @@
 package Day_04;
 
-import shared.ReadFile;
 import shared.EasyPrint;
-
+import shared.ReadFile;
 import java.util.ArrayList;
-
+import java.awt.Point;
 
 public class Solution_1_Day_04 {
-	EasyPrint ep = new EasyPrint();
 
-	Object solution = "Nothing yet!";
-	
+    int xmasCounter = 0;
+    EasyPrint ep = new EasyPrint();
 
-	ArrayList<String> file;
-	public Object getSolution(String filepath) {
-		int result = 0;
-        
-		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
-		file = rf.getInput(filepath);
-			
-		//Insert Solution Here:
-		for (int i = 0; i < file.size(); i++) {
-			String line = file.get(i);
-            String[] lineParts = line.split(":");
+    public Object getSolution(String filepath) {
+        xmasCounter = 0;
+        ReadFile rf = new ReadFile();
+        ArrayList<String> data = new ArrayList<String>();
 
-            int cardID = Integer.parseInt(lineParts[0].split("  *")[1]);
-            String[] winningNumbers = lineParts[1].split("\\|")[0].split("  *");
-            String[] myNumbers = lineParts[1].split("\\|")[1].split("  *");
+        data = rf.getInput(filepath);
 
-            ArrayList<Integer> wN = convertNumbers(winningNumbers);
-            ArrayList<Integer> mN = convertNumbers(myNumbers);
-            mN.retainAll(wN);
-            
-            if(mN.size()>0){
-                
-                int res =1;
-                for (int j = 1; j < mN.size(); j++) {
-                    res*=2;
+        int xLen = data.get(0).length();
+        int yLen = data.size();
+
+        // Q: is the first [] X?
+        // A: no, it's Y
+
+        // new char array
+        char[][] puzzle = new char[yLen][xLen];
+        ArrayList<Point> xPos = new ArrayList<>();
+
+        // fill char array with data
+        for (int y = 0; y < yLen; y++) {
+            char[] tempDataLine = data.get(y).toCharArray();
+            for (int x = 0; x < xLen; x++) {
+                if (tempDataLine[x] == 'X') {
+                    Point p = new Point(x, y);
+                    xPos.add(p);
                 }
-                //ep.p(mN + " size: "+mN.size() + " result: "+ res);
-                result += res;
-                //ep.p(result);
+                puzzle[y][x] = tempDataLine[x];
             }
-            
-        }
-		return solution = result;
-	}
 
-    ArrayList<Integer> convertNumbers(String[] numbers){
-        ArrayList<Integer> aL = new ArrayList<>();
-        for (int i = 1; i < numbers.length; i++) {
-            aL.add(Integer.parseInt(numbers[i]));
         }
 
-        return aL;
+        // print char array
+        // pcharar(puzzle, yLen, xLen);
+
+        // i have arraylist full of X positions
+        // now i can go thru all of them and search for M's
+
+        // searchLetter
+        // searchInDirection!!
+        // what letter
+        //
+
+        // for every X do a circle around to find M
+        for (Point p : xPos) {
+            // search In Every Direction around X 
+            for (int y = -1; y < 2; y++) {
+                for (int x = -1; x < 2; x++) {
+                    if(0==x && 0==y){
+                        continue;
+                    }
+
+                    int dirX = (int) p.getX() + x;
+                    int dirY = (int) p.getY() + y;
+                    if(0 > dirY || yLen < dirY || 0 > dirX || xLen < dirX){
+                        continue;
+                    }
+
+                    //call searchLEtter i guess
+                }
+            }
+        }
+
+        return xmasCounter;
     }
 
-	// ----debug zone----
-	
+    void searchLetter(char letter, Point direction){
+        // The direction represents the movement from the current letter
+        // to one of the following positions: 
+        // ⬆️ (up), ⬇️ (down), ⬅️ (left), ➡️ (right), 
+        // ↗️ (up-right), ↖️ (up-left), ↘️ (down-right), ↙️ (down-left)
+
+        switch (letter) {
+            case 'M':
+                
+                break;
+            case 'A':
+                
+                break;
+            case 'S':
+                
+                break;
+        
+            default:
+                break;
+        }
+
+    }
+
+    void pcharar(char[][] puzzle, int yLen, int xLen) {
+
+        for (int y = 0; y < yLen; y++) {
+            for (int x = 0; x < xLen; x++) {
+                ep.np(puzzle[y][x]);
+            }
+            ep.p("");
+        }
+    }
+
 }
