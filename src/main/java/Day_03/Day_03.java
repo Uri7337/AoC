@@ -8,8 +8,59 @@ public class Day_03 {
         Solution_1_Day_03 s1 = new Solution_1_Day_03();
         Solution_2_Day_03 s2 = new Solution_2_Day_03();
 
+        String filepath_test = "./src/main/resources/Day_03_test_2024.txt";
+		String filepath = "./src/main/resources/Day_03_2024.txt";
+
+        String sol1 = "";
+        String sol2 = "";
+
+        String sol1_test = "";
+        String sol2_test = "";
+
+        boolean prod = false;
+        boolean part1 = false;
+        boolean part2 = true;
+        
+        ep.p("==Start==");
+        if(part1){
+            ep.p("\nSolution *");
+            ep.p("==Test prints==");
+            sol1_test = s1.getSolution(filepath_test).toString();
+            if(prod){
+                ep.p("\n==Answer prints==");
+                sol1 = s1.getSolution(filepath).toString();
+            }
+        }
         ep.p("");
-        ep.p("Day_03_Solution1: " + s1.getSolution().toString());
-        ep.p("Day_03_Solution2: " + s2.getSolution().toString());
+        if(part2){
+            ep.p("Solution **");
+            ep.p("==Test prints==");
+            sol2_test = s2.getSolution(filepath_test).toString();
+            if(prod){
+                ep.p("\n==Answer prints==");
+                sol2 = s2.getSolution(filepath).toString();
+            }
+        }
+        ep.p("\n==End==");
+        ep.p("\n");
+        ep.p("    Day_03");
+        ep.p("===Solutions===");
+        if(part1){
+            ep.p("Solution *");
+            ep.p("Tests: " + sol1_test);
+            if(prod){
+                ep.p("Answer: " + sol1);
+            }
+        }
+        ep.p("");
+        if(part2){
+            ep.p("Solution **");
+            ep.p("Tests: " + sol2_test);
+            if(prod){
+                ep.p("Answer: " + sol2);
+            }
+        }
+        
+        
     }
 }
