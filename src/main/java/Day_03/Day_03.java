@@ -17,15 +17,20 @@ public class Day_03 {
         String sol1_test = "";
         String sol2_test = "";
 
-        boolean prod = false;
+        boolean tests = false;
+        boolean prod = true;
         boolean part1 = false;
         boolean part2 = true;
+
         
         ep.p("==Start==");
         if(part1){
             ep.p("\nSolution *");
-            ep.p("==Test prints==");
-            sol1_test = s1.getSolution(filepath_test).toString();
+            if(tests){
+                ep.p("==Test prints==");
+                sol1_test = s1.getSolution(filepath_test).toString();
+            }
+            
             if(prod){
                 ep.p("\n==Answer prints==");
                 sol1 = s1.getSolution(filepath).toString();
@@ -34,8 +39,11 @@ public class Day_03 {
         ep.p("");
         if(part2){
             ep.p("Solution **");
-            ep.p("==Test prints==");
-            sol2_test = s2.getSolution(filepath_test).toString();
+             if(tests){
+                ep.p("==Test prints==");
+                sol2_test = s2.getSolution(filepath_test).toString();
+             }
+            
             if(prod){
                 ep.p("\n==Answer prints==");
                 sol2 = s2.getSolution(filepath).toString();
@@ -47,7 +55,10 @@ public class Day_03 {
         ep.p("===Solutions===");
         if(part1){
             ep.p("Solution *");
-            ep.p("Tests: " + sol1_test);
+             if(tests){
+                ep.p("Tests: " + sol1_test);
+             }
+            
             if(prod){
                 ep.p("Answer: " + sol1);
             }
@@ -55,7 +66,10 @@ public class Day_03 {
         ep.p("");
         if(part2){
             ep.p("Solution **");
-            ep.p("Tests: " + sol2_test);
+             if(tests){
+                ep.np("Tests: " + sol2_test);
+                if(Integer.valueOf(sol2_test) == 48){ep.p(" OK: True");}else{ep.p(" | OK: False");}
+             }
             if(prod){
                 ep.p("Answer: " + sol2);
             }
