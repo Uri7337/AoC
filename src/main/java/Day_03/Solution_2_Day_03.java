@@ -48,10 +48,14 @@ public class Solution_2_Day_03 {
 			findAll(line, "do()", 0, line.lastIndexOf("do()"), doIndexes);
 			findAll(line, "don't()", 0, line.lastIndexOf("don't()"), dontIndexes);
 
-			ep.p(doIndexes.size());
-			ep.p(dontIndexes.size());
+			ep.p("----DO----");
+			ep.p(doIndexes);
 			ep.p("");
-
+			ep.p("----DON'T----");
+			ep.p(dontIndexes);
+			ep.p("");
+			ep.p("");
+			
 			createRanges(Ranges, doIndexes, dontIndexes);
 
 			List<Integer> n;
@@ -87,7 +91,7 @@ public class Solution_2_Day_03 {
 		if (index < end) {
 			int var = line.indexOf(pattern, index);
 			bob.add(var);
-			// System.out.println(var);
+			
 
 			findAll(line, pattern, var + 1, end, bob);
 		} else {
@@ -98,11 +102,14 @@ public class Solution_2_Day_03 {
 
 	void createRanges(ArrayList<Range> Ranges, ArrayList<Integer> dos, ArrayList<Integer> donts){
 		Range r;
-		for (int i = 0; i < dos.size(); i++) {
-			r = new Range(i, i, false);
-			Ranges.add(r);
+		r = new Range(0, Math.min(dos.get(0),donts.get(0)), true);
+		Ranges.add(r);
+		
+		
+		
+		for (Range rs : Ranges) {
+			rs.printMe();
 		}
-
 	}
 
 	// ----debug zone----
@@ -130,6 +137,10 @@ class Range {
 
 	public boolean isStateDo() {
 		return stateDo;
+	}
+
+	public void printMe(){
+		System.out.println(from+"-"+to+":"+stateDo);
 	}
 
 }
