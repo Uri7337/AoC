@@ -14,15 +14,16 @@ public class Solution_1_Day_04 {
 
 	ArrayList<String> file;
 	public Object getSolution(String filepath) {
-		int result = 0;
+		int result = ;
         
 		ReadFile rf = new ReadFile();
 		file = new ArrayList<String>();
 		file = rf.getInput(filepath);
-			
+		
+		
         
 
-		return solution;
+		return result;
 	}
 
 	// ----debug zone----
