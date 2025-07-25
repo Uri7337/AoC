@@ -50,14 +50,16 @@ public class Solution_2_Day_03 {
 
 		findAll(line, "do()", 0, line.lastIndexOf("do()"), doIndexes);
 		findAll(line, "don't()", 0, line.lastIndexOf("don't()"), dontIndexes);
-
-		ep.p("----DO----");
+		/*
+		 ep.p("----DO----");
 		ep.p(doIndexes);
 		ep.p("");
 		ep.p("----DON'T----");
 		ep.p(dontIndexes);
 		ep.p("");
 		ep.p("");
+		 */
+		
 
 		
 
@@ -68,7 +70,10 @@ public class Solution_2_Day_03 {
 			int indexOfCurrentMul = line.indexOf(string);
 			int closestDo = findClosest(indexOfCurrentMul,doIndexes);
 			int closestDont = findClosest(indexOfCurrentMul,dontIndexes);
-			ep.p("mulIndex:"+indexOfCurrentMul+", closest: "+closestDo+"/"+closestDont);
+			
+			//if(indexOfCurrentMul > 1400 && indexOfCurrentMul < 1600){
+				//ep.p("muldex:"+indexOfCurrentMul+", do: "+closestDo+" dont: "+closestDont);
+			//}
 
 			Pattern pattern = Pattern.compile("\\d+");
 			Matcher matcher = pattern.matcher(string);
@@ -82,6 +87,13 @@ public class Solution_2_Day_03 {
 			
 			if(closestDo == 0 && closestDont == 0){
 				result += n.get(0) * n.get(1);
+				
+			}else{
+				if (closestDo>closestDont) {
+					result += n.get(0) * n.get(1);
+				} else {
+					
+				}
 			}
 			//ep.p("index: "+indexOfCurrentMul);
 			 n.clear();
@@ -108,10 +120,10 @@ public class Solution_2_Day_03 {
 
 	int findClosest(int index, ArrayList<Integer> list){
 		int closestIndex = 0;
-		int diff = 0;
+		int diff = index;
 
-		//don t
-		// 738, 1491
+		//don t - 738, 				1491
+		//do - 75, 890, 997, 1056, 	1319
 		// 1503
 		for (int i = 0; i < list.size(); i++) {
 			int listIndex = list.get(i);
@@ -120,7 +132,7 @@ public class Solution_2_Day_03 {
 			if(listIndex>index){
 				break;
 			}else{
-				if((index-listIndex)>diff){
+				if((index-listIndex)<diff && listIndex>closestIndex){
 					diff = index-listIndex;
 					closestIndex = listIndex;
 				}
@@ -128,7 +140,7 @@ public class Solution_2_Day_03 {
 			}
 
 		}
-		
+		if(diff == index) {return 0;}
 		return closestIndex;
 	}
 
@@ -156,3 +168,5 @@ public class Solution_2_Day_03 {
 	// ----debug zone----
 
 }
+
+
