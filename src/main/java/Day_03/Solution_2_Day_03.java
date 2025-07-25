@@ -68,7 +68,7 @@ public class Solution_2_Day_03 {
 			int indexOfCurrentMul = line.indexOf(string);
 			int closestDo = findClosest(indexOfCurrentMul,doIndexes);
 			int closestDont = findClosest(indexOfCurrentMul,dontIndexes);
-
+			ep.p("mulIndex:"+indexOfCurrentMul+", closest: "+closestDo+"/"+closestDont);
 
 			Pattern pattern = Pattern.compile("\\d+");
 			Matcher matcher = pattern.matcher(string);
@@ -80,13 +80,17 @@ public class Solution_2_Day_03 {
 				n.add(Integer.parseInt(matcher.group()));
 			}
 			
-
-
-			result += n.get(0) * n.get(1);
+			if(closestDo == 0 && closestDont == 0){
+				result += n.get(0) * n.get(1);
+			}
+			//ep.p("index: "+indexOfCurrentMul);
+			 n.clear();
+			 
+			
 
 		}
-		ep.p(n);
-		// cars.remove(0);
+		
+		
 
 		/*
 		 * looping over mul indexes
@@ -103,15 +107,24 @@ public class Solution_2_Day_03 {
 	}
 
 	int findClosest(int index, ArrayList<Integer> list){
-		int closestIndex = -1;
+		int closestIndex = 0;
+		int diff = 0;
 
+		//don t
+		// 738, 1491
+		// 1503
 		for (int i = 0; i < list.size(); i++) {
 			int listIndex = list.get(i);
-
-			if(listIndex<index){
+			//if(index<1504){ep.p("index:"+index+","+listIndex);}
+			
+			if(listIndex>index){
 				break;
 			}else{
-
+				if((index-listIndex)>diff){
+					diff = index-listIndex;
+					closestIndex = listIndex;
+				}
+				
 			}
 
 		}
