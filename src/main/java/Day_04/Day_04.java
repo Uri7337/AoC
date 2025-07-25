@@ -22,6 +22,33 @@ public class Day_04 {
         boolean part1 = true;
         boolean part2 = false;
 
+        /*
+		 * 		 	A
+			* 	--------------
+			* 	| ....XXMAS. |
+			* 	| .SAMXMS... |
+			* 	| ...S..A... |
+			* 	| ..A.A.MS.X |
+			* D | XMASAMX.MM | B
+			* 	| X.....XA.A |
+			* 	| S.S.S.S.SS |
+			* 	| .A.A.A.A.A |
+			* 	| ..M.M.M.MM |
+			* 	| .X.X.XMASX |
+			* 	--------------
+		 * 			C
+		 * 
+		 * can be multiple XMAS on one X char ✅
+		 */
+
+		/*
+						6 7
+		 * 			5 . . .
+		 * 			4 . X . 0
+		 * 		      . . . 1
+		 * 			  3 2	
+		 */
+
         
         ep.p("==Start==");
         if(part1){
