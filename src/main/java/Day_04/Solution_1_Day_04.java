@@ -147,21 +147,21 @@ public class Solution_1_Day_04 {
 			// break;
 
 			case 'M':
-				if(map[x][y]==part){
+				if(map[y][x]==part){
 					return findXMAS( dir,  x,  y,  'A',  map);
 				}else{
 					return false;
 				}
 
 			case 'A':
-				if(map[x][y]==part){
+				if(map[y][x]==part){
 					return findXMAS( dir,  x,  y,  'S',  map);
 				}else{
 					return false;
 				}
 
 			case 'S':
-				if(map[x][y]==part){
+				if(map[y][x]==part){
 					return true;
 				}else{
 					return false;
