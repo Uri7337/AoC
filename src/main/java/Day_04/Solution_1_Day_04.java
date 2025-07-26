@@ -63,13 +63,13 @@ public class Solution_1_Day_04 {
 		d = 0;				// Hranice - Levá Strana Mapy
 
 		// x = 0
-		int[] x0 = { 3, 4, 5 };
+		//int[] x0 = { 3, 4, 5 };
 		// y = 0
-		int[] y0 = { 5, 6, 7 };
+		//int[] y0 = { 5, 6, 7 };
 		// y = c
-		int[] yc = { 1, 2, 3 };
+		//int[] yc = { 1, 2, 3 };
 		// x = b
-		int[] xb = { 0, 1, 7 };
+		//int[] xb = { 0, 1, 7 };
 
 		switch (dir) {
 			case 0: // Směr - Doprava →
@@ -147,16 +147,26 @@ public class Solution_1_Day_04 {
 			// break;
 
 			case 'M':
-
-				break;
+				if(map[x][y]==part){
+					return findXMAS( dir,  x,  y,  'A',  map);
+				}else{
+					return false;
+				}
 
 			case 'A':
-
-				break;
+				if(map[x][y]==part){
+					return findXMAS( dir,  x,  y,  'S',  map);
+				}else{
+					return false;
+				}
 
 			case 'S':
-
-				break;
+				if(map[x][y]==part){
+					return true;
+				}else{
+					return false;
+				}
+				
 		}
 
 		return false;
