@@ -115,20 +115,29 @@ public class Solution_1_Day_04 {
 				break;
 
 			case 5: // Směr - Doleva Nahoru ↖
-				if (x==d || y==c) {
+				if (x==d || y==a) {
 					return false;
 				}else{
 					x--;
-					y++;
+					y--;
 				}
 				break;
 
 			case 6: // Směr - Nahoru ↑
-
+				if (y==a) {
+					return false;
+				}else{
+					y--;
+				}
 				break;
 
 			case 7: // Směr - Doprava Nahoru ↗
-
+				if (x==b || y==a) {
+					return false;
+				}else{
+					x++;
+					y--;
+				}
 				break;
 		}
 
