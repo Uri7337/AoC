@@ -31,8 +31,8 @@ public class Solution_2_Day_04 {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				char currChar = map[i][j];
-				if (currChar == 'X') {
-					result += goAroundAndFindXMAS(j, i, map);
+				if (currChar == 'A') {
+					result += goAroundAndFindMAS(j, i, map);
 				}
 			}
 		}
@@ -40,17 +40,17 @@ public class Solution_2_Day_04 {
 		return result;
 	}
 
-	int goAroundAndFindXMAS(int x, int y, char[][] map) {
-		int xmasCounter = 0;
+	int goAroundAndFindMAS(int x, int y, char[][] map) {
+		int masCounter = 0;
 
 		// for loop around X (checks all directions)
-		for (int dir = 0; dir < 8; dir++) {
+		for (int dir = 0; dir < 4; dir++) {
 			if (findXMAS(dir, x, y, 'M', map)) {
-				xmasCounter++;
+				return 1;
 			}
 		}
 
-		return xmasCounter;
+		return 0;
 	}
 
 	boolean findXMAS(int dir, int x, int y, char part, char[][] map) {
@@ -72,15 +72,7 @@ public class Solution_2_Day_04 {
 		//int[] xb = { 0, 1, 7 };
 
 		switch (dir) {
-			case 0: // Směr - Doprava →
-				if (x==b) {
-					return false;
-				}else{
-					x++;
-				}
-				break;
-
-			case 1: // Směr - Doprava Dolů ↘
+			case 0: // Směr - Doprava Dolů ↘
 				if (x==b || y==c) {
 					return false;
 				}else{
@@ -89,15 +81,7 @@ public class Solution_2_Day_04 {
 				}
 				break;
 
-			case 2: // Směr - Dolů ↓
-				if (y==c) {
-					return false;
-				}else{
-					y++;
-				}
-				break;
-
-			case 3: // Směr - Doleva Dolů ↙
+			case 1: // Směr - Doleva Dolů ↙
 				if (x==d || y==c) {
 					return false;
 				}else{
@@ -106,15 +90,7 @@ public class Solution_2_Day_04 {
 				}
 				break;
 
-			case 4: // Směr - Doleva ←
-				if (x==d) {
-					return false;
-				}else{
-					x--;
-				}
-				break;
-
-			case 5: // Směr - Doleva Nahoru ↖
+			case 2: // Směr - Doleva Nahoru ↖
 				if (x==d || y==a) {
 					return false;
 				}else{
@@ -123,15 +99,7 @@ public class Solution_2_Day_04 {
 				}
 				break;
 
-			case 6: // Směr - Nahoru ↑
-				if (y==a) {
-					return false;
-				}else{
-					y--;
-				}
-				break;
-
-			case 7: // Směr - Doprava Nahoru ↗
+			case 3: // Směr - Doprava Nahoru ↗
 				if (x==b || y==a) {
 					return false;
 				}else{
@@ -142,18 +110,7 @@ public class Solution_2_Day_04 {
 		}
 
 		switch (part) {
-			// case 'X':
-
-			// break;
-
 			case 'M':
-				if(map[y][x]==part){
-					return findXMAS( dir,  x,  y,  'A',  map);
-				}else{
-					return false;
-				}
-
-			case 'A':
 				if(map[y][x]==part){
 					return findXMAS( dir,  x,  y,  'S',  map);
 				}else{
@@ -162,24 +119,16 @@ public class Solution_2_Day_04 {
 
 			case 'S':
 				if(map[y][x]==part){
-					return true;
+					return findXMAS( dir,  x,  y,  'M',  map);
 				}else{
 					return false;
 				}
-				
 		}
 
 		return false;
 	}
 
-	boolean arrContains(int[] arr, int num) {
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] == num) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 
 	// ----debug zone----
 
