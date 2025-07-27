@@ -41,7 +41,7 @@ public class Solution_2_Day_04 {
 	}
 
 	int goAroundAndFindMAS(int x, int y, char[][] map) {
-		int masCounter = 0;
+		
 
 		// for loop around X (checks all directions)
 		for (int dir = 0; dir < 4; dir++) {
