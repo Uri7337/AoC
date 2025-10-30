@@ -18,9 +18,9 @@ public class Day_05 {
         String sol2_test = "";
 
         boolean tests = true;
-        boolean prod = false;
-        boolean part1 = true;
-        boolean part2 = false;
+        boolean prod = true;
+        boolean part1 = false;
+        boolean part2 = true;
 
         
         ep.p("==Start==");
@@ -69,7 +69,7 @@ public class Day_05 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Integer.valueOf(sol2_test) == 9){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Integer.valueOf(sol2_test) == 123){ep.p("| OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
