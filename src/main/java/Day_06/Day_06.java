@@ -1,7 +1,6 @@
 package Day_06;
 
 import shared.EasyPrint;
-
 public class Day_06 {
 
     public static void main(String[] args) {
@@ -10,55 +9,73 @@ public class Day_06 {
         Solution_2_Day_06 s2 = new Solution_2_Day_06();
 
         String filepath_test = "./src/main/resources/Day_06_test_2024.txt";
-        String filepath = "./src/main/resources/Day_06_2024.txt";
+		String filepath = "./src/main/resources/Day_06_2024.txt";
 
+        String sol1 = "";
+        String sol2 = "";
 
-        ep.p("=====================================");
-        ep.p("========       Start        =========");
-        ep.p("=====================================");
-        ep.p("");
+        String sol1_test = "";
+        String sol2_test = "";
 
-        ep.p("************* Start Solution * *************");
-        ep.p("");
-        ep.p("== Test prints ==");
-        String sol1_test = s1.getSolution(filepath_test).toString();
-        ep.p("");
-        ep.p("== Answer prints ==");
-        //String sol1 = s1.getSolution(filepath).toString();
-        ep.p("");
-        ep.p("************* End Solution * ***************");
-        ep.p("");
+        boolean tests = true;
+        boolean prod = false;
+        boolean part1 = true;
+        boolean part2 = false;
 
-        ep.p("************* Start Solution ** ************");
+        
+        ep.p("==Start==");
+        if(part1){
+            ep.p("\nSolution *");
+            if(tests){
+                ep.p("==Test prints==");
+                sol1_test = s1.getSolution(filepath_test).toString();
+            }
+            
+            if(prod){
+                ep.p("\n==Answer prints==");
+                sol1 = s1.getSolution(filepath).toString();
+            }
+        }
         ep.p("");
-        ep.p("== Test prints ==");
-        String sol2_test = s2.getSolution(filepath_test).toString();
+        if(part2){
+            ep.p("Solution **");
+             if(tests){
+                ep.p("==Test prints==");
+                sol2_test = s2.getSolution(filepath_test).toString();
+             }
+            
+            if(prod){
+                ep.p("\n==Answer prints==");
+                sol2 = s2.getSolution(filepath).toString();
+            }
+        }
+        ep.p("\n==End==");
+        ep.p("\n");
+        ep.p("    Day_06");
+        ep.p("===Solutions===");
+        if(part1){
+            ep.p("Solution *");
+             if(tests){
+                ep.p("Tests: " + sol1_test);
+                if(Integer.valueOf(sol1_test) == 41){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+             }
+            
+            if(prod){
+                ep.p("Answer: " + sol1);
+            }
+        }
         ep.p("");
-        ep.p("== Answer prints ==");
-       // String sol2 = s2.getSolution(filepath).toString();
-        ep.p("");
-        ep.p("************* End Solution ** **************");
-        ep.p("");
-
-        ep.p("=====================================");
-        ep.p("=========        End         ========");
-        ep.p("=====================================");
-        ep.p("");
-
-        ep.p("=====================================");
-        ep.p("                 Day_06               ");
-        ep.p("=====================================");
-        ep.p("************** Solutions **************");
-        ep.p("Solution *");
-        ep.p("    Tests: " + sol1_test);
-        //ep.p("    Answer: " + sol1);
-        ep.p("");
-        ep.p("Solution **");
-        ep.p("    Tests: " + sol2_test);
-       //ep.p("    Answer: " + sol2);
-        ep.p("");
-        ep.p("=====================================");
-
+        if(part2){
+            ep.p("Solution **");
+             if(tests){
+                ep.np("Tests: " + sol2_test);
+                if(Integer.valueOf(sol2_test) == 123){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+             }
+            if(prod){
+                ep.p("Answer: " + sol2);
+            }
+        }
+        
+        
     }
-
 }
