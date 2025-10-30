@@ -1,7 +1,7 @@
 package Day_06;
 
-import java.util.ArrayList;
 import java.awt.Point;
+import java.util.ArrayList;
 
 import shared.EasyPrint;
 import shared.ReadFile;
@@ -11,7 +11,7 @@ public class Solution_1_Day_06 {
 
 	int distinctPositions = 0;
 	
-	ArrayList<String> file;
+	ArrayList<String> map;
 
 	Point obstruction;
 	Point guard;
@@ -29,35 +29,115 @@ public class Solution_1_Day_06 {
 	public Object getSolution(String filepath) {
 		
 		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
-		file = rf.getInput(filepath);
+		map = new ArrayList<String>();
+		map = rf.getInput(filepath);
 			
 
-		//Insert Solution Here:
-		for (int i = 0; i < file.size(); i++) {
-			String line = file.get(i);
+		//Map preparation
+		for (int y = 0; y < map.size(); y++) {
+			String line = map.get(y);
 			//ep.p(line);
 			String[] linePieces = line.split("");
-			for (int j = 0 ; j<linePieces.length;j++) {
+			for (int x = 0 ; x<linePieces.length;x++) {
 				
-				if(linePieces[j].equals(obstructionSymbol)){
-					obstruction = new Point(i,j);
+				if(linePieces[x].equals(obstructionSymbol)){
+					obstruction = new Point(x,y);
 					obstructions.add(obstruction);
-				}else if (linePieces[j].equals(guardUpSymbol)) {
-					guard = new Point(i,j);
+				}else if (linePieces[x].equals(guardUpSymbol)) {
+					guard = new Point(x,y);
 				}
 				
 			}
-				
-			
-
 		}
 		
-		//ep.p(obstructions);
+		//Movement
+		// 1	^
+		// 2	>
+		// 3	v
+		// 4	<
+		int direction = 1;
+		
+		while (true) {
+			ep.p("guard: " + guard.x +" "+guard.y +" "+ direction);
+			
+			if (offMap(guard,map)) {
+				break;
+			}
+			
+			switch (direction) {
+				case 1 -> {
+					if(isThereObstruction(guard.x,guard.y-1,obstructions)){
+						rotate(direction);
+					}else{
+						writePath(guard);
+						guard.move(guard.x,guard.y-1);
+					}
+                }
+			
+				case 2 -> {
+					if(isThereObstruction(guard.x+1,guard.y,obstructions)){
+						rotate(direction);
+					}else{
+						writePath(guard);
+						guard.move(guard.x+1,guard.y);
+					}
+                }
 
+				case 3 -> {
+					if(isThereObstruction(guard.x,guard.y+1,obstructions)){
+						rotate(direction);
+					}else{
+						writePath(guard);
+						guard.move(guard.x,guard.y+1);
+					}
+                }
+					
+				case 4 -> {
+					if(isThereObstruction(guard.x-1,guard.y,obstructions)){
+						rotate(direction);
+					}else{
+						writePath(guard);
+						guard.move(guard.x-1,guard.y);
+					}
+                }
+			}
+			
+		}
+		ep.p(guard);
+		distinctPositions = guardUniqueSteps.size();
 		return distinctPositions;
 	}
 
+   //loop				- done
+	//check borders		- done
+	//look				- 
+	//move				-
+	//  - write path 	-
+	//rotate 			- done
+
+	int rotate(int dir){
+		return (dir%4)+1;
+	}
+	
+	boolean offMap(Point guard, ArrayList<String> map){
+		// Edges - up && left < 0
+		int rightEdge = map.get(0).length();
+		int bottomEdge = map.size(); 
+
+		return (0 > guard.x || 0 > guard.y || guard.x > rightEdge || guard.y > bottomEdge);
+	}
+
+	boolean isThereObstruction(int x, int y, ArrayList<Point> obstructions){
+		Point p = new Point(x,y);
+		return obstructions.contains(p);
+	}
+
+	void writePath(Point guard){
+		if(!guardUniqueSteps.contains(guard)){
+			guardUniqueSteps.add(guard);
+		}
+		
+	}
 	// ----debug zone----
 	
 }
