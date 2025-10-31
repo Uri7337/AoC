@@ -20,7 +20,7 @@ public class Solution_1_Day_06 {
 
 	// we can filter input into guardUniqueSteps so we do not have to filter it later
 	// if(!list.contains(data)) {list.add(data);} 
-	ArrayList<Point> guardUniqueSteps = new ArrayList<>();
+	ArrayList<Point> guardUniqueSteps;
 
 	String guardUpSymbol = "^";
 	String obstructionSymbol = "#";
@@ -31,6 +31,8 @@ public class Solution_1_Day_06 {
 		ReadFile rf = new ReadFile();
 		map = new ArrayList<String>();
 		map = rf.getInput(filepath);
+
+		guardUniqueSteps = new ArrayList<>(); // fixed my solution calling bug/mistake
 			
 
 		//Map preparation
@@ -104,8 +106,7 @@ public class Solution_1_Day_06 {
 			}
 			
 		}
-		//ep.p(guardUniqueSteps);
-
+		
 		distinctPositions = guardUniqueSteps.size();
 		return distinctPositions;
 	}
@@ -126,7 +127,7 @@ public class Solution_1_Day_06 {
 		int rightEdge = map.get(0).length();
 		int bottomEdge = map.size(); 
 
-		return (0 > guard.x || 0 > guard.y || guard.x > rightEdge || guard.y > bottomEdge);
+		return (0 > guard.x || 0 > guard.y || guard.x >= rightEdge || guard.y >= bottomEdge);
 	}
 
 	boolean isThereObstruction(int x, int y, ArrayList<Point> obstructions){
