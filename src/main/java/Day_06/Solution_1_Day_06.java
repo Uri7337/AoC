@@ -58,7 +58,7 @@ public class Solution_1_Day_06 {
 		int direction = 1;
 		
 		while (true) {
-			ep.p("guard: " + guard.x +" "+guard.y +" "+ direction);
+			//ep.p("guard: " + guard.x +" "+guard.y +" "+ direction);
 			
 			if (offMap(guard,map)) {
 				break;
@@ -67,7 +67,8 @@ public class Solution_1_Day_06 {
 			switch (direction) {
 				case 1 -> {
 					if(isThereObstruction(guard.x,guard.y-1,obstructions)){
-						rotate(direction);
+						direction = rotate(direction);
+						//ep.p(direction);
 					}else{
 						writePath(guard);
 						guard.move(guard.x,guard.y-1);
@@ -76,7 +77,7 @@ public class Solution_1_Day_06 {
 			
 				case 2 -> {
 					if(isThereObstruction(guard.x+1,guard.y,obstructions)){
-						rotate(direction);
+						direction = rotate(direction);
 					}else{
 						writePath(guard);
 						guard.move(guard.x+1,guard.y);
@@ -85,7 +86,7 @@ public class Solution_1_Day_06 {
 
 				case 3 -> {
 					if(isThereObstruction(guard.x,guard.y+1,obstructions)){
-						rotate(direction);
+						direction = rotate(direction);
 					}else{
 						writePath(guard);
 						guard.move(guard.x,guard.y+1);
@@ -94,7 +95,7 @@ public class Solution_1_Day_06 {
 					
 				case 4 -> {
 					if(isThereObstruction(guard.x-1,guard.y,obstructions)){
-						rotate(direction);
+						direction = rotate(direction);
 					}else{
 						writePath(guard);
 						guard.move(guard.x-1,guard.y);
@@ -103,7 +104,8 @@ public class Solution_1_Day_06 {
 			}
 			
 		}
-		ep.p(guard);
+		//ep.p(guardUniqueSteps);
+
 		distinctPositions = guardUniqueSteps.size();
 		return distinctPositions;
 	}
@@ -133,8 +135,10 @@ public class Solution_1_Day_06 {
 	}
 
 	void writePath(Point guard){
-		if(!guardUniqueSteps.contains(guard)){
-			guardUniqueSteps.add(guard);
+		Point p = new Point(guard.x,guard.y);
+		if(!guardUniqueSteps.contains(p)){
+			
+			guardUniqueSteps.add(p);
 		}
 		
 	}
