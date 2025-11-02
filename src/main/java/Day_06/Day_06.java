@@ -18,9 +18,9 @@ public class Day_06 {
         String sol2_test = "";
 
         boolean tests = true;
-        boolean prod = true;
-        boolean part1 = true;
-        boolean part2 = false;
+        boolean prod = false;
+        boolean part1 = false;
+        boolean part2 = true;
 
         
         ep.p("==Start==");
