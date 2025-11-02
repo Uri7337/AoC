@@ -57,7 +57,7 @@ public class Day_06 {
             ep.p("Solution *");
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Integer.valueOf(sol1_test) == 41){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Integer.valueOf(sol1_test) == 41){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
@@ -69,7 +69,7 @@ public class Day_06 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Integer.valueOf(sol2_test) == 123){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Integer.valueOf(sol2_test) == 6){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);

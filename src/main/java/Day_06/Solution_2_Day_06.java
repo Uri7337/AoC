@@ -9,11 +9,12 @@ import shared.ReadFile;
 public class Solution_2_Day_06 {
 	EasyPrint ep = new EasyPrint();
 
-	int distinctPositions = 0;
+	int differentObstructionPositions = 0;
 	
 	ArrayList<String> map;
 
 	Point obstruction;
+	Point guardStartPos;
 	Point guard;
 
 	ArrayList<Point> obstructions = new ArrayList<>();
@@ -47,6 +48,7 @@ public class Solution_2_Day_06 {
 					obstructions.add(obstruction);
 				}else if (linePieces[x].equals(guardUpSymbol)) {
 					guard = new Point(x,y);
+					guardStartPos = new Point(x,y);
 				}
 				
 			}
@@ -58,6 +60,7 @@ public class Solution_2_Day_06 {
 		// 3	v
 		// 4	<
 		int direction = 1;
+
 		
 		while (true) {
 			//ep.p("guard: " + guard.x +" "+guard.y +" "+ direction);
@@ -107,8 +110,81 @@ public class Solution_2_Day_06 {
 			
 		}
 		
-		distinctPositions = guardUniqueSteps.size();
-		return distinctPositions;
+		//ep.p(guardUniqueSteps);
+		int i;
+		boolean stuckInLoop = false;
+		ArrayList<Point> newObstructions = obstructions;
+		for (int obstructionindex = 1; obstructionindex < guardUniqueSteps.size(); obstructionindex++) {
+			newObstructions.add(guardUniqueSteps.get(obstructionindex));
+
+			
+			
+
+			direction = 1;
+			guard = guardStartPos;
+			i = 0;
+			while (true) {
+				ep.p("guard: " + guard.x +" "+guard.y +" "+ direction+" "+i+" new: "+newObstructions.get(newObstructions.size()-1).x +" "+newObstructions.get(newObstructions.size()-1).y);
+				i++;
+				if (offMap(guard,map)) {
+					break;
+				}
+
+				if(i==30000){
+					stuckInLoop = true;
+					break;
+				}
+				
+				switch (direction) {
+					case 1 -> {
+						if(isThereObstruction(guard.x,guard.y-1,obstructions)){
+							direction = rotate(direction);
+							//ep.p(direction);
+						}else{
+							//writePath(guard);
+							guard.move(guard.x,guard.y-1);
+						}
+					}
+				
+					case 2 -> {
+						if(isThereObstruction(guard.x+1,guard.y,obstructions)){
+							direction = rotate(direction);
+						}else{
+							//writePath(guard);
+							guard.move(guard.x+1,guard.y);
+						}
+					}
+
+					case 3 -> {
+						if(isThereObstruction(guard.x,guard.y+1,obstructions)){
+							direction = rotate(direction);
+						}else{
+							//writePath(guard);
+							guard.move(guard.x,guard.y+1);
+						}
+					}
+						
+					case 4 -> {
+						if(isThereObstruction(guard.x-1,guard.y,obstructions)){
+							direction = rotate(direction);
+						}else{
+							//writePath(guard);
+							guard.move(guard.x-1,guard.y);
+						}
+					}
+				}
+			}
+
+			newObstructions.remove(newObstructions.size()-1);
+
+			if(stuckInLoop){
+				differentObstructionPositions++;
+				stuckInLoop = false;
+			}
+		}
+
+		
+		return differentObstructionPositions;
 	}
 
    //loop				- done
