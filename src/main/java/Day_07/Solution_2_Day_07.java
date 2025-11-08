@@ -1,32 +1,31 @@
 package Day_07;
 
-import shared.ReadFile;
-import shared.EasyPrint;
-
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import shared.EasyPrint;
+import shared.ReadFile;
 
 public class Solution_2_Day_07 {
 	EasyPrint ep = new EasyPrint();
+	int result = 0;
 
-	Object solution = "Nothing yet!";
-
-	ArrayList<String> file;
+	ArrayList<String> equations;
 
 	public Object getSolution(String filepath) {
-
+		
 		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
-		file = rf.getInput(filepath);
+		equations = new ArrayList<>();
+		equations = rf.getInput(filepath);
 
-		// Insert Solution Here:
-		for (int i = 0; i < file.size(); i++) {
-			String line = file.get(i);
-
+		//equations preparation
+		for (int y = 0; y < equations.size(); y++) {
+			String equation = equations.get(y);
+			//ep.p(equation);
+			String[] equationPieces = equation.split("");
+			
 		}
-		return solution;
-
+		
+		return result;
 	}
-	// ----debug zone----
-
+	
 }
