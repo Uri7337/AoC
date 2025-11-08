@@ -9,7 +9,7 @@ import shared.ReadFile;
 public class Solution_2_Day_06 {
 	EasyPrint ep = new EasyPrint();
 
-	int differentObstructionPositions = 0;
+	int stuckWithNewObstruction = 0;
 	
 	ArrayList<String> map;
 
@@ -49,6 +49,7 @@ public class Solution_2_Day_06 {
 				}else if (linePieces[x].equals(guardUpSymbol)) {
 					guard = new Point(x,y);
 					guardStartPos = new Point(x,y);
+					//ep.p("begin: "+guardStartPos);
 				}
 				
 			}
@@ -110,7 +111,7 @@ public class Solution_2_Day_06 {
 			
 		}
 		
-		//ep.p(guardUniqueSteps);
+		//ep.p(guardUniqueSteps.size());
 		int i;
 		boolean stuckInLoop = false;
 		ArrayList<Point> newObstructions = obstructions;
@@ -121,10 +122,11 @@ public class Solution_2_Day_06 {
 			
 
 			direction = 1;
-			guard = guardStartPos;
+			guard = new Point(guardStartPos.x,guardStartPos.y);
+			//ep.p(guardStartPos);
 			i = 0;
 			while (true) {
-				ep.p("guard: " + guard.x +" "+guard.y +" "+ direction+" "+i+" new: "+newObstructions.get(newObstructions.size()-1).x +" "+newObstructions.get(newObstructions.size()-1).y);
+				//ep.p("guard: " + guard.x +" "+guard.y +" "+ direction+" "+i+" new: "+newObstructions.get(newObstructions.size()-1).x +" "+newObstructions.get(newObstructions.size()-1).y);
 				i++;
 				if (offMap(guard,map)) {
 					break;
@@ -178,13 +180,13 @@ public class Solution_2_Day_06 {
 			newObstructions.remove(newObstructions.size()-1);
 
 			if(stuckInLoop){
-				differentObstructionPositions++;
+				stuckWithNewObstruction++;
 				stuckInLoop = false;
 			}
 		}
 
 		
-		return differentObstructionPositions;
+		return stuckWithNewObstruction;
 	}
 
    //loop				- done
