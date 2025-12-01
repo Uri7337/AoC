@@ -18,7 +18,7 @@ public class Day_01 {
         String sol2_test = "";
 
         boolean tests = true;
-        boolean prod = true;
+        boolean prod = false;
         boolean part1 = false;
         boolean part2 = true;
 
