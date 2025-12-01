@@ -1,41 +1,58 @@
 package Day_01;
 
-import shared.EasyPrint;
-import shared.ReadFile;
 import java.util.ArrayList;
 
+import shared.EasyPrint;
+import shared.ReadFile;
+
 public class Solution_1_Day_01 {
+	EasyPrint ep = new EasyPrint();
+	
+	ArrayList<String> rotations;
 
-    int solution = 0;
-    EasyPrint ep = new EasyPrint();
 
-    public Object getSolution(String filepath) {
-        ReadFile rf = new ReadFile();
-        ArrayList<String> data = new ArrayList<String>();
+	public Object getSolution(String filepath) {
+		
+		ReadFile rf = new ReadFile();
+		rotations = new ArrayList<String>();
+		rotations = rf.getInput(filepath);
 
-        ArrayList<Integer> num1 = new ArrayList<Integer>();
-        ArrayList<Integer> num2 = new ArrayList<Integer>();
-        
-        data = rf.getInput(filepath);
+		int dial = 50;
+		int password = 0;
+		//ep.p("The dial starts by pointing at " + dial);
+		//rotations preparation
+		for (int y = 0; y < rotations.size(); y++) {
+			String line = rotations.get(y);
+			//ep.p(line);
+			char direction = line.charAt(0);
+			int rotation = Integer.parseInt(line.substring(1, line.length()));
 
-        for (int i = 0; i < data.size(); i++) {
-            String[] numbers = data.get(i).split("   ");
-            num1.add(Integer.parseInt(numbers[0]));
-            num2.add(Integer.parseInt(numbers[1]));
+			if(direction == 'R'){
+				dial += rotation;
+				while(100<=dial){
+					//ep.np("before: "+direction+""+dial);
+					dial-=100;
+					//ep.p(" after: "+direction+""+dial);
+				}
+			}else{
+				dial -= rotation;
+				while(0>dial){
+					//ep.np("before: "+direction+""+dial);
+					dial+=100;
+					//ep.p(" after: "+direction+""+dial);
+				}
+			}
+			
+			if(dial==0){
+				password++;
+			}
+			
+			//ep.p("The dial is rotated "+direction+""+rotation+" to point at "+dial+".");
 
         }
 
-        num1.sort(null);
-        num2.sort(null);
 
-        //ep.p(num1);
-        solution = 0;
-        for (int i = 0; i < num1.size(); i++) {
-
-            solution += Math.abs(num1.get(i) - num2.get(i));
-
-        }
-
-        return solution;
+        return password;
     }
+	
 }

@@ -1,56 +1,64 @@
 package Day_01;
 
+import java.util.ArrayList;
+
 import shared.EasyPrint;
 import shared.ReadFile;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Solution_2_Day_01 {
+	EasyPrint ep = new EasyPrint();
+	
+	ArrayList<String> rotations;
 
-    int solution = 0;
-    EasyPrint ep = new EasyPrint();
 
-    public Object getSolution(String filepath) {
-        solution = 0;
-        ReadFile rf = new ReadFile();
-        ArrayList<String> data = new ArrayList<String>();
+	public Object getSolution(String filepath) {
+		
+		ReadFile rf = new ReadFile();
+		rotations = new ArrayList<String>();
+		rotations = rf.getInput(filepath);
 
-        ArrayList<Integer> num1 = new ArrayList<Integer>();
-        ArrayList<Integer> num2 = new ArrayList<Integer>();
+		int dial = 50;
+		int password = 0;
+        boolean click = false;
+		//ep.p("The dial starts by pointing at " + dial);
+		//rotations preparation
+		for (int y = 0; y < rotations.size(); y++) {
+			String line = rotations.get(y);
+			//ep.p(line);
+			char direction = line.charAt(0);
+			int rotation = Integer.parseInt(line.substring(1, line.length()));
+            click = false;
 
-        HashMap<Integer, Integer> num3 = new HashMap<>();
+			if(direction == 'R'){
+				dial += rotation;
+				while(100<=dial){
+					//ep.np("before: "+direction+""+dial);
+					dial-=100;
+                    password++;
+                    click = true;
+					//ep.p(" after: "+direction+""+dial);
+				}
+			}else{
+				dial -= rotation;
+				while(0>dial){
+					//ep.np("before: "+direction+""+dial);
+					dial+=100;
+                    password++;
+                    click = true;
+					//ep.p(" after: "+direction+""+dial);
+				}
+			}
+			
+			if(dial==0 && !click){
+				//password++;
+			}
+			
+			//ep.p("The dial is rotated "+direction+""+rotation+" to point at "+dial+".");
 
-        data = rf.getInput(filepath);
-
-        for (int i = 0; i < data.size(); i++) {
-            String[] numbers = data.get(i).split("   ");
-
-            num3.put(Integer.parseInt(numbers[0]), 0);
-            num1.add(Integer.parseInt(numbers[0]));
-            num2.add(Integer.parseInt(numbers[1]));
         }
 
-        for (int bob : num2) {
-            if (num3.get(bob) == null) {
 
-            } else {
-                num3.put(bob, num3.get(bob) + 1);
-            }
-
-        }
-
-        //num3.forEach((t, u) -> ep.p(t + " " + u));
-
-        for (int bob : num1) {
-            if (num3.get(bob) == null) {
-
-            } else {
-                solution += bob * num3.get(bob);
-            }
-
-        }
-
-        return solution;
+        return password;
     }
-
+	
 }
