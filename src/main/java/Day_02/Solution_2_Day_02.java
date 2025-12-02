@@ -1,90 +1,81 @@
 package Day_02;
 
-import shared.EasyPrint;
-import shared.ReadFile;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class Solution_2_Day_02 {
+import shared.EasyPrint;
+import shared.ReadFile;
 
-	int solution = 0;
+public class Solution_2_Day_02 {
 	EasyPrint ep = new EasyPrint();
+	
+	ArrayList<String> file;
+
+	BigInteger res = BigInteger.ZERO;
+
+	public BigInteger isInvalidID(BigInteger id){
+		int max = 0;
+		ArrayList<String> subArr = new ArrayList<>();
+		String idS = String.valueOf(id);
+		ep.p(idS);
+		for(int i = 1 ; i<(idS.length()/2)+1 ; i++){
+			String part = idS.substring(0, i);
+			
+			max = part.length();
+			subArr = new ArrayList<>();
+			do {
+				String sub = idS.substring(max, max+part.length());
+				//ep.p("sub: "+sub +" "+ subCounter);
+				subArr.add(sub);
+				max+=part.length();
+			} while (max<idS.length()-(part.length()-1));
+				
+			ep.p("before: "+subArr);
+			for (int j = 0; j < subArr.size(); j++) {
+				if(part.equals(subArr.get(j))){
+					subArr.remove(j);
+				}
+			}
+			ep.p("after: "+subArr.isEmpty());
+				//return id;
+			
+		}
+		
+		
+			
+		
+
+		return BigInteger.ZERO;
+	}
 
 	public Object getSolution(String filepath) {
-		solution = 0;
-		ReadFile rf = new ReadFile();
-		ArrayList<String> data = new ArrayList<String>();
-
-		data = rf.getInput(filepath);
-
-		ArrayList<Integer> report = new ArrayList<>();
-		for (int i = 0; i < data.size(); i++) {
-			String[] numbers = data.get(i).split(" ");
-			for (String string : numbers) {
-				report.add(Integer.parseInt(string));
-			}
-
-			
-			boolean inc = report.get(1) > report.get(0) ? true : false;
-			int first;
-			int second;
-
-			boolean safe = false;
-            boolean problemDampener = false;
-			for (int j = 0; j < report.size(); j++) {
-				first = report.get(j);
-				if ((j + 1) < report.size()) {
-					second = report.get(j + 1);
-				} else {
-					break;
-				}
-
-				if (inc) {
-
-					if (first + 1 == second || first + 2 == second || first + 3 == second) {
-						safe = true;
-						
-					} else {
-                        if(!problemDampener){
-                            problemDampener=true;
-                            report.remove(getBadLevel());
-                            j=-1;
-                            //inc = report.get(1) > report.get(0) ? true : false;
-                        }else{
-                            safe = false;
-						    break;
-                        }
-						
-					}
-
-				} else {
-					if (first - 1 == second || first - 2 == second || first - 3 == second) {
-						safe = true;
-						
-					} else {
-                        if(!problemDampener){
-                            problemDampener=true;
-                            report.remove(getBadLevel());
-                            j=-1;
-                            //inc = report.get(1) > report.get(0) ? true : false;
-                        }else{
-                            safe = false;
-						    break;
-                        }
-					}
-				}
-
-			}
-            ep.p(report+" safe:" +safe);
-			if (safe) {
-				solution += 1;
-			}
-			report.clear();
-		}
-
-		return solution;
-	}
-	int getBadLevel(){
 		
-		return 0;
-	}
+		ReadFile rf = new ReadFile();
+		file = new ArrayList<String>();
+		file = rf.getInput(filepath);
+
+		res = BigInteger.ZERO;
+
+		for (int y = 0; y < file.size(); y++) {
+			String line = file.get(y);
+			
+			String[] ranges = line.split(",");
+			
+			for (String string : ranges) {
+				String[] singleRanges = string.split("-");
+				String rangeSFrom = singleRanges[0];
+				String rangeSTo = singleRanges[1];
+				BigInteger rangeBIFrom = new BigInteger(rangeSFrom);
+				BigInteger rangeBITo = new BigInteger(rangeSTo);
+				rangeBITo=rangeBITo.add(BigInteger.ONE);
+				//ep.p(rangeBITo);
+
+				for (BigInteger bi = rangeBIFrom; bi.compareTo(rangeBITo)<0 ; bi=bi.add(BigInteger.ONE)) {
+					res=res.add(isInvalidID(bi));
+				}
+			}
+        }
+        return res;
+    }
+	
 }

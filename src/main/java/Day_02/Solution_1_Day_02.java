@@ -1,69 +1,60 @@
 package Day_02;
 
-import shared.EasyPrint;
-import shared.ReadFile;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class Solution_1_Day_02 {
+import shared.EasyPrint;
+import shared.ReadFile;
 
-	int solution = 0;
+public class Solution_1_Day_02 {
 	EasyPrint ep = new EasyPrint();
+	
+	ArrayList<String> file;
+
+	BigInteger res = BigInteger.ZERO;
+
+	public BigInteger isInvalidID(BigInteger id){
+		
+		String idS = String.valueOf(id);
+		if(idS.length()%2==0){
+			String firstHalf = idS.substring(0, idS.length()/2);
+			String secondHalf = idS.substring(idS.length()/2,idS.length());
+			if(firstHalf.equals(secondHalf)){
+				return id;
+			}
+		}
+		
+		return BigInteger.ZERO;
+	}
 
 	public Object getSolution(String filepath) {
-		solution = 0;
+		
 		ReadFile rf = new ReadFile();
-		ArrayList<String> data = new ArrayList<String>();
+		file = new ArrayList<String>();
+		file = rf.getInput(filepath);
 
-		data = rf.getInput(filepath);
+		res = BigInteger.ZERO;
 
-		ArrayList<Integer> report = new ArrayList<>();
-		for (int i = 0; i < data.size(); i++) {
-			String[] numbers = data.get(i).split(" ");
-			for (String string : numbers) {
-				report.add(Integer.parseInt(string));
-			}
+		for (int y = 0; y < file.size(); y++) {
+			String line = file.get(y);
+			
+			String[] ranges = line.split(",");
+			
+			for (String string : ranges) {
+				String[] singleRanges = string.split("-");
+				String rangeSFrom = singleRanges[0];
+				String rangeSTo = singleRanges[1];
+				BigInteger rangeBIFrom = new BigInteger(rangeSFrom);
+				BigInteger rangeBITo = new BigInteger(rangeSTo);
+				rangeBITo=rangeBITo.add(BigInteger.ONE);
+				//ep.p(rangeBITo);
 
-			int rsize = report.size();
-			boolean inc = report.get(1) > report.get(0) ? true : false;
-			int first;
-			int second;
-
-			boolean safe = false;
-			for (int j = 0; j < rsize; j++) {
-				first = report.get(j);
-				if ((j + 1) < rsize) {
-					second = report.get(j + 1);
-				} else {
-					break;
+				for (BigInteger bi = rangeBIFrom; bi.compareTo(rangeBITo)<1 ; bi=bi.add(BigInteger.ONE)) {
+					res=res.add(isInvalidID(bi));
 				}
-
-				if (inc) {
-
-					if (first + 1 == second || first + 2 == second || first + 3 == second) {
-						safe = true;
-						
-					} else {
-						safe = false;
-						break;
-					}
-
-				} else {
-					if (first - 1 == second || first - 2 == second || first - 3 == second) {
-						safe = true;
-						
-					} else {
-						safe = false;
-						break;
-					}
-				}
-
 			}
-			if (safe) {
-				solution += 1;
-			}
-			report.clear();
-		}
-
-		return solution;
-	}
+        }
+        return res;
+    }
+	
 }
