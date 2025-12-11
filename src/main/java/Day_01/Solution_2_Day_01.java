@@ -18,7 +18,7 @@ public class Solution_2_Day_01 {
 
 		int dial = 50;
 		int password = 0;
-		boolean from0 = false;
+		
 		// rotations preparation
 		for (int y = 0; y < rotations.size(); y++) {
 			String line = rotations.get(y);
@@ -47,52 +47,42 @@ public class Solution_2_Day_01 {
 
 				}
 			} */
-			if(dial==0){from0 = true;}
+
+			
 			if (direction == 'R') {
 				for (int index = rotation; index > 0; index--) {
 					if (dial == 99) {
 						dial = 0;
-						if(!from0){
-							password++;
-							ep.p(direction+""+rotation);
-						}
-						
+						password++;
 						
 					} else {
 						dial++;
 					}
-					//start = false;
 				}
-				from0 = dial==0 ? true : false; 
 			} else {
 				for (int index = rotation; index > 0; index--) {
 					if (dial == 0) {
 						dial = 99;
-						if(!from0){
-							password++;
-							ep.p(direction+""+rotation);
-						}
+						if(index!=rotation)password++;
 						
 						
 					} else {
 						dial--;
-					}
-					//start = false;
-					if(index == 1 && dial ==0){password++;}
+					}			
 				}
-				from0 = dial==0 ? true : false;
+				
 			}
+			if(dial==0 && direction!='R'){password++;}
+			ep.np(direction+""+rotation+" ");
+			ep.p(dial +" :"+ password);
 			
-			if (dial == 0 && !from0){
-				password++;
-				ep.p(direction+""+rotation);
-			}
 
 		}
 
 		// 6889 - wrong
 		// 8047 - wrong
 		// 5748 - wrong
+		// 6860
 		return password;
 	}
 
