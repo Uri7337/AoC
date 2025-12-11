@@ -18,56 +18,82 @@ public class Solution_2_Day_01 {
 
 		int dial = 50;
 		int password = 0;
-		int counter = 0;
-		boolean nodoubles;
-		ep.p("The dial starts by pointing at " + dial);
+		boolean from0 = false;
 		// rotations preparation
 		for (int y = 0; y < rotations.size(); y++) {
 			String line = rotations.get(y);
-			// ep.p(line);
+
 			char direction = line.charAt(0);
 			int rotation = Integer.parseInt(line.substring(1, line.length()));
 
-			nodoubles = false;
-			if (rotation > 100) {
-				ep.p("hi");
-			}
-			password = counter;
-			if (direction == 'R') {
+			/* if (direction == 'R') {
+				if (dial == 0) {
+					password--;
+				}
 				dial += rotation;
-				while (100 <= dial) {
 
+				while (100 <= dial) {
+					password++;
 					dial -= 100;
-					counter++;
-					//nodoubles = true;
 				}
 			} else {
+				if (dial == 0) {
+					password--;
+				}
 				dial -= rotation;
 				while (0 > dial) {
-
+					password++;
 					dial += 100;
-					counter++;
-					//nodoubles = true;
+
 				}
+			} */
+			if(dial==0){from0 = true;}
+			if (direction == 'R') {
+				for (int index = rotation; index > 0; index--) {
+					if (dial == 99) {
+						dial = 0;
+						if(!from0){
+							password++;
+							ep.p(direction+""+rotation);
+						}
+						
+						
+					} else {
+						dial++;
+					}
+					//start = false;
+				}
+				from0 = dial==0 ? true : false; 
+			} else {
+				for (int index = rotation; index > 0; index--) {
+					if (dial == 0) {
+						dial = 99;
+						if(!from0){
+							password++;
+							ep.p(direction+""+rotation);
+						}
+						
+						
+					} else {
+						dial--;
+					}
+					//start = false;
+					if(index == 1 && dial ==0){password++;}
+				}
+				from0 = dial==0 ? true : false;
 			}
-
-			ep.p(" The dial is rotated " + direction + "" + rotation + " to point at " + dial);
-			if (dial == 0) {
-				counter++;
-				ep.p("dial is 0 lol, someone write it down");
-				nodoubles = true;
-			}
-			if (counter > password && nodoubles == false) {
-
-				ep.p("during this rotation, it points at 0 " + (counter - password) + ".");
-
+			
+			if (dial == 0 && !from0){
+				password++;
+				ep.p(direction+""+rotation);
 			}
 
 		}
 
 		// 6889 - wrong
 		// 8047 - wrong
-		return counter;
+		// 5748 - wrong
+		return password;
 	}
 
 }
