@@ -12,6 +12,7 @@ public class Solution_2_Day_03 {
 
 	long res = 0;
 
+
 	public Object getSolution(String filepath) {
 		
 		ReadFile rf = new ReadFile();
@@ -20,9 +21,13 @@ public class Solution_2_Day_03 {
 
 		res = 0;
 
-		for (int y = 0; y < file.size(); y++) {
-			String line = file.get(y);
+		for (int i = 0; i < file.size(); i++) {
 			
+			String line = file.get(i);
+			String[] s = line.split("");
+
+
+
         }
 		
 		
