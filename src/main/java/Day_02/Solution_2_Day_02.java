@@ -16,38 +16,33 @@ public class Solution_2_Day_02 {
 		int max = 0;
 		ArrayList<String> subArr = new ArrayList<>();
 		String idS = String.valueOf(id);
-		ep.p(idS);
-		// kontrolovaná část čísla musí bít max do poloviny délky celého čísla
-		// při rozdělování čísla na více částí mi nesmí zbýt menší část, takové číslo přeskakujeme
-		// příklad: 22211112 -> část po 3 == 222 111 12 -> přeskočit   
-		// idS.length()/2 
+		//ep.p(idS);
+		
 		for(int i = 1 ; i<(idS.length()/2)+1 ; i++){
 			String part = idS.substring(0, i);
-			
-			max = part.length();
-			subArr = new ArrayList<>();
-			do {
-				String sub = idS.substring(max, max+part.length());
-				//ep.p("sub: "+sub +" "+ subCounter);
-				subArr.add(sub);
-				max+=part.length();
-			} while (max<idS.length()-(part.length()-1));
-			ep.p("part: "+ part +" max: "+ max);
-			ep.p("before: "+subArr);
-			for (int j = 0; j < subArr.size(); j++) {
-				if(part.equals(subArr.get(j))){
-					subArr.remove(j);
+			if(idS.length()%part.length() == 0){
+				max = part.length();
+				subArr = new ArrayList<>();
+				do {
+					String sub = idS.substring(max, max+part.length());
+					//ep.p("sub: "+sub +" "+ subCounter);
+					subArr.add(sub);
+					max+=part.length();
+				} while (max<idS.length()-(part.length()-1));
+				//ep.p("part: "+ part +" max: "+ max);
+				//ep.p("before: "+subArr);
+				
+				for (int j = 0; j < subArr.size(); j++) {
+					if(part.equals(subArr.get(j))){
+						subArr.remove(j);
+						j=-1;
+					}
 				}
+				//ep.p("after: "+subArr+" "+ subArr.isEmpty());
+				if (subArr.isEmpty()) return id;
 			}
-			ep.p("after: "+subArr+" "+ subArr.isEmpty());
-				//return id;
-			
 		}
 		
-		
-			
-		
-
 		return 0;
 	}
 
@@ -78,6 +73,8 @@ public class Solution_2_Day_02 {
 				}
 			}
         }
+		//35950619148
+		
         return res;
     }
 	

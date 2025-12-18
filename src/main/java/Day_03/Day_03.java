@@ -1,5 +1,7 @@
 package Day_03;
 
+
+
 import shared.EasyPrint;
 public class Day_03 {
 
@@ -8,8 +10,8 @@ public class Day_03 {
         Solution_1_Day_03 s1 = new Solution_1_Day_03();
         Solution_2_Day_03 s2 = new Solution_2_Day_03();
 
-        String filepath_test = "./src/main/resources/Day_03_test_2024.txt";
-		String filepath = "./src/main/resources/Day_03_2024.txt";
+        String filepath_test = "./src/main/resources/Day_03_test_2025.txt";
+		String filepath = "./src/main/resources/Day_03_2025.txt";
 
         String sol1 = "";
         String sol2 = "";
@@ -17,10 +19,10 @@ public class Day_03 {
         String sol1_test = "";
         String sol2_test = "";
 
-        boolean tests = false;
-        boolean prod = true;
-        boolean part1 = false;
-        boolean part2 = true;
+        boolean tests = true;
+        boolean prod = false;
+        boolean part1 = true;
+        boolean part2 = false;
 
         
         ep.p("==Start==");
@@ -57,6 +59,7 @@ public class Day_03 {
             ep.p("Solution *");
              if(tests){
                 ep.p("Tests: " + sol1_test);
+                if(Integer.valueOf(sol1_test) == 357){ep.p("| OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
@@ -68,7 +71,7 @@ public class Day_03 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Integer.valueOf(sol2_test) == 48){ep.p(" OK: True");}else{ep.p(" | OK: False");}
+                if(Integer.valueOf(sol2_test) == 1){ep.p("| OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
@@ -78,3 +81,7 @@ public class Day_03 {
         
     }
 }
+
+
+//24267689552
+//23039913998
