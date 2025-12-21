@@ -21,8 +21,8 @@ public class Day_04 {
 
         boolean tests = true;
         boolean prod = false;
-        boolean part1 = true;
-        boolean part2 = false;
+        boolean part1 = false;
+        boolean part2 = true;
 
         
         ep.p("==Start==");
@@ -59,7 +59,7 @@ public class Day_04 {
             ep.p("Solution *");
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Integer.valueOf(sol1_test) == 357){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Integer.valueOf(sol1_test) == 13){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
