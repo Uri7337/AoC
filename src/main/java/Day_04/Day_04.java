@@ -19,8 +19,8 @@ public class Day_04 {
         String sol1_test = "";
         String sol2_test = "";
 
-        boolean tests = true;
-        boolean prod = false;
+        boolean tests = false;
+        boolean prod = true;
         boolean part1 = false;
         boolean part2 = true;
 
@@ -71,7 +71,7 @@ public class Day_04 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Long.valueOf(sol2_test) == 3121910778619l){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Integer.valueOf(sol2_test) == 43){ep.p("| OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);

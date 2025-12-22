@@ -27,13 +27,17 @@ public class Solution_2_Day_04 {
 
 	class PaperRoll extends Position{
 		int totalRollsAround = 0;
+		boolean removed = false;
 
 		PaperRoll(int x, int y){
         	super(x,y);
     	}
 
 		boolean amIAccessible(){
-			return totalRollsAround<4 ? true : false; 
+			if(totalRollsAround<4){
+				removed = true;
+			}
+			return removed;
 		}
 
 		void isAround(PaperRoll paperRoll){
@@ -41,7 +45,10 @@ public class Solution_2_Day_04 {
 				if(paperRoll.y>=(this.y-1) && paperRoll.y<=(this.y+1)){
 					
 					if(!(this.x ==paperRoll.x && this.y ==paperRoll.y)){
-						this.totalRollsAround++;
+						if(!paperRoll.removed){
+							this.totalRollsAround++;
+						}
+						
 					}
 					
 				}
@@ -76,17 +83,41 @@ public class Solution_2_Day_04 {
 
         }
 		
-		for (PaperRoll ogPaperRoll : paperRolls) {
-			for (PaperRoll paperRoll : paperRolls) {
-				ogPaperRoll.isAround(paperRoll);
+		long same = -1;
+		while (true) {
+			if(same==res){
+				break;
 			}
-
-			if(ogPaperRoll.amIAccessible()){
-				res++;
+			same=res;
+			for (PaperRoll ogPaperRoll : paperRolls) {
+				if(!ogPaperRoll.removed){
+					for (PaperRoll paperRoll : paperRolls) {
+						ogPaperRoll.isAround(paperRoll);
+					}
+				}
+				
+			}
+		
+			for (PaperRoll ogPaperRoll : paperRolls) {
+				if(!ogPaperRoll.removed){
+					if(ogPaperRoll.amIAccessible()){
+						res++;
+					}
+				}
+			}
+			
+			for (PaperRoll ogPaperRoll : paperRolls) {
+				if(!ogPaperRoll.removed){
+					ogPaperRoll.totalRollsAround=0;
+				}
+				
 			}
 		}
 		
-		//1346
+
+		
+
+		//8493
         return res;
     }
 	
