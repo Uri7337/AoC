@@ -21,27 +21,19 @@ public class Solution_2_Day_05 {
 		Range(long left,  long right){
 			this.left = left;
 			this.right = right;
+			
 		}
 	}
 
-	class Ingredient{
-		long ID;
-		boolean fresh;
 
-		Ingredient(long ID){
-			this.ID = ID;
-			fresh = false;
-		}
-	}
 
 	public Object getSolution(String filepath) {
 
 		ArrayList<Range> ranges = new ArrayList<>();
-		ArrayList<Ingredient> ingredients = new ArrayList<>();
 
 		res = 0;
 		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
+		file = new ArrayList<>();
 		file = rf.getInput(filepath);
 
 		for (int y = 0; y < file.size(); y++) {
@@ -55,28 +47,69 @@ public class Solution_2_Day_05 {
 					long r = Long.parseLong(linesplit[1]);
 					Range rang = new Range(l,r);
 					ranges.add(rang);
-				}else{
-					//long ing = Long.parseLong(line);
-					//Ingredient ingredient = new Ingredient(ing);
-					//ingredients.add(ingredient);
 				}
 			}
 			
 		}
 
-		
-		
-		for (int j = 0; j < ranges.size(); j++) {
-			ep.p(ranges.get(j).right +"-"+ ranges.get(j).left +" +1 : " +((ranges.get(j).right - ranges.get(j).left) +1) +" = "+ res);
-			res += (ranges.get(j).right - ranges.get(j).left) +1;	
+		// 3 4 5
+		//	 	 10 11 12 13 14
+		//					  	   16 17 18 19 20
+		// 			   12 13 14 15 16 17 18
+
+
+		for (int i = 0; i < ranges.size(); i++) {
+			for (int j = i+1 ; j < ranges.size(); j++) {
+				long r1Left = ranges.get(i).left;
+				long r1Right = ranges.get(i).right;
+				long r2Left = ranges.get(j).left;
+				long r2Right = ranges.get(j).right;
+
+				// 3 4 5
+				//	 	 10 11 12 13 14
+				if(r1Left<r2Left && r1Right<r2Left){
+					break;
+				}
+
+				//	 	 10 11 12 13 14
+				// 3 4 5
+				if(r1Left>r2Right && r1Right>r2Right){
+					break;
+				}
+
+
+				//	 	 10 11 12 13 14
+				//					  	   16 17 18 19 20
+				// 			   12 13 14 15 16 17 18
+
+				//---------------------------------------------
 				
+				//	 	 10 11 12
+				//			   12 13 14
+
+				//	 	 10 11 12 13
+				//			   12 13 14 
+
+				//	 	 10 11 12 13 14 
+				//			   12 13 14
+
+
+				
+				if(r1Left<r2Left){
+					if(r1Right>=r2Left && r1Right <=r2Right){
+						ranges.get(i).right = r2Left-1;
+					}
+				}
+
+				//	 	 10 11 12 13 14 15
+				//			   12 13 14  
+
+				//					  	   16 17 18 19 20
+				// 			   12 13 14 15 16 17 18
+
+			}
 		}
-		
-		
-		
-		
-		
-		
+
         return res;
     }
 	

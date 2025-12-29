@@ -57,7 +57,7 @@ public class Day_05 {
             ep.p("Solution *");
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Long.valueOf(sol1_test) == 3L){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol1_test) == 3L){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
@@ -69,7 +69,7 @@ public class Day_05 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                //if(Long.valueOf(sol2_test) == 3){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol2_test) == 14){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
