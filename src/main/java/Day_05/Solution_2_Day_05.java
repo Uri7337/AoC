@@ -1,7 +1,5 @@
 package Day_05;
 
-
-
 import java.util.ArrayList;
 
 import shared.EasyPrint;
@@ -9,23 +7,58 @@ import shared.ReadFile;
 
 public class Solution_2_Day_05 {
 	EasyPrint ep = new EasyPrint();
-	
+
 	ArrayList<String> file;
 
 	long res;
 
-	class Range{
+	class Range {
+		long id;
 		long left;
 		long right;
+		boolean active = true;
+		ArrayList<Long> checkedIds = new ArrayList<>();
 
-		Range(long left,  long right){
+		Range(long left, long right, long id) {
 			this.left = left;
 			this.right = right;
-			
+			this.id = id;
 		}
 	}
 
+	void checkRanges(Range r1, Range r2) {
 
+		if (r1.left < r2.left && r1.right < r2.left) {
+			r1.checkedIds.add(r2.id);
+
+		}
+
+		if (r1.left > r2.right && r1.right > r2.right) {
+			r1.checkedIds.add(r2.id);
+
+		}
+
+		if (!r1.checkedIds.contains(r2.id)) {
+			if (r1.left < r2.left) {
+				if (r1.right >= r2.left && r1.right <= r2.right) {
+					r1.right = r2.left - 1;
+					r1.checkedIds.add(r2.id);
+				}
+				if (r1.right >= r2.right) {
+					r2.active = false;
+					r1.checkedIds.add(r2.id);
+				}
+			} else if (r1.left == r2.left) {
+
+				if (r1.right >= r2.right) {
+					r2.active = false;
+					r1.checkedIds.add(r2.id);
+				}
+
+			}
+		}
+
+	}
 
 	public Object getSolution(String filepath) {
 
@@ -45,7 +78,7 @@ public class Solution_2_Day_05 {
 					String[] linesplit = line.split("-");
 					long l = Long.parseLong(linesplit[0]);
 					long r = Long.parseLong(linesplit[1]);
-					Range rang = new Range(l,r);
+					Range rang = new Range(l,r, y);
 					ranges.add(rang);
 				}
 			}
@@ -56,61 +89,32 @@ public class Solution_2_Day_05 {
 		//	 	 10 11 12 13 14
 		//					  	   16 17 18 19 20
 		// 			   12 13 14 15 16 17 18
+		
+		
+		for (int i = 0; i < ranges.size(); i++) {
+			Range r1 = ranges.get(i);
+			if(!r1.active) break;
+			for (int j = i+1 ; j < ranges.size(); j++) {
+				Range r2 = ranges.get(j);
 
+				if(!r2.active) break;
+
+				checkRanges(r1, r2);
+				if(!r1.checkedIds.contains(r2.id)){
+					checkRanges(r2, r1);
+				}
+
+			}
+		}
 
 		for (int i = 0; i < ranges.size(); i++) {
-			for (int j = i+1 ; j < ranges.size(); j++) {
-				long r1Left = ranges.get(i).left;
-				long r1Right = ranges.get(i).right;
-				long r2Left = ranges.get(j).left;
-				long r2Right = ranges.get(j).right;
-
-				// 3 4 5
-				//	 	 10 11 12 13 14
-				if(r1Left<r2Left && r1Right<r2Left){
-					break;
-				}
-
-				//	 	 10 11 12 13 14
-				// 3 4 5
-				if(r1Left>r2Right && r1Right>r2Right){
-					break;
-				}
-
-
-				//	 	 10 11 12 13 14
-				//					  	   16 17 18 19 20
-				// 			   12 13 14 15 16 17 18
-
-				//---------------------------------------------
-				
-				//	 	 10 11 12
-				//			   12 13 14
-
-				//	 	 10 11 12 13
-				//			   12 13 14 
-
-				//	 	 10 11 12 13 14 
-				//			   12 13 14
-
-
-				
-				if(r1Left<r2Left){
-					if(r1Right>=r2Left && r1Right <=r2Right){
-						ranges.get(i).right = r2Left-1;
-					}
-				}
-
-				//	 	 10 11 12 13 14 15
-				//			   12 13 14  
-
-				//					  	   16 17 18 19 20
-				// 			   12 13 14 15 16 17 18
-
+			Range r = ranges.get(i);
+			if(r.active){
+				res+= r.right - r.left -1;
 			}
 		}
 
         return res;
     }
-	
+
 }
