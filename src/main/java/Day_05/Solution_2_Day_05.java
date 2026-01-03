@@ -87,17 +87,34 @@ public class Solution_2_Day_05 {
 
 		// 3 4 5
 		//	 	 10 11 12 13 14
+		//			   12
 		//					  	   16 17 18 19 20
 		// 			   12 13 14 15 16 17 18
-		
-		
+
+		//-----------------------------------------
+		// correct
+		// 3 4 5
+		//	 	 10 11 
+		//			   
+		//					  	   16 17 18 19 20
+		// 			   12 13 14 15
+		// res: 14
+
+		// my bad one
+		// 3 4 5
+		//	 	 10 11 
+		//			   
+		//					  	   16 17 18 19 20
+		// 			   12 13 14 15 16 17 18
+		// res: 17 
+
 		for (int i = 0; i < ranges.size(); i++) {
 			Range r1 = ranges.get(i);
-			if(!r1.active) break;
+			if(!r1.active) continue;
 			for (int j = i+1 ; j < ranges.size(); j++) {
 				Range r2 = ranges.get(j);
 
-				if(!r2.active) break;
+				if(!r2.active) continue;
 
 				checkRanges(r1, r2);
 				if(!r1.checkedIds.contains(r2.id)){
@@ -110,10 +127,14 @@ public class Solution_2_Day_05 {
 		for (int i = 0; i < ranges.size(); i++) {
 			Range r = ranges.get(i);
 			if(r.active){
-				res+= r.right - r.left -1;
+				ep.p(r.left + "-"+ r.right +" : "+((r.right - r.left) + 1));
+				res+= (r.right - r.left) +1;
 			}
 		}
 
+
+		//424053060155440 -- bad
+		//353507173555373
         return res;
     }
 
