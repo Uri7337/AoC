@@ -8,8 +8,8 @@ public class Day_06 {
         Solution_1_Day_06 s1 = new Solution_1_Day_06();
         Solution_2_Day_06 s2 = new Solution_2_Day_06();
 
-        String filepath_test = "./src/main/resources/Day_06_test_2024.txt";
-		String filepath = "./src/main/resources/Day_06_2024.txt";
+        String filepath_test = "./src/main/resources/Day_06_test_2025.txt";
+		String filepath = "./src/main/resources/Day_06_2025.txt";
 
         String sol1 = "";
         String sol2 = "";
@@ -17,10 +17,10 @@ public class Day_06 {
         String sol1_test = "";
         String sol2_test = "";
 
-        boolean tests = false;
-        boolean prod = true;
-        boolean part1 = false;
-        boolean part2 = true;
+        boolean tests = true;
+        boolean prod = false;
+        boolean part1 = true;
+        boolean part2 = false;
 
         
         ep.p("==Start==");
@@ -57,7 +57,7 @@ public class Day_06 {
             ep.p("Solution *");
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Integer.valueOf(sol1_test) == 41){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol1_test) == 4277556){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
@@ -69,7 +69,7 @@ public class Day_06 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Integer.valueOf(sol2_test) == 6){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol2_test) == 14){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
@@ -79,3 +79,6 @@ public class Day_06 {
         
     }
 }
+
+
+
