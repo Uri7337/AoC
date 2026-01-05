@@ -69,7 +69,7 @@ public class Day_06 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Long.valueOf(sol2_test) == 14){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol2_test) == 3263827){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
