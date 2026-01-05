@@ -74,10 +74,15 @@ public class Solution_2_Day_06 {
 			linePieces = new LinkedList<>();
 
 			for (int i = 0; i < sarr.length; i++) {
-				String s = sarr[i].strip();
+				String singleColumn = sarr[i].strip();
 
-				if(!s.equals("")){
-					linePieces.add(s);
+				if(!singleColumn.equals("")){
+					String[] singleDigit = singleColumn.split("");
+					for (int j = 0; j < singleDigit.length; j++) {
+						ep.p(singleDigit[j]);
+						linePieces.add(singleDigit[j]);
+					}
+					
 				}
 			}
 
@@ -103,8 +108,8 @@ public class Solution_2_Day_06 {
 
 		for (int i = 0; i < pillars.size(); i++) {
 			Pillar p = pillars.get(i);
-			p.addmult();
-			//p.showNums();
+			//p.addmult();
+			p.showNums();
 			grandTotal += p.res;
 		}
 
