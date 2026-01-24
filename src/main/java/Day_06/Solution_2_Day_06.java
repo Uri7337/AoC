@@ -16,6 +16,7 @@ public class Solution_2_Day_06 {
 
 	class Pillar {
 		int id;
+		int numInNum;
 		ArrayList<String> nums = new ArrayList<>();
 		String symbol; // + *
 		long res = 0;
@@ -67,48 +68,18 @@ public class Solution_2_Day_06 {
 		HashMap<Integer, Pillar> pillars = new HashMap<>();
 		LinkedList<String> linePieces;
 
-		for (int y = 0; y < file.size(); y++) {
-			String line = file.get(y);
-			String[] sarr = line.split(" ");
-			linePieces = new LinkedList<>();
-
-			for (int i = 0; i < sarr.length; i++) {
-				String singleColumn = sarr[i].strip();
-				ep.p(singleColumn);
-				if (!singleColumn.equals("")) {
-					String[] singleDigit = singleColumn.split("");
-					for (int j = 0; j < singleDigit.length; j++) {
-						// ep.p(singleDigit[j]);
-						linePieces.add(singleDigit[j]);
-					}
-
-				}
+		for (int x = 0; x < file.get(0).length(); x++) {
+			for (int y = 0; y < file.size(); y++) {
+				String line = file.get(y);
+				String[] sarr = line.split("");	
+				ep.p(sarr[x]);
+			
+			
 			}
-
-			for (int i = 0; i < linePieces.size(); i++) {
-				String linePiece = linePieces.get(i);
-				// ep.p(linePiece);
-				if (pillars.get(i) == null) {
-					Pillar p = new Pillar(i);
-					pillars.put(i, p);
-				}
-
-				if (linePiece.equals("*") || linePiece.equals("+")) {
-					pillars.get(i).symbol = linePiece;
-				} else {
-					pillars.get(i).nums.add(linePiece);
-				}
-			}
-
+			ep.p("--------");
 		}
-
-		for (int i = 0; i < pillars.size(); i++) {
-			Pillar p = pillars.get(i);
-			// p.addmult();
-			// p.showNums();
-			grandTotal += p.res;
-		}
-
+		
+		
 		
 		return grandTotal;
 	}
