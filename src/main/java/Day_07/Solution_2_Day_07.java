@@ -7,25 +7,24 @@ import shared.ReadFile;
 
 public class Solution_2_Day_07 {
 	EasyPrint ep = new EasyPrint();
-	int result = 0;
 
-	ArrayList<String> equations;
+	ArrayList<String> file;
+
+	long grandTotal;
 
 	public Object getSolution(String filepath) {
-		
-		ReadFile rf = new ReadFile();
-		equations = new ArrayList<>();
-		equations = rf.getInput(filepath);
 
-		//equations preparation
-		for (int y = 0; y < equations.size(); y++) {
-			String equation = equations.get(y);
-			//ep.p(equation);
-			String[] equationPieces = equation.split("");
-			
+		grandTotal = 0;
+		ReadFile rf = new ReadFile();
+		file = new ArrayList<String>();
+		file = rf.getInput(filepath);
+
+		for (int y = 0; y < file.size(); y++) {
+			String line = file.get(y);
+
 		}
-		
-		return result;
+
+		return grandTotal;
 	}
-	
+
 }
