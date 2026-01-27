@@ -1,8 +1,6 @@
 package Day_06;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 import shared.EasyPrint;
 import shared.ReadFile;
@@ -15,21 +13,18 @@ public class Solution_2_Day_06 {
 	long grandTotal;
 
 	class Pillar {
-		int id;
-		int numInNum;
+
 		ArrayList<String> nums = new ArrayList<>();
 		String symbol; // + *
 		long res = 0;
-
-		Pillar(int id) {
-			this.id = id;
-		}
 
 		void addmult() {
 			if (symbol.equals("*")) {
 				this.res = 1;
 			}
 			for (int i = 0; i < nums.size(); i++) {
+				if (nums.get(i).equals(""))
+					continue;
 				switch (symbol) {
 
 					case "+" -> {
@@ -65,22 +60,45 @@ public class Solution_2_Day_06 {
 		file = new ArrayList<String>();
 		file = rf.getInput(filepath);
 
-		HashMap<Integer, Pillar> pillars = new HashMap<>();
-		LinkedList<String> linePieces;
+		ArrayList<Pillar> pillars = new ArrayList<>();
+		Pillar p = new Pillar();
 
 		for (int x = 0; x < file.get(0).length(); x++) {
+			int space = 0;
+			StringBuilder sb = new StringBuilder();
 			for (int y = 0; y < file.size(); y++) {
 				String line = file.get(y);
-				String[] sarr = line.split("");	
-				ep.p(sarr[x]);
-			
-			
+				String[] sarr = line.split("");
+				String symbol = sarr[x];
+
+				if (symbol.equals(" ")) {
+					space++;
+				} else if (symbol.equals("*") || symbol.equals("+")) {
+					p.symbol = symbol;
+				} else {
+					sb.append(symbol);
+				}
+
+				if (space == file.size()) {
+					pillars.add(p);
+					p = new Pillar();
+				}
+
 			}
-			ep.p("--------");
+			p.nums.add(sb.toString());
+			if (x + 1 == file.get(0).length()) {
+				pillars.add(p);
+			}
+
 		}
-		
-		
-		
+
+		for (Pillar pi : pillars) {
+			pi.addmult();
+			grandTotal += pi.res;
+			// pi.showNums();
+		}
+
+		// 10695785245101
 		return grandTotal;
 	}
 
