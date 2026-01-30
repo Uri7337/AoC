@@ -21,7 +21,7 @@ public class Solution_1_Day_01 {
 
 		for (int y = 0; y < file.size(); y++) {
 			String line = file.get(y);
-
+			ep.p(line);
 			
 
 		}
