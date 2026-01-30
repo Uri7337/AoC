@@ -1,7 +1,5 @@
 package Day_02;
 
-import java.math.BigInteger;
-
 import shared.EasyPrint;
 public class Day_02 {
 
@@ -19,10 +17,10 @@ public class Day_02 {
         String sol1_test = "";
         String sol2_test = "";
 
-        boolean tests = false;
-        boolean prod = true;
-        boolean part1 = false;
-        boolean part2 = true;
+        boolean tests = true;
+        boolean prod = false;
+        boolean part1 = true;
+        boolean part2 = false;
 
         
         ep.p("==Start==");
@@ -59,7 +57,7 @@ public class Day_02 {
             ep.p("Solution *");
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Integer.valueOf(sol1_test) == 1227775554){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol1_test) == 12){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
@@ -71,9 +69,7 @@ public class Day_02 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                BigInteger sol2_testBI = new BigInteger(sol2_test);
-                BigInteger testRes = new BigInteger("4174379265");
-                if(sol2_testBI.equals(testRes)){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol2_test) == 00){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
@@ -85,5 +81,4 @@ public class Day_02 {
 }
 
 
-//24267689552
-//23039913998
+
