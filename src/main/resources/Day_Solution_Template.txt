@@ -1,31 +1,32 @@
 package Day_;
 
-import shared.ReadFile;
-import shared.EasyPrint;
-
 import java.util.ArrayList;
 
+import shared.EasyPrint;
+import shared.ReadFile;
 
 public class Solution__Day_ {
 	EasyPrint ep = new EasyPrint();
 
-	Object solution = "Nothing yet!";
-	
 	ArrayList<String> file;
+
+	long grandTotal;
+
 	public Object getSolution(String filepath) {
-		
+
+		grandTotal = 0;
 		ReadFile rf = new ReadFile();
 		file = new ArrayList<String>();
 		file = rf.getInput(filepath);
-			
-		//Insert Solution Here:
-		for (int i = 0; i < file.size(); i++) {
-			String line = file.get(i);
 
-        }
-		return solution;
+		for (int y = 0; y < file.size(); y++) {
+			String line = file.get(y);
+		}
+
+		
+
+		// grandTotal = 
+		return grandTotal;
 	}
 
-	// ----debug zone----
-	
 }

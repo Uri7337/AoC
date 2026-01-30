@@ -10,8 +10,8 @@ public class Day_04 {
         Solution_1_Day_04 s1 = new Solution_1_Day_04();
         Solution_2_Day_04 s2 = new Solution_2_Day_04();
 
-        String filepath_test = "./src/main/resources/Day_04_test_2025.txt";
-		String filepath = "./src/main/resources/Day_04_2025.txt";
+        String filepath_test = "./src/main/resources/Day_04_test_2018.txt";
+		String filepath = "./src/main/resources/Day_04_2018.txt";
 
         String sol1 = "";
         String sol2 = "";
