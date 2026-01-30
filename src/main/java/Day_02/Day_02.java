@@ -19,8 +19,8 @@ public class Day_02 {
 
         boolean tests = true;
         boolean prod = false;
-        boolean part1 = true;
-        boolean part2 = false;
+        boolean part1 = false;
+        boolean part2 = true;
 
         
         ep.p("==Start==");
