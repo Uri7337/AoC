@@ -21,14 +21,22 @@ public class Solution_1_Day_01 {
 
 		for (int y = 0; y < file.size(); y++) {
 			String line = file.get(y);
-			ep.p(line);
 			
+			String[] symbol = line.split("");
+			line = line.substring(1);
+			
+			if(symbol[0].equals("+")){
+				grandTotal += Long.valueOf(line);	
+			}else{
+				grandTotal -= Long.valueOf(line);
+			}
+
 
 		}
 
 		
 
-		// grandTotal = 
+		// grandTotal = 400
 		return grandTotal;
 	}
 
