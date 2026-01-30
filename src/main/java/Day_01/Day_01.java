@@ -17,10 +17,10 @@ public class Day_01 {
         String sol1_test = "";
         String sol2_test = "";
 
-        boolean tests = false;
-        boolean prod = true;
-        boolean part1 = false;
-        boolean part2 = true;
+        boolean tests = true;
+        boolean prod = false;
+        boolean part1 = true;
+        boolean part2 = false;
 
         
         ep.p("==Start==");
