@@ -40,5 +40,30 @@ public class AlphabetContainer {
         }
         return -1;
     }
+
+    /*
+        boolean findNum(int num, int[] arr){
+		for (int i = 0; i < arr.length; i++) {
+			if(arr[i] == num){
+				return true;
+			}
+		}
+
+		return false;
+	    }
+    */
+
+    /*
+        //addNum
+        for (char c : chararr) {
+            nums[ac.findChar(c)]++;
+        }
+
+    */
+
+    /*
+        //countnum
+        
+    */
         
 }
