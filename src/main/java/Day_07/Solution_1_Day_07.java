@@ -35,16 +35,48 @@ public class Solution_1_Day_07 {
 	}
 
 	class Beam extends Location {
-		boolean stopped;
+		boolean stopped = false;
 
 		public Beam(int x, int y) {
 			super(x, y);
 		}
 
-		void move() {
+		void move(Map map, ArrayList<Beam> beams, int splitCounter) {
+			if (this.y == map.sizey-1) {
+				this.stopped = true;
+			} else {
+				if (map.map[y + 1][x] == '^') {
+					this.split(map, beams);
+				} else {
+					this.y++;
+					map.map[y][x] = '|';
+				}
+			}
 
 		}
 
+		void split(Map map, ArrayList<Beam> beams) {
+			this.stopped = true;
+			Beam b1 = new Beam(x - 1, y + 1);
+			Beam b2 = new Beam(x + 1, y + 1);
+			map.map[y + 1][x - 1] = '|';
+			map.map[y + 1][x + 1] = '|';
+			beams.add(b1);
+			beams.add(b2);
+			this.dupeCheck(beams);
+		}
+
+		void dupeCheck(ArrayList<Beam> beams) {
+			for (int i = 0; i < beams.size() - 1; i++) {
+				for (int j = 1; j < beams.size(); j++) {
+					Beam b1 = beams.get(i);
+					Beam b2 = beams.get(j);
+					if (b1.x == b2.x && b1.y == b2.y) {
+						beams.remove(j);
+					}
+				}
+			}
+		}
 	}
 
 	class Map {
@@ -75,30 +107,22 @@ public class Solution_1_Day_07 {
 			}
 		}
 
-		void printMap(int snow) {
+		void printMap() {
 			System.out.print("\033[H\033[2J");
 			System.out.flush();
 			// System.out.println("");
 			for (int i = 0; i < sizey; i++) {
 				for (int j = 0; j < sizex; j++) {
-					if (j == 0 && i == snow) {
-						ep.np('*');
-					} else {
-						if ((j == sizex-1 && i == snow+1)) {
-							ep.np('*');
-						} else {
-							ep.np(map[i][j]);
-						}
 
-					}
+					ep.np(map[i][j]);
 
 				}
 				ep.p("");
 			}
 
 			try {
-				// to sleep 10 seconds
-				Thread.sleep(1000);
+				// sleep
+				Thread.sleep(250);
 			} catch (InterruptedException e) {
 				// recommended because catching InterruptedException clears interrupt flag
 				Thread.currentThread().interrupt();
@@ -138,7 +162,7 @@ public class Solution_1_Day_07 {
 		Map m = new Map(file.get(0).length(), file.size(), splitters, beams);
 
 		for (int g = 0; g < file.size(); g++) {
-			m.printMap(g);
+			// m.printMap();
 		}
 
 		for (Splitter s : splitters) {
@@ -147,27 +171,24 @@ public class Solution_1_Day_07 {
 
 		int beamsStopped = 0;
 		Beam b;
-		/*
-		 * while (true) {
-		 * if(beamsStopped == beams.size()){
-		 * break;
-		 * }
-		 * 
-		 * beamsStopped = 0;
-		 * for (int i = 0; i<beams.size() ;i++) {
-		 * b = beams.get(i);
-		 * if(b.stopped){
-		 * beamsStopped++;
-		 * continue;
-		 * }
-		 * 
-		 * 
-		 * }
-		 * 
-		 * 
-		 * }
-		 */
 
+		while (beams.size() != beamsStopped) {
+			beamsStopped = 0;
+
+			for (int i = 0; i < beams.size(); i++) {
+				b = beams.get(i);
+
+				if (b.stopped) {
+					beamsStopped++;
+					continue;
+				}
+
+				b.move(m, beams, grandTotal);
+				m.printMap();
+			}
+
+		}
+		
 		return grandTotal;
 	}
 
