@@ -41,18 +41,19 @@ public class Solution_1_Day_07 {
 			super(x, y);
 		}
 
-		void move(Map map, ArrayList<Beam> beams, int splitCounter) {
+		long move(Map map, ArrayList<Beam> beams, long splitCounter) {
 			if (this.y == map.sizey-1) {
 				this.stopped = true;
 			} else {
 				if (map.map[y + 1][x] == '^') {
+					splitCounter++;
 					this.split(map, beams);
 				} else {
 					this.y++;
 					map.map[y][x] = '|';
 				}
 			}
-
+			return splitCounter;
 		}
 
 		void split(Map map, ArrayList<Beam> beams) {
@@ -68,8 +69,8 @@ public class Solution_1_Day_07 {
 
 		void dupeCheck(ArrayList<Beam> beams) {
 			for (int i = 0; i < beams.size() - 1; i++) {
-				for (int j = 1; j < beams.size(); j++) {
-					Beam b1 = beams.get(i);
+				Beam b1 = beams.get(i);
+				for (int j = i+1; j < beams.size(); j++) {
 					Beam b2 = beams.get(j);
 					if (b1.x == b2.x && b1.y == b2.y) {
 						beams.remove(j);
@@ -122,7 +123,7 @@ public class Solution_1_Day_07 {
 
 			try {
 				// sleep
-				Thread.sleep(250);
+				Thread.sleep(2);
 			} catch (InterruptedException e) {
 				// recommended because catching InterruptedException clears interrupt flag
 				Thread.currentThread().interrupt();
@@ -183,7 +184,7 @@ public class Solution_1_Day_07 {
 					continue;
 				}
 
-				b.move(m, beams, grandTotal);
+				grandTotal = b.move(m, beams, grandTotal);
 				m.printMap();
 			}
 
