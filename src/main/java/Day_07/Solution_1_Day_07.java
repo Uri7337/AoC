@@ -42,16 +42,20 @@ public class Solution_1_Day_07 {
 		}
 
 		long move(Map map, ArrayList<Beam> beams, long splitCounter) {
-			if (this.y == map.sizey-1) {
+			if (this.y == map.sizey - 1) {
 				this.stopped = true;
 			} else {
 				if (map.map[y + 1][x] == '^') {
 					splitCounter++;
+
 					this.split(map, beams);
 				} else {
 					this.y++;
 					map.map[y][x] = '|';
 				}
+				 map.printMap();
+
+				ep.p(splitCounter);
 			}
 			return splitCounter;
 		}
@@ -70,7 +74,7 @@ public class Solution_1_Day_07 {
 		void dupeCheck(ArrayList<Beam> beams) {
 			for (int i = 0; i < beams.size() - 1; i++) {
 				Beam b1 = beams.get(i);
-				for (int j = i+1; j < beams.size(); j++) {
+				for (int j = i + 1; j < beams.size(); j++) {
 					Beam b2 = beams.get(j);
 					if (b1.x == b2.x && b1.y == b2.y) {
 						beams.remove(j);
@@ -123,7 +127,8 @@ public class Solution_1_Day_07 {
 
 			try {
 				// sleep
-				Thread.sleep(2);
+				//Thread.sleep(2);
+				 Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// recommended because catching InterruptedException clears interrupt flag
 				Thread.currentThread().interrupt();
@@ -161,35 +166,65 @@ public class Solution_1_Day_07 {
 		}
 
 		Map m = new Map(file.get(0).length(), file.size(), splitters, beams);
-
-		for (int g = 0; g < file.size(); g++) {
-			// m.printMap();
-		}
-
-		for (Splitter s : splitters) {
-			// s.printLoc();
-		}
-
-		int beamsStopped = 0;
 		Beam b;
 
-		while (beams.size() != beamsStopped) {
-			beamsStopped = 0;
+		while (!beams.isEmpty()) {
 
 			for (int i = 0; i < beams.size(); i++) {
 				b = beams.get(i);
 
 				if (b.stopped) {
-					beamsStopped++;
+					beams.remove(i);
 					continue;
 				}
 
 				grandTotal = b.move(m, beams, grandTotal);
-				m.printMap();
+
 			}
 
 		}
+
+		/* wrong!!! 23 != 21
+			.......S.......
+			.......|.......
+			......|^|......
+			......|.|......
+			......^|^|.....
+			.......|.|.....
+			.....^.^.^.....
+			...............
+			....^.^...^....
+			...............
+			...^.^...^.^...
+			...............
+			..^...^.....^..
+			...............
+			.^.^.^.^.^...^.
+			...............
+			2
+			.......S.......
+			.......|.......
+			......|^|......
+			......|.|......
+			.....|^|^|.....
+			.......|.|.....
+			.....^.^.^.....
+			...............
+			....^.^...^....
+			...............
+			...^.^...^.^...
+			...............
+			..^...^.....^..
+			...............
+			.^.^.^.^.^...^.
+			...............
+			3
+		*/
 		
+
+		// 11787
+		// 10669
+		// 1859-1 = 1858 - too high
 		return grandTotal;
 	}
 
