@@ -11,6 +11,7 @@ public class Solution_1_Day_07 {
 	ArrayList<String> file;
 
 	long grandTotal;
+	long secCounter;
 
 	class Location {
 		int x;
@@ -32,6 +33,14 @@ public class Solution_1_Day_07 {
 			ep.p(x + " " + y);
 		}
 
+		void replace(Map map){
+			if(map.map[this.y-1][this.x]=='|'){
+				map.map[this.y][this.x] = '#';
+			}else{
+				secCounter++;
+			}
+		}
+
 	}
 
 	class Beam extends Location {
@@ -46,25 +55,27 @@ public class Solution_1_Day_07 {
 		}
 
 		long move(Map map, ArrayList<Beam> beams, long splitCounter) {
-
-			if (this.y == map.sizey - 1) {
-				this.stopped = true;
-			} else {
-				if (map.map[y + 1][x] == '^') {
-					splitCounter++;
-
-					this.split(map, beams);
+			if (!this.stopped) {
+				if (this.y == map.sizey - 1) {
+					this.stopped = true;
 				} else {
-					this.y++;
-					map.map[y][x] = '|';
-				}
+					if (map.map[y + 1][x] == '^') {
+						splitCounter++;
 
-				if (map.print) {
-					map.printMap();
-					ep.p(splitCounter);
-				}
+						this.split(map, beams);
+					} else {
+						this.y++;
+						map.map[y][x] = '|';
+					}
 
+					if (map.print) {
+						map.printMap();
+						ep.p(splitCounter);
+					}
+
+				}
 			}
+
 			this.dupeCheck(beams);
 			return splitCounter;
 		}
@@ -139,8 +150,8 @@ public class Solution_1_Day_07 {
 
 			try {
 				// sleep
-				 Thread.sleep(2);
-				//Thread.sleep(350);
+				Thread.sleep(2);
+				 //Thread.sleep(350);
 			} catch (InterruptedException e) {
 				// recommended because catching InterruptedException clears interrupt flag
 				Thread.currentThread().interrupt();
@@ -181,7 +192,7 @@ public class Solution_1_Day_07 {
 		Beam b;
 
 		int beamsStopped = 0;
-		m.print = true;
+		m.print = false;
 		while (beams.size() != beamsStopped) {
 			beamsStopped = 0;
 
@@ -193,54 +204,36 @@ public class Solution_1_Day_07 {
 					continue;
 				}
 
+				// if(grandTotal%1000 == 0){ep.p(grandTotal);}
 				grandTotal = b.move(m, beams, grandTotal);
 
 			}
 
 		}
 
-		/*
-		 * wrong!!! 23 != 21
-		 * .......S.......
-		 * .......|.......
-		 * ......|^|......
-		 * ......|.|......
-		 * ......^|^|.....
-		 * .......|.|.....
-		 * .....^.^.^.....
-		 * ...............
-		 * ....^.^...^....
-		 * ...............
-		 * ...^.^...^.^...
-		 * ...............
-		 * ..^...^.....^..
-		 * ...............
-		 * .^.^.^.^.^...^.
-		 * ...............
-		 * 2
-		 * .......S.......
-		 * .......|.......
-		 * ......|^|......
-		 * ......|.|......
-		 * .....|^|^|.....
-		 * .......|.|.....
-		 * .....^.^.^.....
-		 * ...............
-		 * ....^.^...^....
-		 * ...............
-		 * ...^.^...^.^...
-		 * ...............
-		 * ..^...^.....^..
-		 * ...............
-		 * .^.^.^.^.^...^.
-		 * ...............
-		 * 3
-		 */
+		for (Splitter s : splitters) {
+			s.replace(m);
+		}
+
+
 
 		// 11787
 		// 10669
 		// 1859-1 = 1858 - too high
+		// 1625
 		// 1519 - too high
+		// 1518 - too high
+
+		/*
+		133/145 - non splitted splitters
+		1519 - tally answer
+		1490 - right answer... but why... my tally must be broken
+		1490 - i,ve got from my map.. that one works.
+		*/
+		ep.p("mhmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm: "+secCounter);
+		m.printMap();
+		ep.p("mhm: "+secCounter);
+		ep.p(grandTotal);
 		return grandTotal;
 	}
 
