@@ -57,9 +57,7 @@ public class Solution_2_Day_07 {
 					this.stopped = true;
 				} else {
 					if (map.map[y + 1][x] == '^') {
-						splitCounter++;
-
-						this.split(map, beams);
+						//this.split(map, beams);
 					} else {
 						this.y++;
 						map.map[y][x] = '|';
@@ -67,16 +65,16 @@ public class Solution_2_Day_07 {
 
 					if (map.print) {
 						map.printMap();
-						ep.p(splitCounter);
 					}
 
 				}
 			}
 
-			this.dupeCheck(beams);
+			//this.dupeCheck(beams);
 			return splitCounter;
 		}
 
+		/*
 		void split(Map map, ArrayList<Beam> beams) {
 			this.stopped = true;
 			Beam b1 = new Beam(x - 1, y + 1);
@@ -87,20 +85,24 @@ public class Solution_2_Day_07 {
 			beams.add(b2);
 
 		}
+		*/
 
-		void dupeCheck(ArrayList<Beam> beams) {
-			for (int i = 0; i < beams.size() - 1; i++) {
-				Beam b1 = beams.get(i);
-				for (int j = i + 1; j < beams.size(); j++) {
-					Beam b2 = beams.get(j);
-					if (b1.initx == b2.initx && b1.inity == b2.inity) {
-						b2.stopped = true;
-					} else if (b1.x == b2.initx && b1.y == b2.inity) {
-						b1.stopped = true;
+		/*
+			void dupeCheck(ArrayList<Beam> beams) {
+				for (int i = 0; i < beams.size() - 1; i++) {
+					Beam b1 = beams.get(i);
+					for (int j = i + 1; j < beams.size(); j++) {
+						Beam b2 = beams.get(j);
+						if (b1.initx == b2.initx && b1.inity == b2.inity) {
+							b2.stopped = true;
+						} else if (b1.x == b2.initx && b1.y == b2.inity) {
+							b1.stopped = true;
+						}
 					}
 				}
 			}
-		}
+		*/
+		
 	}
 
 	class Map {
@@ -189,7 +191,10 @@ public class Solution_2_Day_07 {
 		Beam b;
 
 		int beamsStopped = 0;
-		m.print = false;
+		m.print = true;
+		m.printMap();
+		
+		/*
 		while (beams.size() != beamsStopped) {
 			beamsStopped = 0;
 
@@ -208,7 +213,7 @@ public class Solution_2_Day_07 {
 
 		}
 
-
+		*/
 
 
 
