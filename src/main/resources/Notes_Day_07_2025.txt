@@ -28,3 +28,26 @@ jak mi tohle pomůže? mohu zkusit vyhledávání polystrom java
 
 možná přecejenom bude stačit rekurzvní metoda, 
 která bude volat sama sebe a furt chodit doleva, dokud tam nic nebude přičte 2 
+
+takže jak na to...
+
+někam musím přidat tu metodu
+
+void projdiVse(){
+    if(splitter.isChildfree()){
+        counter += 2;
+    }
+
+   projdiVse(splitter.Left)
+   projdiVse(splitter.Right)
+
+
+}
+
+
+mám v javě objekt, který má návaznost na další objekt, jak správně zjistím zda je t prázdné? napadá mě něco jako .Empty
+class Splitter extends Location {
+    Test t;
+}
+
+prý null stačí.

@@ -23,6 +23,8 @@ public class Solution_2_Day_07 {
 	}
 
 	class Splitter extends Location {
+		Splitter left;
+		Splitter right;
 
 		public Splitter(int x, int y) {
 			super(x, y);
@@ -32,10 +34,55 @@ public class Solution_2_Day_07 {
 			ep.p(x + " " + y);
 		}
 
-		void replace(Map map){
-			if(map.map[this.y-1][this.x]=='|'){
+		void replace(Map map) {
+			if (map.map[this.y - 1][this.x] == '|') {
 				map.map[this.y][this.x] = '#';
 			}
+		}
+
+		void pair(Map map, ArrayList<Splitter> splitters) {
+			int leftSplitterX = this.x - 1;
+			int rightSplitterX = this.x + 1;
+			int pairSplitterY = this.y + 2;
+
+			if(map.sizey<=pairSplitterY){
+				return;
+			}
+
+			if (map.map[pairSplitterY][leftSplitterX] == '^') {
+				for(Splitter s : splitters){
+					if(s.x==leftSplitterX && s.y == pairSplitterY){
+						this.left = s;
+					}
+				}
+			}
+
+			if (map.map[pairSplitterY][rightSplitterX] == '^') {
+				for(Splitter s : splitters){
+					if(s.x==rightSplitterX && s.y == pairSplitterY){
+						this.right = s;
+					}
+				}
+			}
+		}
+
+		boolean isChildfree() {
+			return left == null & right == null;
+		}
+
+		void showAll(long counter, Splitter splitter) {
+			if (splitter == null) {
+				return;
+			}
+
+			if (this.isChildfree()) {
+				counter += 2;
+				return;
+			}
+
+			showAll(counter, this.left);
+			showAll(counter, this.right);
+
 		}
 
 	}
@@ -57,7 +104,7 @@ public class Solution_2_Day_07 {
 					this.stopped = true;
 				} else {
 					if (map.map[y + 1][x] == '^') {
-						//this.split(map, beams);
+						// this.split(map, beams);
 					} else {
 						this.y++;
 						map.map[y][x] = '|';
@@ -70,39 +117,39 @@ public class Solution_2_Day_07 {
 				}
 			}
 
-			//this.dupeCheck(beams);
+			// this.dupeCheck(beams);
 			return splitCounter;
 		}
 
 		/*
-		void split(Map map, ArrayList<Beam> beams) {
-			this.stopped = true;
-			Beam b1 = new Beam(x - 1, y + 1);
-			Beam b2 = new Beam(x + 1, y + 1);
-			map.map[y + 1][x - 1] = '|';
-			map.map[y + 1][x + 1] = '|';
-			beams.add(b1);
-			beams.add(b2);
-
-		}
-		*/
+		 * void split(Map map, ArrayList<Beam> beams) {
+		 * this.stopped = true;
+		 * Beam b1 = new Beam(x - 1, y + 1);
+		 * Beam b2 = new Beam(x + 1, y + 1);
+		 * map.map[y + 1][x - 1] = '|';
+		 * map.map[y + 1][x + 1] = '|';
+		 * beams.add(b1);
+		 * beams.add(b2);
+		 * 
+		 * }
+		 */
 
 		/*
-			void dupeCheck(ArrayList<Beam> beams) {
-				for (int i = 0; i < beams.size() - 1; i++) {
-					Beam b1 = beams.get(i);
-					for (int j = i + 1; j < beams.size(); j++) {
-						Beam b2 = beams.get(j);
-						if (b1.initx == b2.initx && b1.inity == b2.inity) {
-							b2.stopped = true;
-						} else if (b1.x == b2.initx && b1.y == b2.inity) {
-							b1.stopped = true;
-						}
-					}
-				}
-			}
-		*/
-		
+		 * void dupeCheck(ArrayList<Beam> beams) {
+		 * for (int i = 0; i < beams.size() - 1; i++) {
+		 * Beam b1 = beams.get(i);
+		 * for (int j = i + 1; j < beams.size(); j++) {
+		 * Beam b2 = beams.get(j);
+		 * if (b1.initx == b2.initx && b1.inity == b2.inity) {
+		 * b2.stopped = true;
+		 * } else if (b1.x == b2.initx && b1.y == b2.inity) {
+		 * b1.stopped = true;
+		 * }
+		 * }
+		 * }
+		 * }
+		 */
+
 	}
 
 	class Map {
@@ -150,7 +197,7 @@ public class Solution_2_Day_07 {
 			try {
 				// sleep
 				Thread.sleep(2);
-				 //Thread.sleep(350);
+				// Thread.sleep(350);
 			} catch (InterruptedException e) {
 				// recommended because catching InterruptedException clears interrupt flag
 				Thread.currentThread().interrupt();
@@ -188,35 +235,21 @@ public class Solution_2_Day_07 {
 		}
 
 		Map m = new Map(file.get(0).length(), file.size(), splitters, beams);
-	//	Beam b;
+		// Beam b;
 
-		//int beamsStopped = 0;
+		// int beamsStopped = 0;
 		m.print = true;
 		m.printMap();
-		
-		/*
-		while (beams.size() != beamsStopped) {
-			beamsStopped = 0;
 
-			for (int i = 0; i < beams.size(); i++) {
-				b = beams.get(i);
-
-				if (b.stopped) {
-					beamsStopped++;
-					continue;
-				}
-
-				// if(timelines%1000 == 0){ep.p(timelines);}
-				timelines = b.move(m, beams, timelines);
-
-			}
-
+		for (Splitter s : splitters) {
+			s.pair(m, splitters);
 		}
 
-		*/
+		Splitter s = splitters.get(0);
 
-
-
+		ep.p("left: "+s.left.y+" "+s.left.x);
+		ep.p("right: "+s.right.y+" "+s.right.x);
+		s.showAll(timelines, s);
 
 		return timelines;
 	}
