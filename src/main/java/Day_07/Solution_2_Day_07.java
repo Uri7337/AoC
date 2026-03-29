@@ -70,9 +70,9 @@ public class Solution_2_Day_07 {
 			return left == null & right == null;
 		}
 
-		void showAll(long counter, Splitter splitter, Map m) {
+		long showAll(Splitter splitter, Map m) {
 			if (splitter == null) {
-				return;
+				return 0;
 			}
 
 			splitter.replace(m);
@@ -81,13 +81,12 @@ public class Solution_2_Day_07 {
 			ep.p(splitter.y);
 
 			if (splitter.isChildfree()) {
-				counter += 2;
-				return;
+				return 2;
 			}
 
-			showAll(counter, splitter.left, m);
-			showAll(counter, splitter.right, m);
-
+			long counter = showAll(splitter.left, m);
+			counter += showAll(splitter.right, m);
+			return counter;
 		}
 
 	}
@@ -254,7 +253,7 @@ public class Solution_2_Day_07 {
 
 		ep.p("left: "+s.left.y+" "+s.left.x);
 		ep.p("right: "+s.right.y+" "+s.right.x);
-		s.showAll(timelines, s,m);
+		timelines = s.showAll(s,m);
 
 		return timelines;
 	}
