@@ -150,8 +150,8 @@ public class Solution_1_Day_07 {
 
 			try {
 				// sleep
-				Thread.sleep(2);
-				 //Thread.sleep(350);
+				//Thread.sleep(2);
+				 Thread.sleep(350);
 			} catch (InterruptedException e) {
 				// recommended because catching InterruptedException clears interrupt flag
 				Thread.currentThread().interrupt();
@@ -192,7 +192,7 @@ public class Solution_1_Day_07 {
 		Beam b;
 
 		int beamsStopped = 0;
-		m.print = false;
+		m.print = true;
 		while (beams.size() != beamsStopped) {
 			beamsStopped = 0;
 
@@ -230,9 +230,9 @@ public class Solution_1_Day_07 {
 		1490 - right answer... but why... my tally must be broken
 		1490 - i,ve got from my map.. that one works.
 		*/
-		ep.p("mhmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm: "+secCounter);
+		//ep.p("mhmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm: "+secCounter);
 		m.printMap();
-		ep.p("mhm: "+secCounter);
+		//ep.p("mhm: "+secCounter);
 		ep.p(grandTotal);
 		return grandTotal;
 	}
