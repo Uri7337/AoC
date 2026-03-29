@@ -35,9 +35,9 @@ public class Solution_2_Day_07 {
 		}
 
 		void replace(Map map) {
-			if (map.map[this.y - 1][this.x] == '|') {
+			//if (map.map[this.y - 1][this.x] == '|') {
 				map.map[this.y][this.x] = '#';
-			}
+			//}
 		}
 
 		void pair(Map map, ArrayList<Splitter> splitters) {
@@ -70,18 +70,23 @@ public class Solution_2_Day_07 {
 			return left == null & right == null;
 		}
 
-		void showAll(long counter, Splitter splitter) {
+		void showAll(long counter, Splitter splitter, Map m) {
 			if (splitter == null) {
 				return;
 			}
 
-			if (this.isChildfree()) {
+			splitter.replace(m);
+			m.printMap();
+			ep.p(splitter.x);
+			ep.p(splitter.y);
+
+			if (splitter.isChildfree()) {
 				counter += 2;
 				return;
 			}
 
-			showAll(counter, this.left);
-			showAll(counter, this.right);
+			showAll(counter, splitter.left, m);
+			showAll(counter, splitter.right, m);
 
 		}
 
@@ -196,8 +201,8 @@ public class Solution_2_Day_07 {
 
 			try {
 				// sleep
-				Thread.sleep(2);
-				// Thread.sleep(350);
+				//Thread.sleep(2);
+				 Thread.sleep(350);
 			} catch (InterruptedException e) {
 				// recommended because catching InterruptedException clears interrupt flag
 				Thread.currentThread().interrupt();
@@ -249,7 +254,7 @@ public class Solution_2_Day_07 {
 
 		ep.p("left: "+s.left.y+" "+s.left.x);
 		ep.p("right: "+s.right.y+" "+s.right.x);
-		s.showAll(timelines, s);
+		s.showAll(timelines, s,m);
 
 		return timelines;
 	}
