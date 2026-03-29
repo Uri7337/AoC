@@ -188,9 +188,9 @@ public class Solution_2_Day_07 {
 		}
 
 		Map m = new Map(file.get(0).length(), file.size(), splitters, beams);
-		Beam b;
+	//	Beam b;
 
-		int beamsStopped = 0;
+		//int beamsStopped = 0;
 		m.print = true;
 		m.printMap();
 		

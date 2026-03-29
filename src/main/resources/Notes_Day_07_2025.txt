@@ -1,0 +1,30 @@
+na vyřešení dnu 07 zadání 2 použiju metodu z článku W3Schools:
+    DSA(Data Structures and Algorithms) In-order Traversal
+    -  https://www.w3schools.com/dsa/dsa_algo_binarytrees_inorder.php
+
+In-order Traversal (průchod stromu v pořadí)
+is a type of Depth First Search
+
+tak jsem si hledal a když 
+V AoC je Horní splitter, říkejme mu root(R) a má pod sebou 2 další(A,B) a ty se oba odkazují
+na 3 další Node(C):
+
+R → A
+R → B
+A → C
+B → C
+
+tak uzel C má dva rodiče (A i B), což porušuje definici stromu.
+Takže nemohu použít In-order Traversal protože to není strom.
+ptal jsem se GPT co to je a v tomto případě tvrdí že by to mohl být DAG:
+
+DAG
+Directed Acyclic Graph
+Orientovaný Acyklický Graf
+
+něco jako síť. Také jsem našel název Polystrom
+
+jak mi tohle pomůže? mohu zkusit vyhledávání polystrom java
+
+možná přecejenom bude stačit rekurzvní metoda, 
+která bude volat sama sebe a furt chodit doleva, dokud tam nic nebude přičte 2 
