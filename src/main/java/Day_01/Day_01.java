@@ -1,7 +1,7 @@
 package Day_01;
 
 import shared.EasyPrint;
-public class  {
+public class Day_01{
 
     public static void main(String[] args) {
         EasyPrint ep = new EasyPrint();
@@ -23,8 +23,8 @@ public class  {
         boolean mytest = false;
         boolean tests = true;
         boolean prod = false;
-        boolean part1 = false;
-        boolean part2 = true;
+        boolean part1 = true;
+        boolean part2 = false;
         
         ep.p("==Start==");
         if(part1){
@@ -66,17 +66,17 @@ public class  {
             ep.p("Solution *");
             if (mytest) {
                 ep.p("myTests: " + sol0_test);
-                if(Long.valueOf(sol0_test) == 25){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol0_test) == 7){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
             }
 
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Long.valueOf(sol1_test) == 21){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol1_test) == 7){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
                 ep.p("Answer: " + sol1);
-                if(Long.valueOf(sol1) < 1518){ep.p(" | OK: Maybe");}else{ep.p(" | Too High :(");}
+                if(Long.valueOf(sol1) < 0){ep.p(" | OK: Maybe");}else{ep.p(" | Too Bad :(");}
             }
         }
         ep.p("");
@@ -84,7 +84,7 @@ public class  {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Long.valueOf(sol2_test) == 40){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol2_test) == 0){ep.p(" | OK: Maybe");}else{ep.p(" | Too Bad :(");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
