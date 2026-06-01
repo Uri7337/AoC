@@ -7,75 +7,51 @@ import shared.ReadFile;
 
 public class Solution_2_Day_02 {
 	EasyPrint ep = new EasyPrint();
-	
+
 	ArrayList<String> file;
 
-	long res = 0;
-
-	public long isInvalidID(long id){
-		int max = 0;
-		ArrayList<String> subArr = new ArrayList<>();
-		String idS = String.valueOf(id);
-		//ep.p(idS);
-		
-		for(int i = 1 ; i<(idS.length()/2)+1 ; i++){
-			String part = idS.substring(0, i);
-			if(idS.length()%part.length() == 0){
-				max = part.length();
-				subArr = new ArrayList<>();
-				do {
-					String sub = idS.substring(max, max+part.length());
-					//ep.p("sub: "+sub +" "+ subCounter);
-					subArr.add(sub);
-					max+=part.length();
-				} while (max<idS.length()-(part.length()-1));
-				//ep.p("part: "+ part +" max: "+ max);
-				//ep.p("before: "+subArr);
-				
-				for (int j = 0; j < subArr.size(); j++) {
-					if(part.equals(subArr.get(j))){
-						subArr.remove(j);
-						j=-1;
-					}
-				}
-				//ep.p("after: "+subArr+" "+ subArr.isEmpty());
-				if (subArr.isEmpty()) return id;
-			}
-		}
-		
-		return 0;
-	}
+	long res;
 
 	public Object getSolution(String filepath) {
-		
-		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
-		file = rf.getInput(filepath);
 
 		res = 0;
 
-		for (int y = 0; y < file.size(); y++) {
-			String line = file.get(y);
-			
-			String[] ranges = line.split(",");
-			
-			for (String string : ranges) {
-				String[] singleRanges = string.split("-");
-				String rangeSFrom = singleRanges[0];
-				String rangeSTo = singleRanges[1];
-				long rangeFrom = Long.parseLong(rangeSFrom);
-				long rangeTo = Long.parseLong(rangeSTo);
-				rangeTo++;
-				
+		ReadFile rf = new ReadFile();
+		file = new ArrayList<>();
+		file = rf.getInput(filepath);
 
-				for (long bi = rangeFrom; bi<rangeTo; bi++) {
-					res += isInvalidID(bi);
+		int horizontal = 0;
+		int depth = 0;
+		int aim = 0;
+		boolean zero = false;
+
+		for (int y = 0; y < file.size(); y++) {
+			String[] commands = file.get(y).split(" ");
+
+			if (commands[0].equals("up")) {
+				//depth -= Integer.valueOf(commands[1]);
+				aim -= Integer.valueOf(commands[1]);
+			} else if (commands[0].equals("down")) {
+				//depth += Integer.valueOf(commands[1]);
+				aim += Integer.valueOf(commands[1]);
+			} else {
+				horizontal += Integer.valueOf(commands[1]);
+				if(aim==0){
+					aim++;
+					zero = true;
+				} 
+				depth = depth + (aim *Integer.valueOf(commands[1]));
+				if(zero){
+					aim--;
+					zero = false;
 				}
 			}
-        }
-		//35950619148
-		
-        return res;
-    }
-	
+
+		}
+		ep.p(depth);
+		res = horizontal * depth;
+		ep.p(res);
+		return res;
+	}
+
 }

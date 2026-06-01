@@ -1,33 +1,40 @@
 package Day_02;
 
-import java.math.BigInteger;
-
 import shared.EasyPrint;
-public class Day_02 {
+public class Day_02{
 
     public static void main(String[] args) {
         EasyPrint ep = new EasyPrint();
         Solution_1_Day_02 s1 = new Solution_1_Day_02();
         Solution_2_Day_02 s2 = new Solution_2_Day_02();
 
+        String filepath_my_test = "./src/main/resources/Day_02_test_2021_1.txt";
         String filepath_test = "./src/main/resources/Day_02_test_2021.txt";
 		String filepath = "./src/main/resources/Day_02_2021.txt";
 
+        
         String sol1 = "";
         String sol2 = "";
 
+        String sol0_test = "";
         String sol1_test = "";
         String sol2_test = "";
 
-        boolean tests = false;
+        boolean mytest = false;
+        boolean tests = true;
         boolean prod = true;
         boolean part1 = false;
         boolean part2 = true;
-
         
         ep.p("==Start==");
         if(part1){
             ep.p("\nSolution *");
+            if(mytest){
+                ep.p("==myTest prints==");
+                sol0_test = s1.getSolution(filepath_my_test).toString();
+                ep.p("");
+            }
+
             if(tests){
                 ep.p("==Test prints==");
                 sol1_test = s1.getSolution(filepath_test).toString();
@@ -57,13 +64,19 @@ public class Day_02 {
         ep.p("===Solutions===");
         if(part1){
             ep.p("Solution *");
+            if (mytest) {
+                ep.p("myTests: " + sol0_test);
+                if(Long.valueOf(sol0_test) == 7){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+            }
+
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Integer.valueOf(sol1_test) == 1227775554){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol1_test) == 7){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
                 ep.p("Answer: " + sol1);
+                if(Long.valueOf(sol1) > 0){ep.p(" | OK: Maybe");}else{ep.p(" | Too Bad :(");}
             }
         }
         ep.p("");
@@ -71,9 +84,7 @@ public class Day_02 {
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                BigInteger sol2_testBI = new BigInteger(sol2_test);
-                BigInteger testRes = new BigInteger("4174379265");
-                if(sol2_testBI.equals(testRes)){ep.p("| OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol2_test) == 900){ep.p(" | OK: True");}else{ep.p(" | Too Bad :(");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
@@ -85,5 +96,4 @@ public class Day_02 {
 }
 
 
-//24267689552
-//23039913998
+
