@@ -15,9 +15,9 @@ public class Solution_2_Day_03 {
 	class BinNum{
 		private final int inputSize;
 		
-		private int gammaRate;
-		private int epsilonRate;
-		private int totalPowerConsumption;
+		private int oxygenGeneratorRating;
+		private int CO2ScrubberRating;
+		private int submarineLifeSupportRating;
 
 		int[] array0;
 		int[] array1;
@@ -31,8 +31,8 @@ public class Solution_2_Day_03 {
 			this.array1 = new int[inputSize];
 		}
 
-		int getTotalPowerConsumption(){
-			return this.totalPowerConsumption;
+		int getSubmarineLifeSupportRating(){
+			return this.submarineLifeSupportRating;
 		}
 
 		int getinputSize(){
@@ -52,12 +52,12 @@ public class Solution_2_Day_03 {
 		}
 
 		void parseNums(){
-			this.gammaRate = Integer.parseInt(num1.toString(), 2);
-			this.epsilonRate = Integer.parseInt(num2.toString(), 2);
+			this.oxygenGeneratorRating = Integer.parseInt(num1.toString(), 2);
+			this.CO2ScrubberRating = Integer.parseInt(num2.toString(), 2);
 		}
 
 		void calculate(){
-			this.totalPowerConsumption = this.gammaRate * this.epsilonRate;
+			this.submarineLifeSupportRating = this.oxygenGeneratorRating * this.CO2ScrubberRating;
 		}
 		
 		void doMagic(){
@@ -81,7 +81,8 @@ public class Solution_2_Day_03 {
 		
 
 		for (int y = 0; y < file.size(); y++) {
-			String[] commands = file.get(y).split("");
+			String bits = file.get(y);
+			String[] commands = bits.split("");
 			
 			for(int i = 0; i<bn.getinputSize();i++){
 				if(Integer.parseInt(commands[i])==0){
@@ -96,7 +97,7 @@ public class Solution_2_Day_03 {
 		}
 
 		bn.doMagic();
-		res = bn.getTotalPowerConsumption();
+		res = bn.getSubmarineLifeSupportRating();
 		
 			
 			

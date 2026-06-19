@@ -84,7 +84,7 @@ public class Day_03{
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Long.valueOf(sol2_test) == 900){ep.p(" | OK: True");}else{ep.p(" | Too Bad :(");}
+                if(Long.valueOf(sol2_test) == 230){ep.p(" | OK: True");}else{ep.p(" | Too Bad :(");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
