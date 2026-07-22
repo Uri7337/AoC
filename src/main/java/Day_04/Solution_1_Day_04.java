@@ -7,111 +7,80 @@ import shared.ReadFile;
 
 public class Solution_1_Day_04 {
 	EasyPrint ep = new EasyPrint();
-	
+
 	ArrayList<String> file;
 
-	long res = 0;
+	long res;
 
-	class Position{
-		int x;
-		int y;
+	class Card{
+		int[] lines;
+		int[] columns;
 
-		Position(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
 		
-	}
 
-	/*class Spot extends Position{
-		int totalRolls;
-		boolean validSpot;
-
-		Spot(int x, int y){
-        	super(x,y);
-    	}
-
-		void aroundSpot(){
-			//			...
-			//			...
-			//			...
-			
-			//top
-			
-			//mid
-
-			//bottom
-		}
-
-		void amIValid(){
-			this.validSpot = 4>totalRolls ? true : false; 
-		}
-	}*/
-
-	class PaperRoll extends Position{
-		int totalRollsAround = 0;
-
-		PaperRoll(int x, int y){
-        	super(x,y);
-    	}
-
-		boolean amIAccessible(){
-			return totalRollsAround<4 ? true : false; 
-		}
-
-		void isAround(PaperRoll paperRoll){
-			if(paperRoll.x>=(this.x-1) && paperRoll.x<=(this.x+1)){
-				if(paperRoll.y>=(this.y-1) && paperRoll.y<=(this.y+1)){
-					
-					if(!(this.x ==paperRoll.x && this.y ==paperRoll.y)){
-						this.totalRollsAround++;
-					}
-					
-				}
+		void addnums(String[] nums){
+			for (Object num : nums) {
+				
 			}
 		}
-
 	}
-
-
+	
 	public Object getSolution(String filepath) {
-		
-		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
-		file = rf.getInput(filepath);
 
 		res = 0;
 
-		//ArrayList<Spot> spots = new ArrayList<>();
-		ArrayList<PaperRoll> paperRolls = new ArrayList<>();
+		ReadFile rf = new ReadFile();
+		file = new ArrayList<>();
+		file = rf.getInput(filepath);
 
-		PaperRoll pr;
+		ArrayList<Card> cards = new ArrayList<>();
+		Card card = new Card(); 
 
-		for (int i = 0; i < file.size(); i++) {
+		for (int y = 0; y < file.size(); y++) {
+			String line = file.get(y);
+			String[] commands;
+
+			if(y == 0){
+				commands = line.split(",");
+			}else if(line.equals("")){
+				cards.add(card);
+				card = new Card();
+			}else{
+				commands = line.split(" ");
+				card.addnums(commands);
+			}
 			
-			String line = file.get(i);
-			for (int j = 0; j < line.length(); j++) {
-				if(line.charAt(j)== '@'){
-					pr = new PaperRoll(j,i);
-					paperRolls.add(pr);
-				}
-			}
 
-
-        }
-		
-		for (PaperRoll ogPaperRoll : paperRolls) {
-			for (PaperRoll paperRoll : paperRolls) {
-				ogPaperRoll.isAround(paperRoll);
-			}
-
-			if(ogPaperRoll.amIAccessible()){
-				res++;
-			}
 		}
 		
-		//1346
-        return res;
-    }
-	
+		return res;
+	}
+
 }
+
+
+// test example
+/*
+
+	7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
+
+	22 13 17 11  0
+	8  2 23  4 24
+	21  9 14 16  7
+	6 10  3 18  5
+	1 12 20 15 19
+
+	3 15  0  2 22
+	9 18 13 17  5
+	19  8  7 25 23
+	20 11 10 24  4
+	14 21 16 12  6
+
+	14 21 17 24  4
+	10 16 15  9 19
+	18  8 23 26 20
+	22 11 13  6  5
+	2  0 12  3  7
+	 
+	*/
+	

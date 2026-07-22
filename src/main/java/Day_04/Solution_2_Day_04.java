@@ -7,118 +7,27 @@ import shared.ReadFile;
 
 public class Solution_2_Day_04 {
 	EasyPrint ep = new EasyPrint();
-	
+
 	ArrayList<String> file;
 
-	long res = 0;
-
-	class Position{
-		int x;
-		int y;
-
-		Position(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-		
-	}
+	long res;
 
 	
-
-	class PaperRoll extends Position{
-		int totalRollsAround = 0;
-		boolean removed = false;
-
-		PaperRoll(int x, int y){
-        	super(x,y);
-    	}
-
-		boolean amIAccessible(){
-			if(totalRollsAround<4){
-				removed = true;
-			}
-			return removed;
-		}
-
-		void isAround(PaperRoll paperRoll){
-			if(paperRoll.x>=(this.x-1) && paperRoll.x<=(this.x+1)){
-				if(paperRoll.y>=(this.y-1) && paperRoll.y<=(this.y+1)){
-					
-					if(!(this.x ==paperRoll.x && this.y ==paperRoll.y)){
-						if(!paperRoll.removed){
-							this.totalRollsAround++;
-						}
-						
-					}
-					
-				}
-			}
-		}
-
-	}
-
-
 	public Object getSolution(String filepath) {
-		
-		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
-		file = rf.getInput(filepath);
 
 		res = 0;
 
-		ArrayList<PaperRoll> paperRolls = new ArrayList<>();
-
-		PaperRoll pr;
-
-		for (int i = 0; i < file.size(); i++) {
-			
-			String line = file.get(i);
-			for (int j = 0; j < line.length(); j++) {
-				if(line.charAt(j)== '@'){
-					pr = new PaperRoll(j,i);
-					paperRolls.add(pr);
-				}
-			}
+		ReadFile rf = new ReadFile();
+		file = new ArrayList<>();
+		file = rf.getInput(filepath);
 
 
-        }
-		
-		long same = -1;
-		while (true) {
-			if(same==res){
-				break;
-			}
-			same=res;
-			for (PaperRoll ogPaperRoll : paperRolls) {
-				if(!ogPaperRoll.removed){
-					for (PaperRoll paperRoll : paperRolls) {
-						ogPaperRoll.isAround(paperRoll);
-					}
-				}
-				
-			}
-		
-			for (PaperRoll ogPaperRoll : paperRolls) {
-				if(!ogPaperRoll.removed){
-					if(ogPaperRoll.amIAccessible()){
-						res++;
-					}
-				}
-			}
-			
-			for (PaperRoll ogPaperRoll : paperRolls) {
-				if(!ogPaperRoll.removed){
-					ogPaperRoll.totalRollsAround=0;
-				}
-				
-			}
+		for (int y = 0; y < file.size(); y++) {
+			String[] commands = file.get(y).split("");
+
 		}
 		
+		return res;
+	}
 
-		
-
-		//8493
-        return res;
-    }
-	
 }
