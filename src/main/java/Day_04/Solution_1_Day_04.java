@@ -6,58 +6,58 @@ import shared.EasyPrint;
 import shared.ReadFile;
 
 public class Solution_1_Day_04 {
-	EasyPrint ep = new EasyPrint();
 
-	ArrayList<String> file;
+    EasyPrint ep = new EasyPrint();
 
-	long res;
+    ArrayList<String> file;
 
-	class Card{
-		int[] lines;
-		int[] columns;
+    long res;
 
-		
+    class Card {
 
-		void addnums(String[] nums){
-			for (Object num : nums) {
-				
-			}
-		}
-	}
-	
-	public Object getSolution(String filepath) {
+        int[] lines;
+        int[] columns;
 
-		res = 0;
+        void addnums(String[] nums) {
+            for (int i = 0; i < nums.length; i++) {
 
-		ReadFile rf = new ReadFile();
-		file = new ArrayList<>();
-		file = rf.getInput(filepath);
+            }
+        }
+    }
 
-		ArrayList<Card> cards = new ArrayList<>();
-		Card card = new Card(); 
+    public Object getSolution(String filepath) {
 
-		for (int y = 0; y < file.size(); y++) {
-			String line = file.get(y);
-			String[] commands;
+        res = 0;
 
-			if(y == 0){
-				commands = line.split(",");
-			}else if(line.equals("")){
-				cards.add(card);
-				card = new Card();
-			}else{
-				commands = line.split(" ");
-				card.addnums(commands);
-			}
-			
+        ReadFile rf = new ReadFile();
+        file = new ArrayList<>();
+        file = rf.getInput(filepath);
 
-		}
-		
-		return res;
-	}
+        ArrayList<Card> cards = new ArrayList<>();
+        Card card = new Card();
+		int cardRow = 0;
+
+        for (int y = 0; y < file.size(); y++) {
+            String line = file.get(y);
+            String[] commands;
+
+            if (y == 0) {
+                commands = line.split(",");
+            } else if (line.equals("")) {
+                cards.add(card);
+                card = new Card();
+            } else {
+				line = line.replace("  "," ");
+                commands = line.split(" ");
+                card.addnums(commands);
+            }
+
+        }
+
+        return res;
+    }
 
 }
-
 
 // test example
 /*
@@ -82,5 +82,4 @@ public class Solution_1_Day_04 {
 	22 11 13  6  5
 	2  0 12  3  7
 	 
-	*/
-	
+ */
