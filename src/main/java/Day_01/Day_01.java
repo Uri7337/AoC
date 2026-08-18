@@ -21,10 +21,10 @@ public class Day_01{
         String sol2_test = "";
 
         boolean mytest = false;
-        boolean tests = true;
+        boolean tests = false;
         boolean prod = true;
-        boolean part1 = false;
-        boolean part2 = true;
+        boolean part1 = true;
+        boolean part2 = false;
         
         ep.p("==Start==");
         if(part1){
@@ -71,7 +71,7 @@ public class Day_01{
 
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Long.valueOf(sol1_test) == 7){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol1_test) == 3){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
