@@ -23,8 +23,8 @@ public class Day_01{
         boolean mytest = false;
         boolean tests = false;
         boolean prod = true;
-        boolean part1 = true;
-        boolean part2 = false;
+        boolean part1 = false;
+        boolean part2 = true;
         
         ep.p("==Start==");
         if(part1){

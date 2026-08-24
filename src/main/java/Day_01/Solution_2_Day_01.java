@@ -12,34 +12,41 @@ public class Solution_2_Day_01 {
 
 	long res;
 	
-
-
-
 	public Object getSolution(String filepath) {
 
 		res = 0;
-		
 		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
+		file = new ArrayList<>();
 		file = rf.getInput(filepath);
 
-		ArrayList<Integer> measurements = new ArrayList<>();
-		ArrayList<Integer> windows = new ArrayList<>();
-		
+		ArrayList<Integer> sequenceOfDigits = new ArrayList<>();
+		String[] singeDigits = {};
 
 		for (int y = 0; y < file.size(); y++) {
-			String line = file.get(y);
-			measurements.add(Integer.valueOf(line));
+			singeDigits = file.get(y).split("");
+			
         }
 
-		for (int i = 0; i < measurements.size()-2; i++) {
-			windows.add(measurements.get(i)+measurements.get(i+1)+measurements.get(i+2));
+		for (String digit : singeDigits) {
+			sequenceOfDigits.add(Integer.valueOf(digit));
 		}
 
-		for (int i = 0; i < windows.size()-1; i++) {
-			if(windows.get(i)<windows.get(i+1)){
-				res++;
+		int listSize = sequenceOfDigits.size();
+		for (int i = 0; i < listSize; i++) {
+
+			int fN = sequenceOfDigits.get(i); //firstNumber
+			int sN = sequenceOfDigits.get((i+listSize/2)%listSize); //secondNumber
+			ep.p(fN+":"+sN);
+
+			if(fN==sN){
+				res+=fN;
 			}
+			
+			//12131415 | 8/2 4
+			//1212	   | i+2 =
+			//		   | 2+2 = 4 % 4 = 
+			
+			
 		}
 
 		ep.p(res);
