@@ -20,26 +20,39 @@ public class Solution_2_Day_02 {
 		file = new ArrayList<>();
 		file = rf.getInput(filepath);
 
-		int horizontal = 0;
-		int depth = 0;
-		int aim = 0;
-		
+		ArrayList<Integer> nums;
 
 		for (int y = 0; y < file.size(); y++) {
-			String[] commands = file.get(y).split(" ");
+			
+			String[] spreadsheetRow;
+			nums = new ArrayList<>();
+			if(file.get(y).contains(" ")){
+				spreadsheetRow = file.get(y).split(" ");
+			}else{
+				spreadsheetRow = file.get(y).split("\\t");
+			}
+			
+			for (int i = 0; i < spreadsheetRow.length; i++) {
+				nums.add(Integer.parseInt(spreadsheetRow[i]));
+			}
 
-			if (commands[0].equals("up")) {
-				aim -= Integer.valueOf(commands[1]);
-			} else if (commands[0].equals("down")) {
-				aim += Integer.valueOf(commands[1]);
-			} else {
-				horizontal += Integer.valueOf(commands[1]);
-				depth = depth + (aim *Integer.valueOf(commands[1]));
+			for (int i = 0; i < nums.size(); i++) {
+				int x = nums.get(i);
+				
+				for (int j = i+1; j < nums.size(); j++) {
+					int z = nums.get(j);
+					if(x%z==0 && x!=z){
+						
+						res += x/z;
+					}else if(z%x==0 && x!=z){
+						
+						res += z/x;
+					}
+				}
 			}
 
 		}
-		
-		res = horizontal * depth;
+
 		
 		return res;
 	}
