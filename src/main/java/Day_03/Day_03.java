@@ -23,8 +23,8 @@ public class Day_03{
         boolean mytest = false;
         boolean tests = true;
         boolean prod = false;
-        boolean part1 = false;
-        boolean part2 = true;
+        boolean part1 = true;
+        boolean part2 = false;
         
         ep.p("==Start==");
         if(part1){
@@ -71,7 +71,7 @@ public class Day_03{
 
              if(tests){
                 ep.p("Tests: " + sol1_test);
-                if(Long.valueOf(sol1_test) == 198){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
+                if(Long.valueOf(sol1_test) == 31){ep.p(" | OK: True");}else{ep.p(" | OK: False");}
              }
             
             if(prod){
@@ -84,7 +84,7 @@ public class Day_03{
             ep.p("Solution **");
              if(tests){
                 ep.np("Tests: " + sol2_test);
-                if(Long.valueOf(sol2_test) == 230){ep.p(" | OK: True");}else{ep.p(" | Too Bad :(");}
+                if(Long.valueOf(sol2_test) == 9){ep.p(" | OK: True");}else{ep.p(" | Too Bad :(");}
              }
             if(prod){
                 ep.p("Answer: " + sol2);
