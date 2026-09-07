@@ -1,7 +1,7 @@
 package Day_03;
 
 import java.util.ArrayList;
-
+import java.awt.Point;
 import shared.EasyPrint;
 import shared.ReadFile;
 
@@ -13,16 +13,14 @@ public class Solution_1_Day_03 {
 	long res;
 
 	public class Square{
-		int x;
-		int y;
+		Point p = new Point();
 		int direction; // 0=RIGHT;1=UP;2=LEFT;3=DOWN
 		int number;
 
 		Square(int num, int dir, int x, int y){
 			this.number = num;
 			this.direction = dir;
-			this.x = x;
-			this.y = y;
+			p.setLocation( x,  y);
 		}
 
 
@@ -86,6 +84,7 @@ public class Solution_1_Day_03 {
 			
 			Square s = new Square(1, 0, 0, 0);
 			squares.add(s);
+			
 
 			while(s.number!=target){
 				//move
