@@ -25,6 +25,8 @@ public class Solution_2_Day_07 {
 	class Splitter extends Location {
 		Splitter left;
 		Splitter right;
+		boolean isLastSplitter = false;
+		
 
 		public Splitter(int x, int y) {
 			super(x, y);
@@ -34,60 +36,40 @@ public class Solution_2_Day_07 {
 			ep.p(x + " " + y);
 		}
 
-		void replace(Map map) {
-			//if (map.map[this.y - 1][this.x] == '|') {
-				map.map[this.y][this.x] = '#';
-			//}
+		
+		private Splitter findLowerSplitter(Map map, ArrayList<Splitter> splitters, int side){
+			
+			for (int mapY = this.y; mapY < map.sizey; mapY++) {
+				if (map.map[mapY][side] == '^') {
+					for(Splitter s : splitters){
+						if(s.x==side && s.y == mapY){
+							return s;
+						}
+					}
+				}
+			}
+
+			return null;
 		}
 
 		void pair(Map map, ArrayList<Splitter> splitters) {
-			int leftSplitterX = this.x - 1;
-			int rightSplitterX = this.x + 1;
-			int pairSplitterY = this.y + 2;
-
-			if(map.sizey<=pairSplitterY){
-				return;
-			}
-
-			if (map.map[pairSplitterY][leftSplitterX] == '^') {
-				for(Splitter s : splitters){
-					if(s.x==leftSplitterX && s.y == pairSplitterY){
-						this.left = s;
-					}
-				}
-			}
-
-			if (map.map[pairSplitterY][rightSplitterX] == '^') {
-				for(Splitter s : splitters){
-					if(s.x==rightSplitterX && s.y == pairSplitterY){
-						this.right = s;
-					}
-				}
-			}
+			this.left = findLowerSplitter(map, splitters, -1);
+			this.right = findLowerSplitter(map, splitters, +1);
 		}
 
 		boolean isChildfree() {
 			return left == null & right == null;
 		}
 
-		long showAll(Splitter splitter, Map m) {
-			if (splitter == null) {
-				return 0;
-			}
-
-			splitter.replace(m);
-			m.printMap();
-			ep.p(splitter.x);
-			ep.p(splitter.y);
-
-			if (splitter.isChildfree()) {
-				return 2;
-			}
-
-			long counter = showAll(splitter.left, m);
-			counter += showAll(splitter.right, m);
-			return counter;
+		boolean isLeftEmpty(){
+			return left == null;
 		}
+
+		boolean isRightEmpty(){
+			return right == null;
+		}
+
+		
 
 	}
 
@@ -108,51 +90,21 @@ public class Solution_2_Day_07 {
 					this.stopped = true;
 				} else {
 					if (map.map[y + 1][x] == '^') {
-						// this.split(map, beams);
+						// go left or right, depends on path
 					} else {
 						this.y++;
-						map.map[y][x] = '|';
 					}
 
-					if (map.print) {
-						map.printMap();
-					}
+					
 
 				}
 			}
 
-			// this.dupeCheck(beams);
+			
 			return splitCounter;
 		}
 
-		/*
-		 * void split(Map map, ArrayList<Beam> beams) {
-		 * this.stopped = true;
-		 * Beam b1 = new Beam(x - 1, y + 1);
-		 * Beam b2 = new Beam(x + 1, y + 1);
-		 * map.map[y + 1][x - 1] = '|';
-		 * map.map[y + 1][x + 1] = '|';
-		 * beams.add(b1);
-		 * beams.add(b2);
-		 * 
-		 * }
-		 */
-
-		/*
-		 * void dupeCheck(ArrayList<Beam> beams) {
-		 * for (int i = 0; i < beams.size() - 1; i++) {
-		 * Beam b1 = beams.get(i);
-		 * for (int j = i + 1; j < beams.size(); j++) {
-		 * Beam b2 = beams.get(j);
-		 * if (b1.initx == b2.initx && b1.inity == b2.inity) {
-		 * b2.stopped = true;
-		 * } else if (b1.x == b2.initx && b1.y == b2.inity) {
-		 * b1.stopped = true;
-		 * }
-		 * }
-		 * }
-		 * }
-		 */
+		
 
 	}
 
@@ -160,7 +112,7 @@ public class Solution_2_Day_07 {
 		int sizex;
 		int sizey;
 		char[][] map;
-		boolean print = true;
+		
 
 		public Map(int sizex, int sizey, ArrayList<Splitter> splitters, ArrayList<Beam> beams) {
 			this.sizex = sizex;
@@ -185,38 +137,14 @@ public class Solution_2_Day_07 {
 			}
 		}
 
-		void printMap() {
-			System.out.print("\033[H\033[2J");
-			System.out.flush();
-			// System.out.println("");
-			for (int i = 0; i < sizey; i++) {
-				for (int j = 0; j < sizex; j++) {
-
-					ep.np(map[i][j]);
-
-				}
-				ep.p("");
-			}
-
-			try {
-				// sleep
-				//Thread.sleep(2);
-				 Thread.sleep(350);
-			} catch (InterruptedException e) {
-				// recommended because catching InterruptedException clears interrupt flag
-				Thread.currentThread().interrupt();
-				// you probably want to quit if the thread is interrupted
-
-			}
-
-		}
+		
 	}
 
 	public Object getSolution(String filepath) {
 
 		timelines = 0;
 		ReadFile rf = new ReadFile();
-		file = new ArrayList<String>();
+		file = new ArrayList<>();
 		file = rf.getInput(filepath);
 
 		ArrayList<Splitter> splitters = new ArrayList<>();
@@ -224,7 +152,6 @@ public class Solution_2_Day_07 {
 
 		for (int y = 0; y < file.size(); y++) {
 			String line = file.get(y);
-			// ep.p(line);
 			String[] linePieces = line.split("");
 			for (int i = 0; i < linePieces.length; i++) {
 				if (linePieces[i].equals("S")) {
@@ -239,21 +166,13 @@ public class Solution_2_Day_07 {
 		}
 
 		Map m = new Map(file.get(0).length(), file.size(), splitters, beams);
-		// Beam b;
-
-		// int beamsStopped = 0;
-		m.print = true;
-		m.printMap();
 
 		for (Splitter s : splitters) {
 			s.pair(m, splitters);
 		}
 
-		Splitter s = splitters.get(0);
-
-		ep.p("left: "+s.left.y+" "+s.left.x);
-		ep.p("right: "+s.right.y+" "+s.right.x);
-		timelines = s.showAll(s,m);
+		
+		
 
 		return timelines;
 	}
